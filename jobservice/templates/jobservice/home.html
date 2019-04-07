@@ -1,0 +1,26 @@
+{% extends "jobservice/base.html"%}
+{% block content%}
+<h1>Tutaj powinna być jeszcze wyszukwarka</h1>
+{% for joboffer in joboffers %}
+<article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2" href="#">{{ joboffer.author }}</a>
+            <small class="text-muted">{{ joboffer.postdate}}</small>
+        </div>
+        <h2><a class="article-title" href="#">{{ joboffer.title }}</a></h2>
+        <p class="article-content">{{ joboffer.content }}</p>
+    </div>
+</article>
+
+<!--div class="card">
+    <h5 class="card-header">{{joboffer.author}}</h5>
+    <div class="card-body">
+        <h5 class="card-title">{{joboffer.title}}</h5>
+        <p class="card-text">{{joboffer.content}}</p>
+        <a href="#" class="btn btn-primary">View more</a>
+    </div>
+</div>-->
+
+{% endfor %}
+{%endblock content%}
