@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import JobOffer
 # Create your views here.
 
 joboffers = [
@@ -37,7 +38,7 @@ joboffers = [
 
 def home(request):
     context = {
-        'joboffers' : joboffers
+        'joboffers' : JobOffer.objects.all()
     }
     return render(request,'jobservice/home.html', context)
 
