@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'jobservice.apps.JobserviceConfig',
     'companyusers',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
