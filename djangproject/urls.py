@@ -16,9 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from companyusers import views as companyusers_views
+from django.contrib.auth import views as  auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('jobservice.urls')),
-    path('register/', companyusers_views.register, name='register'  )
+    path('register/', companyusers_views.register, name='register'  ),
+    path('login/', auth_views.LoginView.as_view(template_name = 'companyusers/login.html'), name='login'  ),
+    path('logout/', auth_views.LoginView.as_view(template_name = 'companyusers/logout.html'), name='logout'  )
+   # path('signup/', classroom.SignUpView.as_view(), name='signup'),
+   # path('signup/company/', students.CompanySignUpView.as_view(), name='company_signup'),
+    #path('signup/person/', teachers.PersonSignUpView.as_view(), name='person_signup'),
+
 ]
