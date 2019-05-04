@@ -14,6 +14,8 @@ class Company(models.Model):
     companyName = models.CharField(max_length= 50,default="")
     companyMail = models.EmailField(default="")
     companyPassword = models.CharField(max_length= 50,default="") 
+    def __str__(self):
+        return self.companyName
 
 class JobOffer(models.Model):
     title = models.CharField(max_length= 50,default="")
@@ -29,6 +31,8 @@ class Person(models.Model):
     userName = models.CharField(max_length=10,default="")
     personMail = models.EmailField(default="")
     personPassword = models.CharField(max_length=10,default="")
+    def __str__(self):
+        return self.userName
 
 class Cv(models.Model):
     userName = models.OneToOneField(Person, on_delete = models.CASCADE)
