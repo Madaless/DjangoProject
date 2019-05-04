@@ -42,5 +42,8 @@ def home(request):
     }
     return render(request,'jobservice/home.html', context)
 
+def profile(request):
+    return render(request,'jobservice/profile.html',{'title':'Profil'})
+
 def about(request):
     return render(request,'jobservice/about.html',{'title':'About'})
