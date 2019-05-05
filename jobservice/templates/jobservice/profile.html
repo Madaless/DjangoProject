@@ -1,8 +1,15 @@
 {% extends "jobservice/base.html"%}
 {% block content%}
 
+<h3>nazwa uzytkownika: {{ user.username }}</h3>
 
-{{ user.username }}
+<li class="nav-item active">
+    <a class="nav-link" href="{% url 'cv' %}">stwórz cv <span class="sr-only">(current)</span></a>
+</li>
+<li class="nav-item active">
+    <a class="nav-link" href="#">zmień hasło <span class="sr-only">(current)</span></a>
+</li>
+
 
 
 {%endblock content%}
