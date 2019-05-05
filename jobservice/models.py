@@ -35,6 +35,7 @@ class Person(models.Model):
         return self.userName
 
 class Cv(models.Model):
+    nameCv = models.CharField(max_length=50,default="")
     userName = models.OneToOneField(Person, on_delete = models.CASCADE)
     lastName = models.CharField(max_length=50,default="")
     firstName = models.CharField(max_length=50,default="")
@@ -51,13 +52,15 @@ class ReplyToOffer(models.Model):
     idPerson = models.ForeignKey(Person, on_delete = models.CASCADE,default="")
     idOffer = models.ForeignKey(JobOffer, on_delete = models.CASCADE,default="")
     dateAdd = models.DateTimeField(auto_now_add=True)
-
+    cv = models.ForeignKey(Cv, on_delete = models.CASCADE, default="")
+    messForCompany = models.CharField(max_length=150,default="")
 
     def __str__(self):
         return str(self.idOffer)+' '+str(self.idPerson)
 
 class FeedbackAnswer(models.Model):
-    accept = models.CharField(max_length=50,default="")
+    idReplyToOffer = models.ForeignKey(ReplyToOffer, on_delete = models.CASCADE,default="")
+    accept = models.BooleanField(max_length=50,default="")
     response = models.CharField(max_length=50,default="")
 
     def __str__(self):
