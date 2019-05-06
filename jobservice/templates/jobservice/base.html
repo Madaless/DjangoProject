@@ -23,16 +23,16 @@
         <div class="collapse navbar-collapse pos" id="navbarText">           
             <ul class="navbar-nav ml-auto">               
                 <li class="nav-item">
-                    <a class="nav-link pasek_napis" style=" color: #FFFBFB;" href="{% url 'login' %}">login</a>   
+                    <a class="nav-link pasek_napis szary" href="{% url 'login' %}">login</a>   
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link pasek_napis" style=" color: #FFFBFB;" href="{% url 'register' %}">sign up</a> 
+                    <a class="nav-link pasek_napis szary" href="{% url 'register' %}">sign up</a> 
                 </li>                    
             </ul>
         </div>
     </nav>
     {% if user.is_authenticated %}
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #677781;">
+    <nav class="navbar navbar-expand-lg navbar-light szary_tlo" >
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
                 <a class="nav-link pasek_napis" style=" color: rgb(5, 5, 5);"href="{% url 'profile' %}">profile</a>   
@@ -43,7 +43,7 @@
         </ul>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link pasek_napis" style="color: rgb(5, 5, 5);" href="{% url 'logout' %}">logout</a>   
+                <a class="nav-link pasek_napis" style="color: rgb(5, 5, 5);" href="{% url 'jobs-home' %}">logout</a>   
             </li>
         </ul>
     </nav>

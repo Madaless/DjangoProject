@@ -5,13 +5,16 @@
 <br>
 <div class=" pasek_napis ">
     wyszukaj: 
+    <br> <br>
 </div> 
-<div class=" mx-auto">
-    <form class="form-inline">
-        <input class="form-control pasek_napis" type="search" placeholder="search by keyword ">
-        <button class="btn btn-outline-success pasek_napis " type="submit">Search</button>
+
+    <form class="form-inline ">
+            <div class=" mx-auto">
+        <input class="form-control pasek_napis mr-2" type="search" placeholder="search by keyword ">
+        <button class="btn btn-outline-success " style="font-family: Nunito Sans; "type="submit">Search</button>
+    </div>
     </form>                                                 
-</div>
+
 <br>
 <br>
 {% for joboffer in joboffers %}
@@ -19,11 +22,11 @@
 <article class="media content-section">
     <div class="media-body">
         <div class="article-metadata">
-            <a class="mr-2 " href="#">{{ joboffer.companyName }}</a>
+            <a class="mr-2 pasek_napis" href="#">{{ joboffer.companyName }}</a>
             <small class="text-muted">{{ joboffer.postdate}}</small>
         </div>
-        <h2><a class="article-title pasek_napis" href="#">{{ joboffer.title }}</a></h2>
-        <p class="article-content ">{{ joboffer.location }}</p>
+        <h2><a class="article-title pasek_napis " style="font-size: 20px;"href="#">{{ joboffer.title }}</a></h2>
+        <p class="article-content" style="font-family: Nunito Sans;">{{ joboffer.jobPosition }}</p>
     </div>
 </article>
 

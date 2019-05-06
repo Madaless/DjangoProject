@@ -10,7 +10,20 @@
   letter-spacing: 0.1em;
   mix-blend-mode: normal;
 }
+input::placeholder {
+  color: white;
+}
 
+.bialy{
+  color: #ffffff;
+}
+.szary{
+  color: #b2bfc7;
+
+}
+.szary_tlo{
+  background-color: #b2bfc7;
+}
 .pos{
     position: absolute;
     right: 25px;

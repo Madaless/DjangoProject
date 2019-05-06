@@ -16,8 +16,4 @@ def register(request):
     return render(request, 'companyusers/register.html', {'form': form})
 
 
-def logout(requset):
-    # nie wiem czy tak
-    return render(request,'companyusers/logout.html',{})
-
 
