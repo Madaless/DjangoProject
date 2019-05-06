@@ -19,8 +19,9 @@ class JobOffer(models.Model):
     jobPosition = models.CharField(max_length= 50,default="")
     postdate = models.DateTimeField(auto_now_add=True)
     companyName = models.ForeignKey(Company, on_delete = models.CASCADE)
-    location =  models.CharField(max_length=105,default="")
-    additionalSkills = models.CharField(max_length=105,default="")
+    location =  models.CharField(max_length=300,default="")
+    additionalSkills = models.CharField(max_length=300,default="")
+    additionalInfo = models.CharField(max_length=300,default="")
 
     def __str__(self):
         return self.title+' '+str(self.companyName)
@@ -35,15 +36,15 @@ class Person(models.Model):
         return self.userName
 
 class Cv(models.Model):
-    nameCv = models.CharField(max_length=50,default="")
+    nameCv = models.CharField(max_length=50,blank=False)
     userName = models.OneToOneField(Person, on_delete = models.CASCADE)
-    lastName = models.CharField(max_length=50,default="")
-    firstName = models.CharField(max_length=50,default="")
-    dateOfBirth = models.CharField(max_length=50,default="")
-    education = models.CharField(max_length=50,default="")
-    placeOfResidence = models.CharField(max_length=50,default="")
-    experience = models.CharField(max_length=50,default="")
-    description = models.CharField(max_length=50,default="")
+    lastName = models.CharField(max_length=50,blank=False)
+    firstName = models.CharField(max_length=50,blank=False)
+    dateOfBirth = models.CharField(max_length=50,blank=False)
+    education = models.CharField(max_length=300,blank=True)
+    placeOfResidence = models.CharField(max_length=300,blank=False)
+    experience = models.CharField(max_length=300,blank=True)
+    description = models.CharField(max_length=300,blank=True)
 
     def __str__(self):
         return self.nameCv
