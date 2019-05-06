@@ -14,6 +14,6 @@ def profile(request):
 
 def about(request):
     return render(request,'jobservice/about.html',{'title':'About'})
-    
-def cv(request):
-    return render(request,'jobservice/cv.html',{'title':'CV'})
+
+def create(request):
+    return render(request,'jobservice/create.html',{'title':'create'})

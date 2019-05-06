@@ -1,26 +1,29 @@
 {% extends "jobservice/base.html"%}
 {% block content%}
-<h1>Tutaj powinna być jeszcze wyszukwarka</h1>
+<div class=" mx-auto">
+    <br>
+    <a class=" pasek_napis ">wyszukaj: </a>   
+    <br>
+    <form class="form-inline">
+        <input class="form-control pasek_napis" type="search" placeholder="search by keyword ">
+        <button class="btn btn-outline-success pasek_napis " type="submit">Search</button>
+    </form>                                                 
+</div>
+<br>
+<br>
 {% for joboffer in joboffers %}
+
 <article class="media content-section">
     <div class="media-body">
         <div class="article-metadata">
-            <a class="mr-2" href="#">{{ joboffer.companyName }}</a>
+            <a class="mr-2 " href="#">{{ joboffer.companyName }}</a>
             <small class="text-muted">{{ joboffer.postdate}}</small>
         </div>
-        <h2><a class="article-title" href="#">{{ joboffer.title }}</a></h2>
-        <p class="article-content">{{ joboffer.location }}</p>
+        <h2><a class="article-title pasek_napis" href="#">{{ joboffer.title }}</a></h2>
+        <p class="article-content ">{{ joboffer.location }}</p>
     </div>
 </article>
 
-<!--<div class="card">
-    <h5 class="card-header">{{joboffer.author}}</h5>
-    <div class="card-body">
-        <h5 class="card-title">{{joboffer.title}}</h5>
-        <p class="card-text">{{joboffer.content}}</p>
-        <a href="#" class="btn btn-primary">View more</a>
-    </div>
-</div>-->
 
 {% endfor %}
 {%endblock content%}

@@ -1,3 +1,35 @@
+.pasek_napis{
+  font-family: Nunito Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 25px;
+  /* identical to box height */
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.1em;
+  mix-blend-mode: normal;
+}
+
+.pos{
+    position: absolute;
+    right: 25px;
+}
+
+.tytul {
+  font-family: Nunito Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 34px;
+  line-height: 34px;
+  /* display: flex; */
+  /* align-items: center; */
+  text-align: center;
+  letter-spacing: 0.05em;
+
+  color: #FFFBFB;
+}
+
 body {
     background: #efedf8;
     color: #333333;
@@ -69,3 +101,5 @@ body {
   .account-heading {
     font-size: 2.5rem;
   }
+
+  
