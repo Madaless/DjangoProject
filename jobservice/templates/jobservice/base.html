@@ -26,7 +26,7 @@
                     <a class="nav-link pasek_napis szary" href="{% url 'login' %}">login</a>   
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link pasek_napis szary" href="{% url 'register' %}">sign up</a> 
+                    <a class="nav-link pasek_napis szary" href="{% url 'start' %}">sign up</a> 
                 </li>                    
             </ul>
         </div>
@@ -35,10 +35,16 @@
     <nav class="navbar navbar-expand-lg navbar-light szary_tlo" >
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link pasek_napis" style=" color: rgb(5, 5, 5);"href="{% url 'profile' %}">profile</a>   
+                <a class="nav-link pasek_napis" style=" color: rgb(5, 5, 5);"href="{% url 'profileuser' %}">profile</a>   
             </li>
             <li class="nav-item">
-                <a class="nav-link pasek_napis" style="color: rgb(5, 5, 5);" href="{% url 'create' %}">create</a>   
+                <a class="nav-link pasek_napis" style=" color: rgb(5, 5, 5);"href="{% url 'profilecompany' %}">profile</a>   
+            </li>
+            <li class="nav-item">
+                <a class="nav-link pasek_napis" style="color: rgb(5, 5, 5);" href="{% url 'createcv' %}">create</a>   
+            </li>
+            <li class="nav-item">
+                <a class="nav-link pasek_napis" style="color: rgb(5, 5, 5);" href="{% url 'createoffer' %}">create</a>   
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">

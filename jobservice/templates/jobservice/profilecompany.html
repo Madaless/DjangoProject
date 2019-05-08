@@ -1,0 +1,44 @@
+{% extends "jobservice/base.html"%}
+{% block content%}
+
+
+<br>
+<br>
+<div class=" pasek_napis ">
+    my profile: 
+    <br><br>
+</div> 
+
+
+<form>
+        <div class="form-group col-md-4 mx-auto">
+            <input class="form-control" type="text" id="username" placeholder="nazwa uzytkownika: {{ user.username }}"></p>
+        </div>
+        <div class="form-group col-md-5 mx-auto">
+            <input class="form-control" type="email" id="email" placeholder="email: {{ user.email }}" >
+        </div>
+        <div class="form-group col-md-5 mx-auto">
+            <input class="form-control" type="text" id="password" placeholder="password: *** " >
+        </div>
+        <!-- <div class="form-group col-md-4 mx-auto">
+            <input class="form-control" type="text" id="" placeholder="" >
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="text" id="" placeholder=" " >
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="text" id="" placeholder="" >
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="text" id="" placeholder=" " >
+        </div>
+        <div class="col-md-1 mx-auto">
+            <button type="submit" class="btn btn-dark  ">Submit</button>
+        </div> --> 
+    </form>
+
+
+
+    <br>
+    <br>
+{%endblock content%}

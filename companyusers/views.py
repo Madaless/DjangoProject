@@ -16,4 +16,3 @@ def register(request):
     return render(request, 'companyusers/register.html', {'form': form})
 
 
-
