@@ -14,6 +14,18 @@ input::placeholder {
   color: white;
 }
 
+.start_napis{
+  font-family: Nunito Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 25px;
+  line-height:45px;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.1em;
+  mix-blend-mode: normal;
+}
+
 .bialy{
   color: #ffffff;
 }

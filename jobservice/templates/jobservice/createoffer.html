@@ -1,0 +1,39 @@
+{% extends "jobservice/base.html"%}
+{% block content%}
+
+<br>
+<br>
+<div class=" pasek_napis ">
+    create job offer: 
+    <br> <br>
+</div> 
+<form>
+    <div class="form-group col-md-2 mx-auto">
+        <input class="form-control" type="text" id="title" placeholder="title you offer" >
+    </div>
+    <div class="form-group col-md-4 mx-auto">
+        <input class="form-control" type="text" id="trade" placeholder="trade" >
+    </div>
+    <div class="form-group col-md-4 mx-auto">
+        <input class="form-control" type="text" id=" proffesion" placeholder="proffesion" >
+    </div>
+    <div class="form-group col-md-4 mx-auto">
+        <input class="form-control" type="text" id="jobPosition" placeholder="job position" >
+    </div>
+    <div class="form-group">
+        <input class="form-control" type="text" id="additionalInfo" placeholder="additional info" >
+    </div>
+    <div class="form-group">
+        <input class="form-control" type="text" id="location" placeholder="location" >
+    </div>
+    <div class="form-group">
+        <input class="form-control" type="text" id="additionalSkills" placeholder="additional skills" >
+    </div>
+    <div class="col-md-1 mx-auto">
+        <button type="submit" class="btn btn-dark  ">Submit</button>
+    </div>
+</form>
+
+<br>
+<br>
+{%endblock content%}

@@ -1,9 +1,16 @@
 from django.urls import path
 from . import views
+from django.urls import path
 
 urlpatterns = [
     path('', views.home, name='jobs-home'),
     path('about/', views.about, name='about-job'),
-    path('accounts/profile/',views.profile, name='profile'),
-    path('accounts/create/',views.create, name='create'),
+    path('start/', views.start, name='start'),
+    path('profilecompany/', views.profilecompany, name='profilecompany'),
+    path('profileuser/', views.profileuser, name='profileuser'),
+    path('create/cv/', views.createcv, name='createcv'),
+    path('create/offer/', views.createoffer, name='createoffer'),
+    path('offer/<int:joboffer_id>/', views.offer, name='offer'),
+    path('cv/<int:cv_id>/', views.cv, name='cv'),
+    
 ]
