@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Company(models.Model):
-    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    user = models.OneToOneField(User,on_delete=models.CASCADE, primary_key=True)
     companyName = models.CharField(max_length= 50,default="")
     companyMail = models.EmailField(default="")
     companyPassword = models.CharField(max_length= 50,default="") 
@@ -27,7 +27,7 @@ class JobOffer(models.Model):
         return self.title+' '+str(self.companyName)
 
 class Person(models.Model):
-    user = models.OneToOneField(User,on_delete=models.CASCADE, default="")
+    user = models.OneToOneField(User,on_delete=models.CASCADE,primary_key=True, default="")
     userName = models.CharField(max_length=10,default="")
     personMail = models.EmailField(default="")
     personPassword = models.CharField(max_length=10,default="")

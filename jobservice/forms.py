@@ -1,13 +1,29 @@
 from django import forms
-from django.contrib.auth.models import Cv
+from .models import Cv, JobOffer, ReplyToOffer, FeedbackAnswer
 
-class Cv(forms.Form):
-    nameCv = forms.CharField(max_length=50)
-    userName = forms.OneToOneField(Person, on_delete = models.CASCADE)
-    lastName = forms.CharField(max_length=50)
-    firstName = forms.CharField(max_length=50)
-    dateOfBirth = forms.CharField(max_length=50)
-    education = forms.CharField(max_length=300)
-    placeOfResidence = forms.CharField(max_length=300)
-    experience = forms.CharField(max_length=300)
-    description = forms.CharField(max_length=300)
+class Cv_form(forms.ModelForm):
+
+    class Meta:
+        model = Cv
+        fields = ('nameCv', 'lastName', 'firstName', 'dateOfBirth', 'education', 'placeOfResidence', 'experience', 'description')
+
+
+# class Offer_form(forms.ModelForm):
+
+#     class Meta:
+#         model =JobOffer
+#         fields = ('title','trade','proffesion','jobPosition','postdate','companyName','location','additionalSkills',' additionalInfo')
+
+
+# class ReplyToOffer_form(forms.ModelForm):
+
+#     class Meta:
+#         model = ReplyToOffer
+#         fields = ('idPerson','idOffer','dateAdd','cv','messForCompany')
+
+
+# class FeedbackAnswer_form(forms.ModelForm):
+
+#     class Meta:
+#         model = FeedbackAnswer
+#         fields = ('idReplyToOffer','accept','response')
