@@ -3,7 +3,6 @@ from django.urls import reverse
 from django.shortcuts import get_object_or_404, render
 
 from .forms import Cv_form
-
 # Create your views here
 
 def home(request):
