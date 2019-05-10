@@ -1,6 +1,40 @@
 {% extends "jobservice/base.html"%}
 {% block content%}
 
+{{cv}}
+<br>
+<br>
+<form>
+    <div class="form-group col-md-2 mx-auto">
+        <input class="form-control szary_tlo" type="text" id="nameCv" placeholder="name you cv" >
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <input class="form-control szary_tlo" type="text" id="firstName" placeholder="first name" >
+        </div>
+        <div class="form-group col-md-6">
+            <input class="form-control szary_tlo" type="text" id="lastName" placeholder="last name" >
+        </div>
+    </div>
+    <div class="form-group col-md-4 mx-auto">
+        <input class="form-control szary_tlo" type="text" id="dateOfBirth" placeholder="date of birth" >
+    </div>
+    <div class="form-group">
+        <input class="form-control szary_tlo" type="text" id="placeOfResidence" placeholder="place of residence" >
+    </div>
+    <div class="form-group">
+        <input class="form-control szary_tlo" type="text" id="education" placeholder="education" >
+    </div>
+    <div class="form-group">
+        <input class="form-control szary_tlo" type="text" id="experience" placeholder="experience" >
+    </div>
+    <div class="form-group">
+        <input class="form-control szary_tlo" type="text" id="description" placeholder="description" >
+    </div>
+    <div class="col-md-1 mx-auto">
+        <button type="submit" class="btn btn-dark  ">Submit</button>
+    </div>
+</form>
 
 <br>
 <br>

@@ -7,35 +7,36 @@
     create cv: 
     <br> <br>
 </div> 
-<form>
+<form action="{% url 'createcv' %}" method="post">
+        {% csrf_token %}
     <div class="form-group col-md-2 mx-auto">
-        <input class="form-control szary_tlo" type="text" id="nameCv" placeholder="name you cv" >
+        <input class="form-control szary_tlo" name="nameCv" type="text" id="nameCv" placeholder="name you cv" >
     </div>
     <div class="form-row">
         <div class="form-group col-md-6">
-            <input class="form-control szary_tlo" type="text" id="firstName" placeholder="first name" >
+            <input class="form-control szary_tlo" type="text" name="firstName" placeholder="first name" >
         </div>
         <div class="form-group col-md-6">
-            <input class="form-control szary_tlo" type="text" id="lastName" placeholder="last name" >
+            <input class="form-control szary_tlo" type="text" name="lastName" placeholder="last name" >
         </div>
     </div>
     <div class="form-group col-md-4 mx-auto">
-        <input class="form-control szary_tlo" type="text" id="dateOfBirth" placeholder="date of birth" >
+        <input class="form-control szary_tlo" type="text" name="dateOfBirth" placeholder="date of birth" >
     </div>
     <div class="form-group">
-        <input class="form-control szary_tlo" type="text" id="placeOfResidence" placeholder="place of residence" >
+        <input class="form-control szary_tlo" type="text" name="placeOfResidence" placeholder="place of residence" >
     </div>
     <div class="form-group">
-        <input class="form-control szary_tlo" type="text" id="education" placeholder="education" >
+        <input class="form-control szary_tlo" type="text" name="education" placeholder="education" >
     </div>
     <div class="form-group">
-        <input class="form-control szary_tlo" type="text" id="experience" placeholder="experience" >
+        <input class="form-control szary_tlo" type="text" name="experience" placeholder="experience" >
     </div>
     <div class="form-group">
-        <input class="form-control szary_tlo" type="text" id="description" placeholder="description" >
+        <input class="form-control szary_tlo" type="text" name="description" placeholder="description" >
     </div>
     <div class="col-md-1 mx-auto">
-        <button type="submit" class="btn btn-dark  ">Submit</button>
+        <button type="submit" volue = "cv.id" class="btn btn-dark " >Submit</button>
     </div>
 </form>
 
