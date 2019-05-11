@@ -10,7 +10,7 @@ urlpatterns = [
     path('profileuser/', views.profileuser, name='profileuser'),
     path('createcv/', views.createcv, name='createcv'),
     path('createoffer/', views.createoffer, name='createoffer'),
-    path('offer/<int:joboffer_id>/', views.offer, name='offer'),
+    path('offer/<int:offer_id>/', views.offer, name='offer'),
     path('cv/<int:cv_id>/', views.cv, name='cv'),
     
 ]

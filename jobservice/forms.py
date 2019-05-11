@@ -8,11 +8,11 @@ class Cv_form(forms.ModelForm):
         fields = ('nameCv', 'lastName', 'firstName', 'dateOfBirth', 'education', 'placeOfResidence', 'experience', 'description')
 
 
-# class Offer_form(forms.ModelForm):
+class Offer_form(forms.ModelForm):
 
-#     class Meta:
-#         model =JobOffer
-#         fields = ('title','trade','proffesion','jobPosition','postdate','companyName','location','additionalSkills',' additionalInfo')
+    class Meta:
+        model = JobOffer
+        fields = ('title','trade','proffesion','jobPosition','location','additionalSkills','additionalInfo')
 
 
 # class ReplyToOffer_form(forms.ModelForm):
