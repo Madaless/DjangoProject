@@ -1,13 +1,32 @@
 from django.db import models
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
+
+class User(AbstractUser):
+    is_person = models.BooleanField(default=False)
+    is_company = models.BooleanField(default=False)
+
+class Person(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE,primary_key=True, default="")
+    userName = models.CharField(max_length=10,default="")
+    personMail = models.EmailField(default="")
+    image = models.ImageField(default='default.jpg', upload_to='pics')
+    creationdate = models.DateTimeField(auto_now_add=True)
+    lastName = models.CharField(max_length=50,blank=False)
+    firstName = models.CharField(max_length=50,blank=False)
+    
+
+    def __str__(self):
+        return self.userName
 
 class Company(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE, primary_key=True)
     companyName = models.CharField(max_length= 50,default="")
     companyMail = models.EmailField(default="")
-    companyPassword = models.CharField(max_length= 50,default="") 
+    image = models.ImageField(default='default.jpg', upload_to='pics')
+    #companyPassword = models.CharField(max_length= 50,default="") 
     
     def __str__(self):
         return self.companyName
@@ -25,15 +44,6 @@ class JobOffer(models.Model):
 
     def __str__(self):
         return self.title+' '+str(self.companyName)
-
-class Person(models.Model):
-    user = models.OneToOneField(User,on_delete=models.CASCADE,primary_key=True, default="")
-    userName = models.CharField(max_length=10,default="")
-    personMail = models.EmailField(default="")
-    personPassword = models.CharField(max_length=10,default="")
-
-    def __str__(self):
-        return self.userName
 
 class Cv(models.Model):
     nameCv = models.CharField(max_length=50,blank=False)

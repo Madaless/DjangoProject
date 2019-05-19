@@ -8,6 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href='https://bootswatch.com/4/cosmo/bootstrap.min.css'>
     <link rel="stylesheet" href="{%static 'jobservice/main.css' %}">
+    <link rel="stylesheet" href="{%static 'jobservice/style.css' %}">
+
     {%if title%}
     <title>Django FindJob - {{ title }}</title>
     {%else%}
@@ -16,45 +18,55 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">   
-        <ul class= "mx-auto" >
-            <a class="nav-link tytul" href="{% url 'jobs-home' %}">FindJob.pl</a> 
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <ul class="mx-auto">
+            <a class="nav-link tytul" href="{% url 'jobs-home' %}">FindJob.pl</a>
         </ul>
-        <div class="collapse navbar-collapse pos" id="navbarText">           
-            <ul class="navbar-nav ml-auto">               
+
+        {% if user.is_authenticated and user.is_company  %}
+        <div class="collapse navbar-collapse pos" id="navbarText">
+            <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link pasek_napis szary" href="{% url 'login' %}">login</a>   
+                    <a class="nav-link pasek_napis szary" href="{% url 'logout' %}">loggout</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link pasek_napis szary" href="{% url 'start' %}">sign up</a> 
-                </li>                    
+                    <a class="nav-link pasek_napis" href="{% url 'profilecompany' %}">profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link pasek_napis" href="{% url 'createoffer' %}">createOffer</a>
+                </li>
             </ul>
         </div>
+
+        {% elif user.is_authenticated and user.is_person  %}
+        <div class="collapse navbar-collapse pos" id="navbarText">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link pasek_napis szary" href="{% url 'logout' %}">loggout</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link pasek_napis" href="{% url 'profileuser' %}">profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link pasek_napis" href="{%url 'createcv' %}">createCv</a>
+                </li>
+            </ul>
+        </div>
+        {% else %}
+        <div class="collapse navbar-collapse pos" id="navbarText">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link pasek_napis szary" href="{% url 'login' %}">login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link pasek_napis szary" href="{% url 'signup' %}">sign up</a>
+                </li>
+            </ul>
+        </div>
+        {% endif %}
     </nav>
-    {% if user.is_authenticated %}
-    <nav class="navbar navbar-expand-lg navbar-light szary_tlo" >
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link pasek_napis" style=" color: rgb(5, 5, 5);"href="{% url 'profileuser' %}">profileP</a>   
-            </li>
-            <li class="nav-item">
-                <a class="nav-link pasek_napis" style=" color: rgb(5, 5, 5);"href="{% url 'profilecompany' %}">profileC</a>   
-            </li>
-            <li class="nav-item">
-                <a class="nav-link pasek_napis" style="color: rgb(5, 5, 5);" href="{%url 'createcv' %}">createCv</a>   
-            </li>
-            <li class="nav-item">
-                <a class="nav-link pasek_napis" style="color: rgb(5, 5, 5);" href="{% url 'createoffer' %}">createOffer</a>   
-            </li>
-        </ul>
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link pasek_napis" style="color: rgb(5, 5, 5);" href="{% url 'jobs-home' %}">logout</a>   
-            </li>
-        </ul>
-    </nav>
-    {% endif %}
- 
+
+
     <main role="main" class="container">
         <div class="row">
             <div class="container">

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'jobservice.apps.JobserviceConfig',
     'companyusers',
     'widget_tweaks',
+     'normalusers',
 ]
 
 MIDDLEWARE = [
@@ -121,3 +122,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Custom Django auth settings
+
+AUTH_USER_MODEL = 'jobservice.User'
+LOGIN_REDIRECT_URL = 'jobs-home'
+LOGOUT_URL = 'logout'
+LOGIN_URL = 'logout'
