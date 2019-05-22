@@ -17,21 +17,23 @@
 
 <br>
 <br>
+
+
 {% for joboffer in joboffers %}
 
 <article class="media content-section">
     <div class="media-body">
         <div class="article-metadata">
-            <a class="mr-2 pasek_napis" href="#">{{ joboffer.companyName }}</a>
+            <a class="mr-2 pasek_napis" href="{% url 'companyview' company_id=joboffer.companyName.pk %}">{{ joboffer.companyName }}</a>
             <small class="text-muted">{{ joboffer.postdate}}</small>
-        </div>
-        <h2><a class="article-title pasek_napis " style="font-size: 20px;"href=" ['offer\\/(?P<joboffer_id>[0-9]+)\\/$']">{{ joboffer.title }}</a></h2>
+        </div> 
+        <h2><a class="article-title pasek_napis " style="font-size: 20px;"href="{% url 'offer' offer_id=joboffer.pk %}">{{ joboffer.title }}</a></h2>
         <p class="article-content" style="font-family: Nunito Sans;">{{ joboffer.jobPosition }}</p>
     </div>
 </article>
 
-
 {% endfor %}
+
 <br>
 <br>
 {%endblock content%}

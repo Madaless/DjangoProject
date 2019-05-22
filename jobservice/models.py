@@ -47,7 +47,7 @@ class JobOffer(models.Model):
 
 class Cv(models.Model):
     nameCv = models.CharField(max_length=50,blank=False)
-    userName = models.OneToOneField(Person, on_delete = models.CASCADE)
+    person = models.OneToOneField(Person, on_delete = models.CASCADE)
     lastName = models.CharField(max_length=50,blank=False)
     firstName = models.CharField(max_length=50,blank=False)
     dateOfBirth = models.CharField(max_length=50,blank=False)
