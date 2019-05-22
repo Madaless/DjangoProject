@@ -1,6 +1,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.shortcuts import get_object_or_404, render
+from django.shortcuts import redirect
 from django.utils import timezone
 from django.contrib.auth import logout
 from django.utils.decorators import method_decorator
@@ -8,10 +9,8 @@ from companyusers.decorators import (company_required, person_required)
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 
-
-
 from .forms import Cv_form, Offer_form
-from . models import JobOffer
+from . models import JobOffer, Company, Person
 # Create your views here
 
 def home(request):
@@ -20,8 +19,8 @@ def home(request):
     }
     return render(request,'jobservice/home.html', context)
 
-def start(request):
-    return render(request,'jobservice/start.html',{'title':'start'})
+# def start(request):
+#     return render(request,'jobservice/start.html',{'title':'start'})
 
 
 def mylogout(request):
@@ -51,7 +50,10 @@ def createcv(request):
         form = Cv_form(request.POST)
         if form.is_valid():
             cv = form.save(commit=False)
-            cv.userName = request.user
+            
+            p = Person.objects.get(user=request.user)
+            cv.person = p
+
             cv.save()
             return redirect('cv', cv_id = cv.cv_id)
         return  render(request,'normalusers/createcv.html',{'form':form})
@@ -81,6 +83,15 @@ def cv(request, cv_id):
     return HttpResponse(response % cv_id)
 
 def offer(request, offer_id):
-    response = "You're looking at offer: %s."
-    return HttpResponse(response % offer_id)
-    # return render(request,'jobservice/joboffer.html',{'title':'offer'})
+    p = JobOffer.objects.all()
+    return render(request,'jobservice/offer.html',{'offerts':p})
+
+def companyview(request, company_id):
+    p = Company.objects.all()
+    return render(request,'companyusers/companyview.html',{'companies':p})
+
+# def personview(request, person_id):
+#     p=Person.objects.get(person_id=person_id)
+#     return render(request,'companyusers/createoffer.html',{'form':form})
+
+
