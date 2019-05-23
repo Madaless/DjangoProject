@@ -1,6 +1,8 @@
 from django.db import models
 #from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractUser
+from django.utils import timezone
+from django.urls import reverse
 
 # Create your models here.
 
@@ -33,17 +35,22 @@ class Company(models.Model):
 
 class JobOffer(models.Model):
     title = models.CharField(max_length= 50,default="")
-    trade = models.CharField(max_length= 50,default="")
+    industry = models.CharField(max_length= 50,default="")
     proffesion = models.CharField(max_length= 50,default="")
     jobPosition = models.CharField(max_length= 50,default="")
-    postdate = models.DateTimeField(auto_now_add=True)
+    jobType = models.CharField(max_length= 50,default="")
+    ExperienceLevel = models.CharField(max_length= 50,default="")
+    postdate = models.DateTimeField(default=timezone.now)
     companyName = models.ForeignKey(Company, on_delete = models.CASCADE)
     location =  models.CharField(max_length=300,default="")
-    additionalSkills = models.CharField(max_length=300,default="")
-    additionalInfo = models.CharField(max_length=300,default="")
+    jobDescription = models.TextField()
+
 
     def __str__(self):
         return self.title+' '+str(self.companyName)
+
+    def get_absolute_url(self):
+        return reverse('offer-details', kwargs={'pk': self.pk})
 
 class Cv(models.Model):
     nameCv = models.CharField(max_length=50,blank=False)

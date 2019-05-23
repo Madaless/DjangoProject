@@ -9,7 +9,7 @@ from companyusers.decorators import (company_required, person_required)
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 
-from .forms import Cv_form, Offer_form
+from .forms import Cv_form
 from . models import JobOffer, Company, Person
 # Create your views here
 
@@ -62,21 +62,21 @@ def createcv(request):
         return render(request,'normalusers/createcv.html',{'form':form})
 
 #@method_decorator([login_required, company_required], name='dispatch')
-@login_required
-@company_required
-def createoffer(request):
-    if request.method == "POST":
-        form = Offer_form(request.POST)
-        offer.companyName = request.user
-        offer.postdate = timezone.now()
-        if form.is_valid():
-            offer.save()
-            url = 'offer/' + str(offer.offer_id) 
-            return redirect(url)
-        return render(request,'companyusers/createoffer.html',{'form':form})
-    else:
-        form = Offer_form()
-        return render(request,'companyusers/createoffer.html',{'form':form})
+# @login_required
+# @company_required
+# def createoffer(request):
+#     if request.method == "POST":
+#         form = Offer_form(request.POST)
+#         offer.companyName = request.user
+#         offer.postdate = timezone.now()
+#         if form.is_valid():
+#             offer.save()
+#             url = 'offer/' + str(offer.offer_id) 
+#             return redirect(url)
+#         return render(request,'companyusers/createoffer.html',{'form':form})
+#     else:
+#         form = Offer_form()
+#         return render(request,'companyusers/createoffer.html',{'form':form})
 
 def cv(request, cv_id):
     response = "You're looking at cv: %s."

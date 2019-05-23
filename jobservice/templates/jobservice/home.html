@@ -4,16 +4,16 @@
 <br>
 <br>
 <div class=" pasek_napis ">
-    wyszukaj: 
+    wyszukaj:
     <br> <br>
-</div> 
+</div>
 
-    <form class="form-inline ">
-            <div class=" mx-auto">
+<form class="form-inline ">
+    <div class=" mx-auto">
         <input class="form-control pasek_napis mr-2" type="search" placeholder="search by keyword ">
-        <button class="btn btn-outline-success " style="font-family: Nunito Sans; "type="submit">Search</button>
+        <button class="btn btn-outline-success " style="font-family: Nunito Sans; " type="submit">Search</button>
     </div>
-    </form>                                                 
+</form>
 
 <br>
 <br>
@@ -24,10 +24,12 @@
 <article class="media content-section">
     <div class="media-body">
         <div class="article-metadata">
-            <a class="mr-2 pasek_napis" href="{% url 'companyview' company_id=joboffer.companyName.pk %}">{{ joboffer.companyName }}</a>
+            <a class="mr-2 pasek_napis"
+                href="{% url 'companyview' company_id=joboffer.companyName.pk %}">{{ joboffer.companyName }}</a>
             <small class="text-muted">{{ joboffer.postdate}}</small>
-        </div> 
-        <h2><a class="article-title pasek_napis " style="font-size: 20px;"href="{% url 'offer' offer_id=joboffer.pk %}">{{ joboffer.title }}</a></h2>
+        </div>
+        <h2><a class="article-title pasek_napis " style="font-size: 20px;"
+                href="{% url 'offer-details' joboffer.pk%}">{{ joboffer.title }}</a></h2>
         <p class="article-content" style="font-family: Nunito Sans;">{{ joboffer.jobPosition }}</p>
     </div>
 </article>

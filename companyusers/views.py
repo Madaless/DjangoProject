@@ -1,6 +1,15 @@
 from django.shortcuts import render, redirect
-from .forms import CompanyRegisterForm
+from .forms import (CompanyRegisterForm, CompanyAddOfferForm)
 from django.contrib import messages
+from django.views.generic import (ListView,DetailView,CreateView,UpdateView,DeleteView)
+#from ..jobservice.models import JobOffer
+from jobservice.models import JobOffer
+from .decorators import (company_required, person_required)
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.utils.decorators import method_decorator
+
+
 # Create your views here.
 
 def register(request):
@@ -17,5 +26,48 @@ def register(request):
 
 def signup(request):
     return render(request,'companyusers/signup.html',{'title':'signup'})
+
+class OfferListView(ListView):
+    model = JobOffer
+    template_name = 'jobservice/home.html'
+    context_object_name = 'joboffers'
+    ordering = ['-postdate']
+
+class OfferDetailView(DetailView):
+    model = JobOffer
+    template_name = 'jobservice/offer.html'
+    context_object_name = 'joboffers'
+
+@method_decorator([login_required, company_required], name='dispatch')
+class OfferCreateView(LoginRequiredMixin, CreateView):
+    model = JobOffer
+    fields = ['title', 'industry', 'proffesion' ,'jobPosition', 'jobType', 'ExperienceLevel', 'postdate', 'companyName', 'location', 'jobDescription' ]
+    template_name = 'companyusers/createoffer_form.html'
+    context_object_name = 'joboffers'
+    def form_valid(self, form):
+        form.instance.companyName = self.request.user
+        return super().form_valid(form)
+
+@method_decorator([login_required, company_required], name='dispatch')
+class OfferUpdateView(UpdateView):
+    model = JobOffer
+    fields = ['title', 'industry', 'proffesion' ,'jobPosition', 'jobType', 'ExperienceLevel', 'postdate', 'companyName', 'location', 'jobDescription' ]
+    template_name = 'companyusers/createoffer_form.html'
+    context_object_name = 'joboffers'
+
+@method_decorator([login_required, company_required], name='dispatch')
+class OfferDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = JobOffer
+    success_url = '/'
+
+    def test_func(self):
+        JobOffer = self.get_object()
+        if self.request.user == JobOffer.companyName:
+            return True
+        return False
+
+
+#def addOffer(request):
+ 
 
 

@@ -1,10 +1,22 @@
 {% extends "jobservice/base.html"%}
 {% block content%}
+<!-- 'title', 'industry', 'proffesion' ,'jobPosition', 'jobType', 'ExperienceLevel', 'postdate', 'companyName', 'location', 'jobDescription' -->
+<article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2 pasek_napis">{{ object.companyName }}</a>
+            <small class="text-muted">{{ object.postdate}}</small>
+        </div>
+        <h2 class="article-tilte">{{ object.title }}</h2>
+        <p class="article-content" style="font-family: Nunito Sans;">Position: {{ object.jobPosition }}</p>
+        <p class="article-content" style="font-family: Nunito Sans;">Industry: {{ object.industry }}</p>
+        <p class="article-content" style="font-family: Nunito Sans;">Profesion: {{ object.proffesion }}</p>
+        <p class="article-content" style="font-family: Nunito Sans;">Job type: {{ object.jobType }}</p>
+        <p class="article-content" style="font-family: Nunito Sans;">ExperienceLevel: {{ object.ExperienceLevel }}</p>
+        <p class="article-content" style="font-family: Nunito Sans;">location: {{ object.location }}</p>
+        <h4 class="article-content">About this job</h4>
+        <p class="article-content" style="font-family: Nunito Sans;">jobDescription: {{ object.jobDescription }}</p>
+    </div>
+</article>
 
-
-
-ofertaaa
-
-<br>
-<br>
 {%endblock content%}

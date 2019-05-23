@@ -37,10 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'jobservice.apps.JobserviceConfig',
     'companyusers',
     'widget_tweaks',
-     'normalusers',
+    'normalusers',
+    'jobservice'
 ]
 
 MIDDLEWARE = [

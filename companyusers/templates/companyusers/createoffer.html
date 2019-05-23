@@ -4,40 +4,53 @@
 <br>
 <br>
 <div class=" pasek_napis ">
-    create job offer: 
+    create job offer:
     <br> <br>
-</div> 
-<form action="{% url 'createoffer' %}" method="post">
-        {% csrf_token %}
-    <div class="form-group col-md-2 mx-auto">
-        <input class="form-control" type="text" name="title" placeholder="title you offer" >
-    </div>
-    <!-- <div class="form-group">
-        <input class="form-control" type="text" name="postdate" placeholder="post date" >
-    </div> -->
-    <div class="form-group col-md-4 mx-auto">
-        <input class="form-control" type="text" name="trade" placeholder="trade" >
-    </div>
-    <div class="form-group col-md-4 mx-auto">
-        <input class="form-control" type="text" name="proffesion" placeholder="proffesion" >
-    </div>
-    <div class="form-group col-md-4 mx-auto">
-        <input class="form-control" type="text" name="jobPosition" placeholder="job position" >
-    </div>
-    <div class="form-group">
-        <input class="form-control" type="text" name="additionalInfo" placeholder="additional info" >
-    </div>
-    <div class="form-group">
-        <input class="form-control" type="text" name="location" placeholder="location" >
-    </div>
-    <div class="form-group">
-        <input class="form-control" type="text" nmae="additionalSkills" placeholder="additional skills" >
-    </div>
-    <div class="col-md-1 mx-auto">
-        <input type="submit" volue = "submit" class="btn btn-dark  ">
-    </div>
-</form>
+</div>
+{% load widget_tweaks %}
 
-<br>
-<br>
-{%endblock content%}
+<form method="post" novalidate>
+    {% csrf_token %}
+
+    {% for hidden_field in offer_form.hidden_fields %}
+    {{ hidden_field }}
+    {% endfor %}
+
+    {% if offer_form.non_field_errors %}
+    <div class="alert alert-danger" role="alert">
+        {% for error in offer_form.non_field_errors %}
+        {{ error }}
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% for field in offer_form.visible_fields %}
+    <div class="form-group">
+        {{ field.label_tag }}
+
+        {% if offer_form.is_bound %}
+        {% if field.errors %}
+        {% render_field field class="form-control is-invalid" %}
+        {% for error in field.errors %}
+        <div class="invalid-feedback">
+            {{ error }}
+        </div>
+        {% endfor %}
+        {% else %}
+        {% render_field field class="form-control is-valid" %}
+        {% endif %}
+        {% else %}
+        {% render_field field class="form-control" %}
+        {% endif %}
+
+        {% if field.help_text %}
+        <small class="form-text text-muted">{{ field.help_text }}</small>
+        {% endif %}
+    </div>
+    {% endfor %}
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+    <br>
+    <br>
+    {%endblock content%}
