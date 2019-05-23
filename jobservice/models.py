@@ -3,6 +3,8 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
 from django.urls import reverse
+from django.conf import settings
+
 
 # Create your models here.
 
@@ -28,7 +30,6 @@ class Company(models.Model):
     companyName = models.CharField(max_length= 50,default="")
     companyMail = models.EmailField(default="")
     image = models.ImageField(default='default.jpg', upload_to='pics')
-    #companyPassword = models.CharField(max_length= 50,default="") 
     
     def __str__(self):
         return self.companyName
@@ -41,7 +42,7 @@ class JobOffer(models.Model):
     jobType = models.CharField(max_length= 50,default="")
     ExperienceLevel = models.CharField(max_length= 50,default="")
     postdate = models.DateTimeField(default=timezone.now)
-    companyName = models.ForeignKey(Company, on_delete = models.CASCADE)
+    companyName = models.ForeignKey(User, on_delete = models.CASCADE)
     location =  models.CharField(max_length=300,default="")
     jobDescription = models.TextField()
 

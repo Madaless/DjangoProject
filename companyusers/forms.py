@@ -11,11 +11,11 @@ class CompanyRegisterForm(UserCreationForm):
         model = User
         fields = ['username', 'email', 'password1', 'password2']
 
-    def save(self, commit=True):
+    def save(self):
         user = super().save(commit=False)
         user.is_company = True
-        if commit:
-            user.save()
+        user.save()
+        student = Company.objects.create(user=user)
         return user
 
 class CompanyAddOfferForm(forms.Form):
