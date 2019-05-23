@@ -19,47 +19,57 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'about-job' %}">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="//github.com/Madaless/DjangoProject">GitHub</a>
+                </li>
+            </ul>
+        </div>
         <ul class="mx-auto">
             <a class="nav-link tytul" href="{% url 'jobs-home' %}">FindJob.pl</a>
         </ul>
 
         {% if user.is_authenticated and user.is_company  %}
-        <div class="collapse navbar-collapse pos" id="navbarText">
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link pasek_napis szary" href="{% url 'logout' %}">loggout</a>
+                    <a class="nav-link pasek_napis szary" href="{% url 'logout' %}">Logout</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link pasek_napis" href="{% url 'profilecompany' %}">profile</a>
+                    <a class="nav-link pasek_napis" href="{% url 'profilecompany' %}">Profile</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link pasek_napis" href="{% url 'offer-create' %}">createOffer</a>
+                    <a class="nav-link pasek_napis" href="{% url 'offer-create' %}">Create offer</a>
                 </li>
             </ul>
         </div>
 
         {% elif user.is_authenticated and user.is_person  %}
-        <div class="collapse navbar-collapse pos" id="navbarText">
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link pasek_napis szary" href="{% url 'logout' %}">loggout</a>
+                    <a class="nav-link pasek_napis szary" href="{% url 'logout' %}">Logout</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link pasek_napis" href="{% url 'profileuser' %}">profile</a>
+                    <a class="nav-link pasek_napis" href="{% url 'profileuser' %}">Profile</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link pasek_napis" href="{%url 'createcv' %}">createCv</a>
+                    <a class="nav-link pasek_napis" href="{%url 'createcv' %}">Create Cv</a>
                 </li>
             </ul>
         </div>
         {% else %}
-        <div class="collapse navbar-collapse pos" id="navbarText">
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link pasek_napis szary" href="{% url 'login' %}">login</a>
+                    <a class="nav-link pasek_napis szary" href="{% url 'login' %}">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link pasek_napis szary" href="{% url 'signup' %}">sign up</a>
+                    <a class="nav-link pasek_napis szary" href="{% url 'signup' %}">Sign up</a>
                 </li>
             </ul>
         </div>
