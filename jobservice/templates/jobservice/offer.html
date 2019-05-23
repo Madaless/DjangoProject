@@ -6,6 +6,10 @@
         <div class="article-metadata">
             <a class="mr-2 pasek_napis">{{ object.companyName }}</a>
             <small class="text-muted">{{ object.postdate}}</small>
+            {% if object.companyName == user%}
+            <a class="btn btn-info" href="{% url 'offer-update' object.id %}">Update</a>
+            <a class="btn btn-danger" href="{% url 'offer-delete' object.id %}">Delete</a>
+            {% endif %}
         </div>
         <h2 class="article-tilte">{{ object.title }}</h2>
         <p class="article-content" style="font-family: Nunito Sans;">Position: {{ object.jobPosition }}</p>

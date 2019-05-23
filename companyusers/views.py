@@ -64,7 +64,7 @@ class OfferDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     def test_func(self):
         JobOffer = self.get_object()
-        if self.request.user.company == JobOffer.companyName:
+        if self.request.user == JobOffer.companyName:
             return True
         return False
 
