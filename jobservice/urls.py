@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from companyusers.views import (OfferListView, OfferCreateView, OfferDetailView,OfferUpdateView)
+from companyusers.views import (OfferListView, OfferCreateView, OfferDetailView,OfferUpdateView, OfferDeleteView)
 
 urlpatterns = [
     path('', OfferListView.as_view(), name='jobs-home'),
@@ -13,6 +13,7 @@ urlpatterns = [
     path('offer/<int:pk>/', OfferDetailView.as_view(), name='offer-details'),
     path('offer/new/', OfferCreateView.as_view(), name='offer-create'),
     path('offer/<int:pk>/update', OfferUpdateView.as_view(), name='offer-update'),
+    path('offer/<int:pk>/delete', OfferDeleteView.as_view(), name='offer-delete'),
     path('cv/<int:cv_id>/', views.cv, name='cv'),
     path('company/<int:company_id>/', views.companyview, name='companyview'),
     # path('person/<int:person_id>/', views.personview, name='personview'),

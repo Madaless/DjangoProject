@@ -58,11 +58,13 @@ class OfferUpdateView(UpdateView):
 @method_decorator([login_required, company_required], name='dispatch')
 class OfferDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = JobOffer
+    template_name = 'companyusers/offer_confirm_delete.html'
+    context_object_name = 'joboffers'
     success_url = '/'
 
     def test_func(self):
         JobOffer = self.get_object()
-        if self.request.user == JobOffer.companyName:
+        if self.request.user.company == JobOffer.companyName:
             return True
         return False
 
