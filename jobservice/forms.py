@@ -8,6 +8,7 @@ class Cv_form(forms.ModelForm):
         fields = ('nameCv', 'lastName', 'firstName', 'dateOfBirth', 'education', 'placeOfResidence', 'experience', 'description')
 
 
+
 # class Offer_form(forms.ModelForm):
 
 #     class Meta:

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import PersonRegisterForm
 from django.contrib import messages
+from . import models
 # Create your views here.
 
 def register(request):
@@ -14,3 +15,4 @@ def register(request):
     else:
         form = PersonRegisterForm()
     return render(request, 'normalusers/register.html', {'form': form})
+

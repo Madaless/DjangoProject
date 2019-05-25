@@ -2,13 +2,14 @@ from django.urls import path
 from . import views
 from companyusers.views import (OfferListView, OfferCreateView, OfferDetailView,OfferUpdateView, OfferDeleteView)
 
+
 urlpatterns = [
     path('', OfferListView.as_view(), name='jobs-home'),
     path('about/', views.about, name='about-job'),
     #path('start/', views.start, name='start'),
     path('profilecompany/', views.profilecompany, name='profilecompany'),
     path('profileuser/', views.profileuser, name='profileuser'),
-    path('createcv/', views.createcv, name='createcv'),
+    path('create_cv/', views.create_cv, name='create_cv'),
     #path('createoffer/', views.createoffer, name='createoffer'),
     path('offer/<int:pk>/', OfferDetailView.as_view(), name='offer-details'),
     path('offer/new/', OfferCreateView.as_view(), name='offer-create'),

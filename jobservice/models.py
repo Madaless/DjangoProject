@@ -54,15 +54,15 @@ class JobOffer(models.Model):
         return reverse('offer-details', kwargs={'pk': self.pk})
 
 class Cv(models.Model):
-    nameCv = models.CharField(max_length=50,blank=False)
-    person = models.OneToOneField(Person, on_delete = models.CASCADE)
-    lastName = models.CharField(max_length=50,blank=False)
-    firstName = models.CharField(max_length=50,blank=False)
-    dateOfBirth = models.CharField(max_length=50,blank=False)
-    education = models.CharField(max_length=300,blank=True)
-    placeOfResidence = models.CharField(max_length=300,blank=False)
-    experience = models.CharField(max_length=300,blank=True)
-    description = models.CharField(max_length=300,blank=True)
+    nameCv = models.CharField(max_length=50,default="")
+    person = models.ForeignKey(Person, on_delete = models.CASCADE)
+    lastName = models.CharField(max_length=50,default="")
+    firstName = models.CharField(max_length=50,default="")
+    dateOfBirth = models.CharField(max_length=50,default="")
+    education = models.CharField(max_length=300,default="")
+    placeOfResidence = models.CharField(max_length=300,default="")
+    experience = models.CharField(max_length=300,default="")
+    description = models.CharField(max_length=300,default="")
 
     def __str__(self):
         return self.nameCv
