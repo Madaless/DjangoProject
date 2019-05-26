@@ -10,22 +10,26 @@
 <article class="media content-section">
     <div class="media-body">
         <div class="article-metadata">
-            <a class="mr-2 pasek_napis">{{ cvs.nameCv }}</a>
-            <small class="text-muted">{{ cvs.nameCv}}</small>
+            <a class="mr-2 pasek_napis">CV</a>
+            <!-- <small class="text-muted">{{ cvs.nameCv}}</small> -->
         </div>
+        {% for cv in cvs %}
         <h2 class="article-tilte">{{ cvs.nameCv }}</h2>
-        <p class="article-content" style="font-family: Nunito Sans;">Position: {{ cvs.nameCv }}</p>
-        <p class="article-content" style="font-family: Nunito Sans;">Industry: {{ cvs.nameCv }}</p>
-        <p class="article-content" style="font-family: Nunito Sans;">Profesion: {{ cvs.nameCv }}</p>
-        <p class="article-content" style="font-family: Nunito Sans;">Job type: {{ cvs.nameCv }}</p>
-        <p class="article-content" style="font-family: Nunito Sans;">ExperienceLevel: {{ cvs.nameCv }}</p>
-        <p class="article-content" style="font-family: Nunito Sans;">location: {{ cvs.nameCv }}</p>
-        <h4 class="article-content">About this job</h4>
-        <p class="article-content" style="font-family: Nunito Sans;">jobDescription: {{ cvs.nameCv }}</p>
-        {% if object.person == user%}
-<a type="button" href="{% url 'jobs-home' %}" class="btn btn-dark">edytuj</a>
-<a type="button" href="{% url 'jobs-home' %}" class="btn btn-dark">usuń</a>
-{%endif%}
+        <p class="article-content" style="font-family: Nunito Sans; color: black">Nazwisko: {{cv.lastName }}</p>
+        <p class="article-content" style="font-family: Nunito Sans;">Imię: {{ cv.firstName }}</p>
+        <small class="article-content" style="font-family: Nunito Sans;">dateOfBirth: {{ cv.dateOfBirth }}</small>
+        <br>
+        <p class="article-content" style="font-family: Nunito Sans;">Educations: {{ cv.education }}</p>
+        <p class="article-content" style="font-family: Nunito Sans;">placeOfResidence: {{ cv.placeOfResidence }}</p>
+        <p class="article-content" style="font-family: Nunito Sans;">experience: {{ cv.experience }}</p>
+        <!-- <h4 class="article-content">About me:</h4> -->
+        <p class="article-content" style="font-family: Nunito Sans;">skils: {{ cv.description }}</p>
+            {% if object.person == user%}
+        <a type="button" href="{% url 'jobs-home' %}" class="btn btn-dark">edytuj</a>
+        <a type="button" href="{% url 'jobs-home' %}" class="btn btn-dark">usuń</a>
+            {%endif%}
+            {% endfor %}
+    </div>
 </article>
 
 <br>

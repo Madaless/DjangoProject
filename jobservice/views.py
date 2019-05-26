@@ -71,7 +71,7 @@ def companyview(request, company_id):
 #     return render(request,'companyusers/createoffer.html',{'form':form})
 
 def cv(request, cv_id):
-    p = Cv.objects.all()
+    p = Cv.objects.filter(pk=cv_id)
     return render(request,'normalusers/cv.html',{'cvs':p})
 
 def reply(request):
@@ -91,3 +91,10 @@ def reply(request):
         form = ReplyToOffer_form()
         return render(request,'replytooffer.html',{'form':form})
     
+def deleteCv(request,cv_id):
+    p = models.Blog.objects.get(pk = cv_id)
+    if p.person == request.user:
+        post = models.Post.objects.get(pk = cv_id).delete()
+        # messages.error(request,"Usunięto CV")
+        return redirect('profileuser')
+    return redirect('home')
