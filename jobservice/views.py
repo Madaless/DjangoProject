@@ -74,7 +74,7 @@ def cv(request, cv_id):
     p = Cv.objects.filter(pk=cv_id)
     return render(request,'normalusers/cv.html',{'cvs':p})
 
-def reply(request):
+def reply(request, offer_id, pk):
     if request.method == "POST":
         form = ReplyToOffer_form(request.POST)
         if form.is_valid():
@@ -82,7 +82,7 @@ def reply(request):
             person = Person.objects.get(user=request.user)
             test.idPerson = person
             # offer = JobOffer.objects.get(request.JobOffer)
-            test.idOffer = JobOffer.objects.all()
+            test.idOffer = JobOffer.objects.get(pk=offer_id)
             test.dateAdd = timezone.now()
             test.save()
             return redirect('offer-details', pk=test.idOffer)
@@ -92,9 +92,12 @@ def reply(request):
         return render(request,'replytooffer.html',{'form':form})
     
 def deleteCv(request,cv_id):
-    p = models.Blog.objects.get(pk = cv_id)
-    if p.person == request.user:
-        post = models.Post.objects.get(pk = cv_id).delete()
-        # messages.error(request,"Usunięto CV")
+    # person = Person.objects.get(user=request.user)
+    # if request.user==Person:
+        Cv.objects.get(pk = cv_id).delete()
         return redirect('profileuser')
-    return redirect('home')
+    # return redirect('profileuser')
+
+# def editCv(request,cv_id):
+    # p = Cv.objects.get(pk = cv_id)
+    # return render(request,'cvedit', {'cvs': p})

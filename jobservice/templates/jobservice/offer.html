@@ -20,8 +20,9 @@
         <p class="article-content" style="font-family: Nunito Sans;">location: {{ object.location }}</p>
         <h4 class="article-content">About this job</h4>
         <p class="article-content" style="font-family: Nunito Sans;">jobDescription: {{ object.jobDescription }}</p>
-       
-<a type="button" href="{% url 'reply' pk=object.pk %}" class="btn btn-dark">odpowiedz na oferte</a>
+        {% if object.companyName != user%}
+<a type="button" href="reply" class="btn btn-dark">odpowiedz na oferte</a>
+{% endif %}
 </article>
 
 {%endblock content%}

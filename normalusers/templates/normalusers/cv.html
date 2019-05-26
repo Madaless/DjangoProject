@@ -24,14 +24,22 @@
         <p class="article-content" style="font-family: Nunito Sans;">experience: {{ cv.experience }}</p>
         <!-- <h4 class="article-content">About me:</h4> -->
         <p class="article-content" style="font-family: Nunito Sans;">skils: {{ cv.description }}</p>
-            {% if object.person == user%}
-        <a type="button" href="{% url 'jobs-home' %}" class="btn btn-dark">edytuj</a>
-        <a type="button" href="{% url 'jobs-home' %}" class="btn btn-dark">usuń</a>
-            {%endif%}
-            {% endfor %}
-    </div>
-</article>
+        
+            <!-- {% if cv.person == user%} -->
 
+         <!-- {%endif%} -->
+            <br>
+            <a href="#" type="button" class="btn btn-success ">Edit</a>
+            <a href="delete" name="deleteCv" type="button" class="btn btn-success">Delete</a>
+
+   
+
+            {% endfor %}
+
+</article>
 <br>
 <br>
+<br>
+
+
 {%endblock content%}
