@@ -18,5 +18,6 @@ urlpatterns = [
     path('cv/<int:cv_id>/', views.cv, name='cv'),
     path('company/<int:company_id>/', views.companyview, name='companyview'),
     # path('person/<int:person_id>/', views.personview, name='personview'),
+    path('offer/<int:pk>/reply/', views.reply, name='reply'),
 ]
  

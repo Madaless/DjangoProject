@@ -8,10 +8,11 @@
       <span aria-hidden="true">&times;</span>
     </button> 
 </div>
-
+<br>
 <div class="profil ">
     <div class = "photo form-row " style ="margin-left: 0px;">
         <img src="https://image.flaticon.com/icons/svg/1785/1785577.svg" width="200" height="200" alt="..." class="rounded ">
+        <!-- https://image.flaticon.com/icons/svg/149/149995.svg -->
         <!-- <div class = "col-xs-10 col-sm-9" >
             <div class="profile-info-name"> Username </div>
             <div class="profile-info-value">
@@ -74,21 +75,12 @@
         <div class="col-xs-6 col-sm-3">
             <div class="profile-info-row">
             your cvs:
-
+            <br><br>
                 {% for cv in cvs %}
-
-                <article class="media content-section">
-                    <div class="media-body">
-                        <div class="article-metadata">
-                            <a class="mr-2 pasek_napis"
-                                href="{% url 'cv' cv_id=Cv.pk %}">{{ cv.nameCv }}</a>
-                            <small class="text-muted">{{ cv.nameCv}}</small>
-                        </div>
-                        <h2><a class="article-title pasek_napis " style="font-size: 20px;"
-                        href="{% url 'offer-details' joboffer.pk%}">{{ cv.nameCv }}</a></h2>
-                        <p class="article-content" style="font-family: Nunito Sans;">{{ cv.nameCv }}</p>
-                    </div>
-                </article>
+                
+                <div class="pasek_napis"></li>
+                    <a class=" pasek_napis" href="{% url 'cv' cv.pk %}">{{cv.nameCv}}</a>
+                </div>
 
                 {% endfor %}
             

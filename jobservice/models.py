@@ -54,8 +54,9 @@ class JobOffer(models.Model):
         return reverse('offer-details', kwargs={'pk': self.pk})
 
 class Cv(models.Model):
-    nameCv = models.CharField(max_length=50,default="")
+    
     person = models.ForeignKey(Person, on_delete = models.CASCADE)
+    nameCv = models.CharField(max_length=50,default="")
     lastName = models.CharField(max_length=50,default="")
     firstName = models.CharField(max_length=50,default="")
     dateOfBirth = models.CharField(max_length=50,default="")
@@ -66,6 +67,7 @@ class Cv(models.Model):
 
     def __str__(self):
         return self.nameCv
+
 
 class ReplyToOffer(models.Model):
     idPerson = models.ForeignKey(Person, on_delete = models.CASCADE,default="")

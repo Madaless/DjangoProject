@@ -1,0 +1,72 @@
+{% extends "jobservice/base.html"%}
+{% block content%}
+
+
+<form action="{% url 'reply' pk=offer.pk %}" method="post">
+        <div class="form-group">
+          <label for="exampleFormControlFile1">Example file input</label>
+          <input type="file" class="form-control-file" id="exampleFormControlFile1">
+        </div>
+      </form>
+      <select class="form-control">
+            <option>Default select</option>
+          </select>
+          <form>
+
+                  <div class="col">
+                    <input type="text" class="form-control" placeholder="First name">
+                  </div>
+          </form>
+
+
+          <button type="button" href=" " class="btn btn-dark">odpowiedz na oferte</butto>
+
+<article class="media content-section">
+    <!-- <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2 pasek_napis">{{ object.companyName }}</a>
+            <small class="text-muted">{{ object.postdate}}</small>
+            {% if object.companyName == user%}
+            <a class="btn btn-info" href="{% url 'offer-update' object.id %}">Update</a>
+            <a class="btn btn-danger" href="{% url 'offer-delete' object.id %}">Delete</a>
+            {% endif %}
+        </div>
+        <h2 class="article-tilte">{{ object.title }}</h2>
+        <p class="article-content" style="font-family: Nunito Sans;">Position: {{ object.jobPosition }}</p>
+        <p class="article-content" style="font-family: Nunito Sans;">Industry: {{ object.industry }}</p>
+        <p class="article-content" style="font-family: Nunito Sans;">Profesion: {{ object.proffesion }}</p>
+        <p class="article-content" style="font-family: Nunito Sans;">Job type: {{ object.jobType }}</p>
+        <p class="article-content" style="font-family: Nunito Sans;">ExperienceLevel: {{ object.ExperienceLevel }}</p>
+        <p class="article-content" style="font-family: Nunito Sans;">location: {{ object.location }}</p>
+        <h4 class="article-content">About this job</h4>
+        <p class="article-content" style="font-family: Nunito Sans;">jobDescription: {{ object.jobDescription }}</p> -->
+        <div class="input-group">
+
+                <select class="custom-select" id="inputGroupSelect04">
+                    {% for cv in cvs %}
+                  <option selected>Choose...</option>
+                  <option value="cv">{{cv.nameCv}}</option>
+                  <!-- <option value="2">Two</option>
+                  <option value="3">Three</option> -->
+                  {% endfor %}
+                </select>
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="button-dark">wyslij swoje cv</button>
+                </div>
+              </div>
+              or
+
+        <div class="input-group">
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="inputGroupFile04">
+          <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+        </div>
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button">przeslij cv</button>
+        </div>
+      </div>
+    </div>
+<button type="button" href=" " class="btn btn-dark">odpowiedz na oferte</butto>
+</article>
+
+{%endblock content%}

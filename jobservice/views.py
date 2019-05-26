@@ -9,8 +9,8 @@ from companyusers.decorators import (company_required, person_required)
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 
-from .forms import Cv_form
-from . models import JobOffer, Company, Person, Cv
+from .forms import Cv_form, ReplyToOffer_form
+from . models import JobOffer, Company, Person, Cv, ReplyToOffer
 from . import models
 # Create your views here
 
@@ -19,10 +19,6 @@ def home(request):
         'joboffers' : JobOffer.objects.all()
     }
     return render(request,'jobservice/home.html', context)
-
-# def start(request):
-#     return render(request,'jobservice/start.html',{'title':'start'})
-
 
 def mylogout(request):
     logout(request)
@@ -38,7 +34,9 @@ def profilecompany(request):
 @person_required
 #@method_decorator([login_required, person_required], name='dispatch')
 def profileuser(request):
-    return render(request,'normalusers/profileuser.html',{'title':'Profil'})
+    person = Person.objects.get(user=request.user)
+    p = Cv.objects.filter(person = person)
+    return render(request,'normalusers/profileuser.html',{'cvs':p})
 
 def about(request):
     return render(request,'jobservice/about.html',{'title':'About'})
@@ -59,30 +57,6 @@ def create_cv(request):
     else:
         form = Cv_form()
         return render(request,'normalusers/create_cv.html',{'form':form})
-    
-
-
-#     
-# #@method_decorator([login_required, company_required], name='dispatch')
-# # @login_required
-# # @company_required
-# # def createoffer(request):
-# #     if request.method == "POST":
-# #         form = Offer_form(request.POST)
-# #         offer.companyName = request.user
-# #         offer.postdate = timezone.now()
-#         if form.is_valid():
-#             offer.save()
-#             url = 'offer/' + str(offer.offer_id) 
-#             return redirect(url)
-#         return render(request,'companyusers/createoffer.html',{'form':form})
-#     else:
-#         form = Offer_form()
-#         return render(request,'companyusers/createoffer.html',{'form':form})
-
-# def cv(request, cv_id):
-#     response = "You're looking at cv: %s."
-#     return HttpResponse(response % cv_id)
 
 def offer(request, offer_id):
     p = JobOffer.objects.all()
@@ -96,25 +70,24 @@ def companyview(request, company_id):
 #     p=Person.objects.get(person_id=person_id)
 #     return render(request,'companyusers/createoffer.html',{'form':form})
 
-
-
-
-
-
-
-# def create_cv(request):
-#     if request.method == 'POST':
-#         name = request.POST['CVNewName']
-#         nowe_cv = models.Cv.objects.create(nameCv=name, person=request.user)
-#         # return redirect('cv', cv_id = cv.cv_id)
-#         url = 'cv/' + str(cv.cv_id) 
-#         return redirect(url)
-#     else:
-#         nowe = Cv_form()
-#         return render(request,'normalusers/create_cv.html',{'form': nowe })
-
-
 def cv(request, cv_id):
-    person = Person.objects.get(user=request.user)
-    p = Cv.objects.filter(Person = person)
-    return render(request,'normaluser/cv.html',{'cvs':p})
+    p = Cv.objects.all()
+    return render(request,'normalusers/cv.html',{'cvs':p})
+
+def reply(request):
+    if request.method == "POST":
+        form = ReplyToOffer_form(request.POST)
+        if form.is_valid():
+            test = form.save(commit=False)
+            person = Person.objects.get(user=request.user)
+            test.idPerson = person
+            # offer = JobOffer.objects.get(request.JobOffer)
+            test.idOffer = JobOffer.objects.all()
+            test.dateAdd = timezone.now()
+            test.save()
+            return redirect('offer-details', pk=test.idOffer)
+        return  render(request,'replytooffer.html',{'form':form})
+    else:
+        form = ReplyToOffer_form()
+        return render(request,'replytooffer.html',{'form':form})
+    

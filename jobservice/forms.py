@@ -16,11 +16,11 @@ class Cv_form(forms.ModelForm):
 #         fields = ('title','trade','proffesion','jobPosition','location','additionalSkills','additionalInfo')
 
 
-# class ReplyToOffer_form(forms.ModelForm):
+class ReplyToOffer_form(forms.ModelForm):
 
-#     class Meta:
-#         model = ReplyToOffer
-#         fields = ('idPerson','idOffer','dateAdd','cv','messForCompany')
+    class Meta:
+        model = ReplyToOffer
+        fields = ('cv','messForCompany')
 
 
 # class FeedbackAnswer_form(forms.ModelForm):

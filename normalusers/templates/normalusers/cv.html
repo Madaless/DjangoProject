@@ -7,33 +7,26 @@
      cv: 
     <br> <br>
 </div> 
-
-
-{% for cv in cvs %}
-
-{{ cv.nameCv }}
-<br>
-{{ cv.lastName }}
-<br>
-{{ cv.firstName }}
-<br>
-{{ cv.dateOfBirth }}
-<br>
-{{ cv.education }}
-<br>
-{{ cv.placeOfResidence }}
-<br>
-{{ cv.experience }}
-<br>
-{{ cv.description }}
-<br>
-
-
-{% endfor %}
-
-
-
-
+<article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2 pasek_napis">{{ cvs.nameCv }}</a>
+            <small class="text-muted">{{ cvs.nameCv}}</small>
+        </div>
+        <h2 class="article-tilte">{{ cvs.nameCv }}</h2>
+        <p class="article-content" style="font-family: Nunito Sans;">Position: {{ cvs.nameCv }}</p>
+        <p class="article-content" style="font-family: Nunito Sans;">Industry: {{ cvs.nameCv }}</p>
+        <p class="article-content" style="font-family: Nunito Sans;">Profesion: {{ cvs.nameCv }}</p>
+        <p class="article-content" style="font-family: Nunito Sans;">Job type: {{ cvs.nameCv }}</p>
+        <p class="article-content" style="font-family: Nunito Sans;">ExperienceLevel: {{ cvs.nameCv }}</p>
+        <p class="article-content" style="font-family: Nunito Sans;">location: {{ cvs.nameCv }}</p>
+        <h4 class="article-content">About this job</h4>
+        <p class="article-content" style="font-family: Nunito Sans;">jobDescription: {{ cvs.nameCv }}</p>
+        {% if object.person == user%}
+<a type="button" href="{% url 'jobs-home' %}" class="btn btn-dark">edytuj</a>
+<a type="button" href="{% url 'jobs-home' %}" class="btn btn-dark">usuń</a>
+{%endif%}
+</article>
 
 <br>
 <br>
