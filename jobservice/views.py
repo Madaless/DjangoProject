@@ -78,28 +78,11 @@ def reply(request, pk):
     person = Person.objects.get(user=request.user)
     cvs= Cv.objects.filter(person=person)
     if request.method == "POST":
-        form = ReplyToOffer_form(request.POST)
-        
-        cv_id = request.POST.get('cv', '5')
-
-        
+        form = ReplyToOffer_form(request.POST)        
+        cv_id = request.POST.get('cv', '5')        
         cv_id=int(cv_id, base=10)
         c=Cv.objects.get(pk=cv_id)
-        j=JobOffer.objects.get(pk=pk)
-        # cv=Cv.objects.get(pk=cv_id)
-        # form.cv=cv
-        # if form.is_valid():
-        #     test = form.save(commit=False)
-        #     test.idPerson = person
-        #     print(person)
-        #     # offer = JobOffer.objects.get(request.JobOffer)
-        #     test.idOffer = JobOffer.objects.get(pk=offer.pk)
-        #     print(test.idOffer)
-        #     test.dateAdd = timezone.now()   
-        #     print(test.dateAdd)
-        #     test.save()
-        #     
-
+        j=JobOffer.objects.get(pk=pk)        
         oj=ReplyToOffer.objects.create(idPerson=person, idOffer=j, dateAdd=timezone.now(), cv=c, messForCompany="XD")
         oj.save()
         return redirect('offer-details', pk=pk)
@@ -107,12 +90,13 @@ def reply(request, pk):
         form = ReplyToOffer_form()
         return render(request,'jobservice/replytooffer.html',{'form':form, 'cv_id':pk, 'cvs':cvs })
 
-def replyview(request, offer_id, reply_id):
-    pp= JobOffer.objects.filter(pk=offer_id)
-    if pp.idOffer == JobOffer.pk:
+def replyview(request, pk, reply_id):
+    pp = JobOffer.objects.get(pk=pk)
+    ppp = ReplyToOffer.objects.get(pk=reply_id)
+    if  ppp.idOffer.pk == pp.pk:
         p = ReplyToOffer.objects.filter(pk=reply_id)
-        return render (request,'replyview.html',{'replyy':p} )
-    return redirect('job-home')
+        return render(request,'jobservice/replyview.html',{'reply':p, 'offer':pp, 'r':ppp })
+    return redirect('offer-details', pk=pk)
     
 def deleteCv(request,cv_id):
     # person = Person.objects.get(user=request.user)
