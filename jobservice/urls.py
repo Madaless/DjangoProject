@@ -4,6 +4,7 @@ from companyusers.views import (OfferListView, OfferCreateView, OfferDetailView,
 
 
 urlpatterns = [
+    path('offer/<int:pk>/reply/', views.reply, name='reply'),
     path('', OfferListView.as_view(), name='jobs-home'),
     path('about/', views.about, name='about-job'),
     #path('start/', views.start, name='start'),
@@ -18,7 +19,10 @@ urlpatterns = [
     path('cv/<int:cv_id>/', views.cv, name='cv'),
     path('company/<int:company_id>/', views.companyview, name='companyview'),
     # path('person/<int:person_id>/', views.personview, name='personview'),
-    path('offer/<int:pk>/reply/', views.reply, name='reply'),
+    
     path('cv/<int:cv_id>/delete', views.deleteCv, name='deletecv'),
+    path('offer/<int:pk>/reply/<int:reply_id>/', views.replyview, name='replyview'),
+    path('cv/<int:cv_id>/edit', views.cvedit, name='cvedit'),
+
 ]
  

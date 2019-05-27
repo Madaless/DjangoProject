@@ -2,10 +2,59 @@
 {% block content%}
 
 
+<br> <br>
+
+<form action="{% url 'reply' pk=cv_id %}" method="post">
+        {% csrf_token %}
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Options</label>
+          </div>
+          <select class="custom-select" id="inputGroupSelect01">
+            <option selected>Choose...</option>
+                  {% for cv in cvs %}
+            <option value={{cv.pk}} name="cv" >{{cv.nameCv}}</option>
+          
+                  {% endfor %}
+                
+          </select>
+        </div>
+
+
+
+    <div class="form-group mx-auto">
+        <input class="form-control szary_tlo" name="messForCompany" type="text" id="messForCompany" placeholder="mess" >
+    </div>
+
+    {% if form.errors %}
+    {% for field in form %}
+
+        {% for error in field.errors %}
+        {{field}}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+    {{field}}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+    {% endfor %}
+{% endif %}
+    <br>
+    <br>
+    <div class="col-md-1 mx-auto">
+      <input type="submit" volue = "Submit" class="btn btn-dark " >
+  </div>
+</form>
+<!--  
 <form action="reply" method="post">
         <div class="form-group">
           <label for="exampleFormControlFile1">Example file input</label>
-          <input type="file" class="form-control-file" id="exampleFormControlFile1">
+          <input name = type="file" class="form-control-file" id="exampleFormControlFile1">
         </div>
       </form>
       <select class="form-control">
@@ -19,9 +68,9 @@
           </form>
 
 
-          <button type="button" href=" " class="btn btn-dark">odpowiedz na oferte</butto>
+          <button type="button" href=" " class="btn btn-dark">odpowiedz na oferte</butto> -->
 
-<article class="media content-section">
+<!-- <article class="media content-section"> -->
     <!-- <div class="media-body">
         <div class="article-metadata">
             <a class="mr-2 pasek_napis">{{ object.companyName }}</a>
@@ -40,15 +89,15 @@
         <p class="article-content" style="font-family: Nunito Sans;">location: {{ object.location }}</p>
         <h4 class="article-content">About this job</h4>
         <p class="article-content" style="font-family: Nunito Sans;">jobDescription: {{ object.jobDescription }}</p> -->
-        <div class="input-group">
+        <!-- <div class="input-group">
 
                 <select class="custom-select" id="inputGroupSelect04">
                     {% for cv in cvs %}
                   <option selected>Choose...</option>
-                  <option value="cv">{{cv.nameCv}}</option>
+                  <option value="cv">{{cv.nameCv}}</option> -->
                   <!-- <option value="2">Two</option>
                   <option value="3">Three</option> -->
-                  {% endfor %}
+                  <!-- {% endfor %}
                 </select>
                 <div class="input-group-append">
                   <button class="btn btn-outline-secondary" type="button-dark">wyslij swoje cv</button>
@@ -65,8 +114,8 @@
           <button class="btn btn-outline-secondary" type="button">przeslij cv</button>
         </div>
       </div>
-    </div>
-<button type="button" href=" " class="btn btn-dark">odpowiedz na oferte</butto>
+    </div> -->
+
 </article>
 
 {%endblock content%}

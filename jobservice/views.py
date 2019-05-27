@@ -74,22 +74,45 @@ def cv(request, cv_id):
     p = Cv.objects.filter(pk=cv_id)
     return render(request,'normalusers/cv.html',{'cvs':p})
 
-def reply(request, offer_id, pk):
+def reply(request, pk):
+    person = Person.objects.get(user=request.user)
+    cvs= Cv.objects.filter(person=person)
     if request.method == "POST":
         form = ReplyToOffer_form(request.POST)
-        if form.is_valid():
-            test = form.save(commit=False)
-            person = Person.objects.get(user=request.user)
-            test.idPerson = person
-            # offer = JobOffer.objects.get(request.JobOffer)
-            test.idOffer = JobOffer.objects.get(pk=offer_id)
-            test.dateAdd = timezone.now()
-            test.save()
-            return redirect('offer-details', pk=test.idOffer)
-        return  render(request,'replytooffer.html',{'form':form})
+        
+        cv_id = request.POST.get('cv', '5')
+
+        
+        cv_id=int(cv_id, base=10)
+        c=Cv.objects.get(pk=cv_id)
+        j=JobOffer.objects.get(pk=pk)
+        # cv=Cv.objects.get(pk=cv_id)
+        # form.cv=cv
+        # if form.is_valid():
+        #     test = form.save(commit=False)
+        #     test.idPerson = person
+        #     print(person)
+        #     # offer = JobOffer.objects.get(request.JobOffer)
+        #     test.idOffer = JobOffer.objects.get(pk=offer.pk)
+        #     print(test.idOffer)
+        #     test.dateAdd = timezone.now()   
+        #     print(test.dateAdd)
+        #     test.save()
+        #     
+
+        oj=ReplyToOffer.objects.create(idPerson=person, idOffer=j, dateAdd=timezone.now(), cv=c, messForCompany="XD")
+        oj.save()
+        return redirect('offer-details', pk=pk)
     else:
         form = ReplyToOffer_form()
-        return render(request,'replytooffer.html',{'form':form})
+        return render(request,'jobservice/replytooffer.html',{'form':form, 'cv_id':pk, 'cvs':cvs })
+
+def replyview(request, offer_id, reply_id):
+    pp= JobOffer.objects.filter(pk=offer_id)
+    if pp.idOffer == JobOffer.pk:
+        p = ReplyToOffer.objects.filter(pk=reply_id)
+        return render (request,'replyview.html',{'replyy':p} )
+    return redirect('job-home')
     
 def deleteCv(request,cv_id):
     # person = Person.objects.get(user=request.user)
@@ -98,6 +121,6 @@ def deleteCv(request,cv_id):
         return redirect('profileuser')
     # return redirect('profileuser')
 
-# def editCv(request,cv_id):
-    # p = Cv.objects.get(pk = cv_id)
-    # return render(request,'cvedit', {'cvs': p})
+def cvedit(request,cv_id):
+    p = Cv.objects.get(pk = cv_id)
+    return render(request,'normalusers/profileuser.html', {'cvs': p})
