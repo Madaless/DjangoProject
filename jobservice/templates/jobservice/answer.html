@@ -1,0 +1,27 @@
+{% extends "jobservice/base.html"%}
+{% block content%}
+
+
+<br> <br>
+answer: 
+<br> <br>
+
+<form action="{% url 'answer' pk, reply_id %}" method="post">
+        {% csrf_token %}
+
+        <div class="form-check">
+            <input name=accept class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+            <label class="form-check-label" for="defaultCheck1">
+              Default checkbox
+            </label>
+        </div>
+        <div class="form-group mx-auto">
+            <input class="form-control szary_tlo" name="response" type="text" id="mess" placeholder="mess" >
+        </div>
+
+
+
+
+</form>
+
+{%endblock content%}

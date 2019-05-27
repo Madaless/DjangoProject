@@ -16,13 +16,13 @@
         <p class="article-content" style="font-family: Nunito Sans;">Industry: {{ object.industry }}</p>
         <p class="article-content" style="font-family: Nunito Sans;">Profesion: {{ object.proffesion }}</p>
         <p class="article-content" style="font-family: Nunito Sans;">Job type: {{ object.jobType }}</p>
-        <p class="article-content" style="font-family: Nunito Sans;">ExperienceLevel: {{ object.ExperienceLevel }}</p>
-        <p class="article-content" style="font-family: Nunito Sans;">location: {{ object.location }}</p>
+        <p class="article-content" style="font-family: Nunito Sans;">Experience Level: {{ object.ExperienceLevel }}</p>
+        <p class="article-content" style="font-family: Nunito Sans;">Location: {{ object.location }}</p>
         <h4 class="article-content">About this job</h4>
-        <p class="article-content" style="font-family: Nunito Sans;">jobDescription: {{ object.jobDescription }}</p>
-        {% if object.companyName != user%}
-<a type="button" href="reply" class="btn btn-dark">odpowiedz na oferte</a>
-{% endif %}
+        <p class="article-content" style="font-family: Nunito Sans;">{{ object.jobDescription }}</p>
+        {% if user.is_authenticated and user.is_person %} 
+        <a type="button" href="reply" class="btn btn-dark">odpowiedz na oferte</a>
+        {% endif %}
 </article>
 
 {%endblock content%}

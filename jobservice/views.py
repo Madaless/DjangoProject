@@ -9,8 +9,8 @@ from companyusers.decorators import (company_required, person_required)
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 
-from .forms import Cv_form, ReplyToOffer_form
-from . models import JobOffer, Company, Person, Cv, ReplyToOffer
+from .forms import Cv_form, ReplyToOffer_form, FeedbackAnswer_form
+from . models import JobOffer, Company, Person, Cv, ReplyToOffer, FeedbackAnswer
 from . import models
 # Create your views here
 
@@ -19,6 +19,9 @@ def home(request):
         'joboffers' : JobOffer.objects.all()
     }
     return render(request,'jobservice/home.html', context)
+
+def about(request):
+    return render(request,'jobservice/about.html',{'title':'About'})
 
 def mylogout(request):
     logout(request)
@@ -36,10 +39,7 @@ def profilecompany(request):
 def profileuser(request):
     person = Person.objects.get(user=request.user)
     p = Cv.objects.filter(person = person)
-    return render(request,'normalusers/profileuser.html',{'cvs':p})
-
-def about(request):
-    return render(request,'jobservice/about.html',{'title':'About'})
+    return render(request,'normalusers/profileuser.html',{'cvs':p, 'person':person})
 
 @login_required
 @person_required
@@ -74,12 +74,12 @@ def cv(request, cv_id):
     p = Cv.objects.filter(pk=cv_id)
     return render(request,'normalusers/cv.html',{'cvs':p})
 
-def reply(request, pk):
+def reply(request, pk): #nie działa :c ale wyswietlanie wygląda git
     person = Person.objects.get(user=request.user)
     cvs= Cv.objects.filter(person=person)
     if request.method == "POST":
         form = ReplyToOffer_form(request.POST)        
-        cv_id = request.POST.get('cv', '5')        
+        cv_id = request.POST.get('cv','3')    #zmianić – tymczasowo     
         cv_id=int(cv_id, base=10)
         c=Cv.objects.get(pk=cv_id)
         j=JobOffer.objects.get(pk=pk)        
@@ -99,12 +99,24 @@ def replyview(request, pk, reply_id):
     return redirect('offer-details', pk=pk)
     
 def deleteCv(request,cv_id):
-    # person = Person.objects.get(user=request.user)
-    # if request.user==Person:
         Cv.objects.get(pk = cv_id).delete()
         return redirect('profileuser')
-    # return redirect('profileuser')
 
-def cvedit(request,cv_id):
+def answer(request, pk, reply_id):
+    if request.method == "POST":
+            form = ReplyToOffer_form(request.POST)  
+            rr=request.POST.get('reply','5')
+            rr=int(rr,base=10)
+            id_re=ReplyToOffer.objects.get(reply_id=rr)
+            oj=FeedbackAnswer.objects.create(idReplyToOffer=id_re)
+            oj.save()
+            return redirect('answer',pk=id_re.idOffer.pk, reply_id=id_re.pk)
+    else:
+        form = FeedbackAnswer_form()
+        return render (request, 'jobservice/replyview.html',{'answer': form} )
+    
+
+
+def cvedit(request,cv_id): #poprawić
     p = Cv.objects.get(pk = cv_id)
     return render(request,'normalusers/profileuser.html', {'cvs': p})

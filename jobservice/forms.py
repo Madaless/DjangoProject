@@ -23,8 +23,8 @@ class ReplyToOffer_form(forms.ModelForm):
         fields = ('cv','messForCompany')
 
 
-# class FeedbackAnswer_form(forms.ModelForm):
+class FeedbackAnswer_form(forms.ModelForm):
 
-#     class Meta:
-#         model = FeedbackAnswer
-#         fields = ('idReplyToOffer','accept','response')
+    class Meta:
+        model = FeedbackAnswer
+        fields = ('accept','response')
