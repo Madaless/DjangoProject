@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 
 from .forms import Cv_form, ReplyToOffer_form, FeedbackAnswer_form
-from . models import JobOffer, Company, Person, Cv, ReplyToOffer, FeedbackAnswer
+from . models import JobOffer, Company, Person, Cv, ReplyToOffer, FeedbackAnswer, User
 from . import models
 # Create your views here
 
@@ -99,18 +99,18 @@ def replyview(request, pk, reply_id):
     return redirect('offer-details', pk=pk)
     
 def deleteCv(request,cv_id):
-        Cv.objects.get(pk = cv_id).delete()
-        return redirect('profileuser')
+    Cv.objects.get(pk = cv_id).delete()
+    return redirect('profileuser')
 
 def answer(request, pk, reply_id):
     if request.method == "POST":
-            form = ReplyToOffer_form(request.POST)  
-            rr=request.POST.get('reply','5')
-            rr=int(rr,base=10)
-            id_re=ReplyToOffer.objects.get(reply_id=rr)
-            oj=FeedbackAnswer.objects.create(idReplyToOffer=id_re)
-            oj.save()
-            return redirect('answer',pk=id_re.idOffer.pk, reply_id=id_re.pk)
+        form = ReplyToOffer_form(request.POST)  
+        rr=request.POST.get('reply','5')
+        rr=int(rr,base=10)
+        id_re=ReplyToOffer.objects.get(reply_id=rr)
+        oj=FeedbackAnswer.objects.create(idReplyToOffer=id_re)
+        oj.save()
+        return redirect('answer',pk=id_re.idOffer.pk, reply_id=id_re.pk)
     else:
         form = FeedbackAnswer_form()
         return render (request, 'jobservice/replyview.html',{'answer': form} )
