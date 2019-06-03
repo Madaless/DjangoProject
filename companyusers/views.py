@@ -8,6 +8,7 @@ from .decorators import (company_required, person_required)
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.utils.decorators import method_decorator
+from django.core.paginator import Paginator
 
 
 # Create your views here.
@@ -32,6 +33,7 @@ class OfferListView(ListView):
     template_name = 'jobservice/home.html'
     context_object_name = 'joboffers'
     ordering = ['-postdate']
+    paginate_by = 10
 
 class OfferDetailView(DetailView):
     model = JobOffer

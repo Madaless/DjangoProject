@@ -25,4 +25,21 @@
         {% endif %}
 </article>
 
+<br>
+
+{% if object.companyName == user%}
+
+<br>
+        przeslane cv:
+    <br>
+        {% for cv in cvs %}
+        
+        <div class="pasek_napis"></li>
+            <a class=" pasek_napis" href="{% url 'cv' cv.pk %}">{{cv.nameCv}}</a>
+        </div>
+
+        {% endfor %}
+
+{%endif%}
+
 {%endblock content%}
