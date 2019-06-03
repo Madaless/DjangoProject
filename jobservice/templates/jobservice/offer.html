@@ -1,6 +1,7 @@
 {% extends "jobservice/base.html"%}
 {% block content%}
 <!-- 'title', 'industry', 'proffesion' ,'jobPosition', 'jobType', 'ExperienceLevel', 'postdate', 'companyName', 'location', 'jobDescription' -->
+<br></br>
 <article class="media content-section">
     <div class="media-body">
         <div class="article-metadata">
@@ -20,7 +21,7 @@
         <p class="article-content" style="font-family: Nunito Sans;">Location: {{ object.location }}</p>
         <h4 class="article-content">About this job</h4>
         <p class="article-content" style="font-family: Nunito Sans;">{{ object.jobDescription }}</p>
-        {% if user.is_authenticated and user.is_person %} 
+        {% if user.is_authenticated and user.is_person %}
         <a type="button" href="reply" class="btn btn-dark">odpowiedz na oferte</a>
         {% endif %}
 </article>
@@ -30,15 +31,15 @@
 {% if object.companyName == user%}
 
 <br>
-        przeslane odpowiedzi:
-    <br>
-        {% for r in rs %}
+przeslane odpowiedzi:
+<br>
+{% for r in rs %}
 <!--         
         <div class="pasek_napis"></li>
             <a class=" pasek_napis" href="{% url 'cv' cv.pk %}">{{r.nameCv}}</a>
         </div> -->
 
-        {% endfor %}
+{% endfor %}
 
 {%endif%}
 

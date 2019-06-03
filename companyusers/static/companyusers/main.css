@@ -1,0 +1,21 @@
+body, html {
+    height: 100%;
+  }
+  .bg {
+    /* The image used */
+    background-image: url("signup_pic.jpg");
+  
+    /* Half height */
+    height: 100%;
+  
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+section {
+    background: linear-gradient(to right, transparent 100%, #fff 50%), 
+        url('https://images.pexels.com/photos/731082/pexels-photo-731082.jpeg? auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') no-repeat top left;
+    background-size: cover;
+}

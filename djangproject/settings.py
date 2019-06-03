@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'companyusers',
     'widget_tweaks',
     'normalusers',
-    'jobservice'
+    'jobservice',
 ]
 
 MIDDLEWARE = [
