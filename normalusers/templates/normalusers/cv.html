@@ -13,28 +13,7 @@
             <a class="mr-2 pasek_napis">CV</a>
             <!-- <small class="text-muted">{{ cvs.nameCv}}</small> -->
         </div>
-        {% for cv in cvs %}
-        <h2 class="article-tilte">{{ cvs.nameCv }}</h2>
-        <p class="article-content" >Nazwisko: {{cv.lastName }}</p>
-        <p class="article-content" >Imię: {{ cv.firstName }}</p>
-        <p class="article-content" >dateOfBirth: {{ cv.dateOfBirth }} </p>
-        
-        <p class="article-content" >Educations: {{ cv.education }}</p>
-        <p class="article-content" >placeOfResidence: {{ cv.placeOfResidence }}</p>
-        <p class="article-content" >experience: {{ cv.experience }}</p>
-        <!-- <h4 class="article-content">About me:</h4> -->
-        <p class="article-content" >skils: {{ cv.description }}</p>
-        
-            <!-- {% if cv.person == user%} -->
-
-         <!-- {%endif%} -->
-            <br>
-            <a href="#" type="button" class="btn btn-success ">Edit</a>
-            <a href="delete" name="deleteCv" type="button" class="btn btn-success">Delete</a>
-
-   
-
-            {% endfor %}
+       
 
 </article>
 <br>

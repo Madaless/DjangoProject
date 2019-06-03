@@ -4,9 +4,9 @@ from companyusers.views import (OfferListView, OfferCreateView, OfferDetailView,
 
 
 urlpatterns = [
-    path('offer/<int:pk>/reply/<int:reply_id>/answer/<int:answer_id>/', views.answerview, name='answerview'),
-    path('offer/<int:pk>/reply/<int:reply_id>/answer/', views.answer, name='answer'),
-    path('offer/<int:pk>/reply/<int:reply_id>/', views.replyview, name='replyview'),
+    path('answer/<int:answer_id>/', views.answerview, name='answerview'),
+    path('reply/<int:reply_id>/answer/', views.answer, name='answer'),
+    path('reply/<int:reply_id>/', views.replyview, name='replyview'),
     path('offer/<int:pk>/reply/', views.reply, name='reply'),
     path('offer/<int:pk>/update', OfferUpdateView.as_view(), name='offer-update'),
     path('offer/<int:pk>/delete', OfferDeleteView.as_view(), name='offer-delete'),

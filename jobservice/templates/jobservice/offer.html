@@ -30,13 +30,13 @@
 {% if object.companyName == user%}
 
 <br>
-        przeslane cv:
+        przeslane odpowiedzi:
     <br>
-        {% for cv in cvs %}
-        
+        {% for r in rs %}
+<!--         
         <div class="pasek_napis"></li>
-            <a class=" pasek_napis" href="{% url 'cv' cv.pk %}">{{cv.nameCv}}</a>
-        </div>
+            <a class=" pasek_napis" href="{% url 'cv' cv.pk %}">{{r.nameCv}}</a>
+        </div> -->
 
         {% endfor %}
 
