@@ -20,7 +20,7 @@ urlpatterns = [
     path('cv/<int:cv_id>/edit', views.cvedit, name='cvedit'),
     path('company/<int:company_id>/', views.companyview, name='companyview'),
     path('about/', views.about, name='about-job'),
-    path('', OfferListView.as_view(), name='jobs-home'),
-
+    #path('', OfferListView.as_view(), name='jobs-home'),
+    path('', views.home, name='jobs-home'),
 ]
  

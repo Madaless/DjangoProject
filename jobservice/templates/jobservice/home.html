@@ -1,6 +1,6 @@
 {% extends "jobservice/base.html"%}
 {% block content%}
-
+<!-- 
 <br>
 <br>
 <div class=" pasek_napis ">
@@ -14,7 +14,35 @@
         <button class="btn btn-outline-success " value="Search" style="font-family: Nunito Sans; "
             type="submit">Search</button>
     </div>
-</form>
+</form> -->
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
+    integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+<div class="container">
+    <br />
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8">
+            <form class="card card-sm">
+                <div class="card-body row no-gutters align-items-center">
+                    <div class="col-auto">
+                        <i class="fas fa-search h4 text-body"></i>
+                    </div>
+                    <!--end of col-->
+                    <div class="col">
+                        <input class="form-control form-control-lg form-control-borderless" type="search"
+                            placeholder="Search by title or company" name='q'>
+                    </div>
+                    <!--end of col-->
+                    <div class="col-auto">
+                        <button class="btn btn-lg btn-success" type="submit">Search</button>
+                    </div>
+                    <!--end of col-->
+                </div>
+            </form>
+        </div>
+        <!--end of col-->
+    </div>
+</div>
 
 <br>
 <br>
@@ -37,27 +65,36 @@
 
 {% endfor %}
 
-{% if is_paginated %}
 
-{% if page_obj.has_previous %}
-<a class="btn btn-outline-success mb-4" href="?page=1">First</a>
-<a class="btn btn-outline-success mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
-{% endif %}
 
-{% for num in page_obj.paginator.page_range %}
-{% if page_obj.number == num %}
-<a class="btn btn-success mb-4" href="?page={{ num }}">{{ num }}</a>
-{% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-<a class="btn btn-outline-success mb-4" href="?page={{ num }}">{{ num }}</a>
-{% endif %}
-{% endfor %}
 
-{% if page_obj.has_next %}
-<a class="btn btn-outline-success mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
-<a class="btn btn-outline-success mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
-{% endif %}
 
-{% endif %}
+<div class="pagination">
+    <span class="step-links">
+        {% if joboffers.has_previous %}
+        <a class="btn btn-outline-success mb-4" href="?page=1">&laquo; First</a>
+        <a class="btn btn-outline-success mb-4" href="?page={{ joboffers.previous_page_number }}">Previous</a>
+        {% endif %}
+
+
+        {% for num in joboffers.paginator.page_range %}
+        {% if joboffers.number == num %}
+        <a class="btn btn-success mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% elif num > joboffers.number|add:'-3' and num < joboffers.number|add:'3' %}
+        <a class="btn btn-outline-success mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+        {% endfor %}
+
+
+        {% if joboffers.has_next %}
+        <a class="btn btn-outline-success mb-4" href="?page={{ joboffers.next_page_number }}">Next</a>
+        <a class="btn btn-outline-success mb-4" href="?page={{ joboffers.paginator.num_pages }}">Last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+<span class="current">
+    Page {{ joboffers.number }} of {{ joboffers.paginator.num_pages }}.
+</span>
 
 
 <br>

@@ -12,17 +12,31 @@ from django.contrib.auth import login
 from .forms import Cv_form, ReplyToOffer_form, FeedbackAnswer_form
 from . models import JobOffer, Company, Person, Cv, ReplyToOffer, FeedbackAnswer, JobOffer
 from . import models
+from django.core.paginator import Paginator
+from django.db.models import Q
+
+
 # Create your views here
 
 def home(request):
-
     queryset_list = JobOffer.objects.all()
     query = request.GET.get("q")
+    company = Company.objects.all()
+    
     if query:
-        queryset_list = queryset_list.filter(title_icontains=query)
+        queryset_list = queryset_list.filter(
+            Q(title__icontains=query) #|
+           # Q(company__companyName__name=query)
+            ).distinct()
+    
+    paginator = Paginator(queryset_list, 10) # Show 10 per page
+    page_request_var = "page"
+    page = request.GET.get(page_request_var)
+    queryset_list = paginator.get_page(page)
     context = {
-        'joboffers' : JobOffer.objects.all()
+        'joboffers' : queryset_list
     }
+    
     return render(request,'jobservice/home.html', context)
 
 def about(request):
