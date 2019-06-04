@@ -17,8 +17,9 @@
     {%endif%}
 </head>
 
+
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
@@ -34,7 +35,7 @@
         </ul>
 
         {% if user.is_authenticated and user.is_company  %}
-        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2 sticky-top ">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link pasek_napis szary" href="{% url 'logout' %}">Logout</a>
@@ -49,7 +50,7 @@
         </div>
 
         {% elif user.is_authenticated and user.is_person  %}
-        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2 sticky-top">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link pasek_napis szary" href="{% url 'logout' %}">Logout</a>
@@ -63,7 +64,7 @@
             </ul>
         </div>
         {% else %}
-        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2 sticky-top">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link pasek_napis szary" href="{% url 'login' %}">Login</a>
