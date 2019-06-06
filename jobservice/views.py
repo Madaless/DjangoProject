@@ -52,7 +52,7 @@ def mylogout(request):
 def profilecompany(request):
     c = Company.objects.get(user=request.user)
     p = JobOffer.objects.filter(companyName = request.user)
-    return render(request,'companyusers/profilecompany.html',{'companys':c , 'offers': p })
+    return render(request,'companyusers/profilecompany.html',{'company': c , 'off': p })
 
 @login_required
 @person_required
@@ -95,8 +95,8 @@ def companyview(request, company_id):
 #     return render(request,'companyusers/createoffer.html',{'form':form})
 
 def cv(request, cv_id):
-    p = Cv.objects.get(pk=cv_id)
-    return render(request,'normalusers/cv.html',{'cvs':p})
+    p = Cv.objects.filter(pk=cv_id)
+    return render(request,'normalusers/cv.html',{'p':p})
 
 def reply(request, pk): #nie działa :c ale wyswietlanie wygląda git
     a = JobOffer.objects.get(pk=pk)
@@ -122,14 +122,14 @@ def reply(request, pk): #nie działa :c ale wyswietlanie wygląda git
         return render(request,'jobservice/replytooffer.html',{'form':form, 'offers': a, 'cvs':c }) #get/filter jesli potrzebne bedzie
 
 def replyview(request, reply_id):
-    pp = JobOffer.objects.get(pk=pk)
-    ppp = ReplyToOffer.objects.get(pk=reply_id)
-    if  ppp.idOffer.pk == pp.pk:
-        p = ReplyToOffer.objects.filter(pk=reply_id)
-        return render(request,'jobservice/replyview.html',{'reply':p, 'offer':pp, 'r':ppp })
-    return redirect('offer-details', pk=pk)
+    # pp = JobOffer.objects.get(pk=reply_id)
+    p = ReplyToOffer.objects.filter(pk=reply_id)
+    # if  ppp.idOffer.pk == pp.pk:
+        # p = ReplyToOffer.objects.filter(pk=reply_id)
+    return render(request,'jobservice/replyview.html',{'replys':p })
+    # return redirect('offer-details', pk=pk)
     
-def deleteCv(request,cv_id):
+def deleteCv(request, cv_id): #nie działa :c
     Cv.objects.get(pk = cv_id).delete()
     return redirect('profileuser')
 
@@ -144,17 +144,10 @@ def answer(request, reply_id):
         form = FeedbackAnswer_form()
         return render (request, 'jobservice/answer.html',{'answer': form} )
     
-def answerview(request, pk, reply_id, answer_id):
-    p=JobOffer.objects.get(pk=pk)
-    pp = ReplyToOffer.objects.get(pk=reply_id)
-    ppp = FeedbackAnswer.objects.get(pk=answer_id)
-    if  pp.idOffer.pk == p.pk:
-        # pppp = ReplyToOffer.objects.filter(pk=reply_id)
-        if pp.pk == ppp.idReplyToOffer:
-            ppppp=FeedbackAnswer.objects.filter(pk=answer_id)
-            return render(request,'jobservice/answerview.html',{'answer':ppppp, 'offer':p, 'reply':pp })
-        return redirect('reply', pk=pp.idOffer, reply_id=pp.pk )
-    return redirect ('offer', pk=p.pk)
+def answerview(request, answer_id):
+    ppppp=FeedbackAnswer.objects.filter(pk=answer_id)
+    return render(request,'jobservice/answerview.html',{'answers':ppppp })
+    
 
 
 def cvedit(request,cv_id): #poprawić

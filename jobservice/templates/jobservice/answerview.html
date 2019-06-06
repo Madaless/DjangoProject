@@ -15,18 +15,16 @@
             <a class="mr-2 pasek_napis">Answer</a>
             <!-- <small class="text-muted">{{ cvs.nameCv}}</small> -->
         </div>
-        <!-- {% for a in answer %}
-        <h2 href="#" class="article-tilte">cv: {{ r.cv }}</h2>
-        <p href="#" class="article-content" style="font-family: Nunito Sans;">offer: {{r.idOffer.jobPosition }}</p> -->
-        <!-- <p class="article-content" style="font-family: Nunito Sans;">mess: {{ r.messForCompany }}</p>
-        <small class="article-content" style="font-family: Nunito Sans;">date add: {{ r.dateAdd }}</small>
+        {% for a in answers %}
+        <h2 href="#" class="article-tilte">cv: {{ a.accept }}</h2>
+         <p class="article-content" style="font-family: Nunito Sans;">mess: {{ a.response }}</p> 
         <br>
     </article>
-        {% if object.companyName != user%} pózniej znmienieć!!!!
-        <a type="button" href="home" class="btn btn-dark">odpowiedz na cv</a>
+        {% if object.companyName == user%} 
+        <a type="button" href="#" class="btn btn-dark">wróć do replys</a>
         {% endif %}
         {% endfor %}
-         -->
+        
 
            
 
