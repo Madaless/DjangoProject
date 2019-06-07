@@ -18,8 +18,8 @@ class Person(models.Model):
     personMail = models.EmailField(default="")
     image = models.ImageField(default='default.jpg', upload_to='pics')
     creationdate = models.DateTimeField(auto_now_add=True)
-    lastName = models.CharField(max_length=50,blank=False)
-    firstName = models.CharField(max_length=50,blank=False)
+    lastName = models.CharField(max_length=50,blank=True)
+    firstName = models.CharField(max_length=50,blank=True)
     
 
     def __str__(self):

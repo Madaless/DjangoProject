@@ -14,8 +14,8 @@ class PersonRegisterForm(UserCreationForm):
     def save(self, commit=True):
         user = super().save(commit=False)
         user.is_person = True
-        if commit:
-            user.save()
+        user.save()
+        person = Person.objects.create(user=user)
         return user
 
 class UserUpdateForm(forms.ModelForm):

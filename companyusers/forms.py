@@ -15,7 +15,7 @@ class CompanyRegisterForm(UserCreationForm):
         user = super().save(commit=False)
         user.is_company = True
         user.save()
-        student = Company.objects.create(user=user)
+        company = Company.objects.create(user=user)
         return user
 
 class CompanyAddOfferForm(forms.Form):
