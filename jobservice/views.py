@@ -103,29 +103,24 @@ def cv(request, cv_id):
     p = Cv.objects.filter(pk=cv_id)
     return render(request,'normalusers/cv.html',{'p':p})
 
-def reply(request, pk): #nie działa :c ale wyswietlanie wygląda git
+def reply(request, pk): 
     a = JobOffer.objects.get(pk=pk)
     print(a)
     per = Person.objects.get(user=request.user)
     c= Cv.objects.filter(person= per)
     j= JobOffer.objects.get(pk=pk)
     if request.method == "POST":
-        
-        o = request.POST.get('cv','')
         m = request.POST.get('messForCompany','')
-        oj=ReplyToOffer.objects.create(idOffer=j, idPerson=per, dateAdd=timezone.now())
+        o = request.POST.get('cv','')
+        cccccc = Cv.objects.get(pk=o)
+        print(m)
+        oj=ReplyToOffer.objects.create(idOffer=j, idPerson=per, dateAdd=timezone.now(), cv=cccccc, messForCompany=m)
         oj.save()
-
-        # cv_id = request.POST.get('cv','3')    #zmianić – tymczasowo     
-        # cv_id=int(cv_id, base=10)
-        # c=Cv.objects.get(pk=cv_id)
-        # j=JobOffer.objects.get(pk=pk)        
-        # oj=ReplyToOffer.objects.create(idPerson=person, idOffer=j, dateAdd=timezone.now(), cv=c, messForCompany=mess)
-        # oj.save()
-        return redirect('jobservice/replyview.html', pk=pk)
+        # return redirect('jobs-home')
+        return redirect('replyview', reply_id = pk)
     else:
         form = ReplyToOffer_form()
-        return render(request,'jobservice/replytooffer.html',{'form':form, 'offers': a, 'cvs':c }) #get/filter jesli potrzebne bedzie
+        return render(request,'jobservice/replytooffer.html',{'form':form, 'offers': a, 'cvs':c })
 
 def replyview(request, reply_id):
     # pp = JobOffer.objects.get(pk=reply_id)
@@ -137,8 +132,12 @@ def replyview(request, reply_id):
     # return redirect('offer-details', pk=pk)
     
 def deleteCv(request, cv_id): #nie działa :c
-    Cv.objects.get(pk = cv_id).delete()
-    return redirect('profileuser')
+    c=Cv.objects.get(pk = cv_id)
+    if c.person==request.user:
+        Cv.objects.get(pk = cv_id).delete()
+        return redirect('normalusers/profileuser')
+    else:
+        return redirect('normalusers/cv.html', pk=cv_id)
 
 def answer(request, reply_id):
     r= ReplyToOffer.objects.get(pk=reply_id)
