@@ -6,7 +6,7 @@
 answer: 
 <br> <br>
 
-<form action="{% url 'answer' pk=answer_id  %}" method="post">
+<form action="{% url 'answer' reply.pk %}" method="post">
         {% csrf_token %}
 
         <div class="form-check">

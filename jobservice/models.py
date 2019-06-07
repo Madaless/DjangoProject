@@ -55,7 +55,7 @@ class JobOffer(models.Model):
 
 class Cv(models.Model):
     
-    person = models.ForeignKey(Person, on_delete = models.CASCADE)
+    person = models.ForeignKey(Person, on_delete = models.CASCADE,default="")
     nameCv = models.CharField(max_length=50,default="")
     lastName = models.CharField(max_length=50,default="")
     firstName = models.CharField(max_length=50,default="")

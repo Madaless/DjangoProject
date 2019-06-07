@@ -87,8 +87,9 @@ def offer(request, offer_id):
     return render(request,'jobservice/offer.html',{'offers':p, 'rs':pp })
 
 def companyview(request, company_id):
-    p = Company.objects.all()
-    return render(request,'companyusers/companyview.html',{'companies':p})
+    cc = Company.objects.get(pk=company_id)
+    p = JobOffer.objects.filter(companyName = cc.user)
+    return render(request,'companyusers/companyview.html',{'companies':cc, 'o':p})
 
 # def personview(request, person_id):
 #     p=Person.objects.get(person_id=person_id)
@@ -103,11 +104,12 @@ def reply(request, pk): #nie działa :c ale wyswietlanie wygląda git
     print(a)
     per = Person.objects.get(user=request.user)
     c= Cv.objects.filter(person= per)
+    j= JobOffer.objects.get(pk=pk)
     if request.method == "POST":
         
         o = request.POST.get('cv','')
         m = request.POST.get('messForCompany','')
-        oj=ReplyToOffer.objects.create(idOffer=pk, idPerson=request.user, dateAdd=timezone.now())
+        oj=ReplyToOffer.objects.create(idOffer=j, idPerson=per, dateAdd=timezone.now())
         oj.save()
 
         # cv_id = request.POST.get('cv','3')    #zmianić – tymczasowo     
@@ -116,7 +118,7 @@ def reply(request, pk): #nie działa :c ale wyswietlanie wygląda git
         # j=JobOffer.objects.get(pk=pk)        
         # oj=ReplyToOffer.objects.create(idPerson=person, idOffer=j, dateAdd=timezone.now(), cv=c, messForCompany=mess)
         # oj.save()
-        return redirect('jobservice/offer-details', pk=pk)
+        return redirect('jobservice/replyview.html', pk=pk)
     else:
         form = ReplyToOffer_form()
         return render(request,'jobservice/replytooffer.html',{'form':form, 'offers': a, 'cvs':c }) #get/filter jesli potrzebne bedzie
@@ -124,6 +126,7 @@ def reply(request, pk): #nie działa :c ale wyswietlanie wygląda git
 def replyview(request, reply_id):
     # pp = JobOffer.objects.get(pk=reply_id)
     p = ReplyToOffer.objects.filter(pk=reply_id)
+    # c = Cv.objects.get(pk=p.cv.pk)
     # if  ppp.idOffer.pk == pp.pk:
         # p = ReplyToOffer.objects.filter(pk=reply_id)
     return render(request,'jobservice/replyview.html',{'replys':p })
@@ -134,15 +137,16 @@ def deleteCv(request, cv_id): #nie działa :c
     return redirect('profileuser')
 
 def answer(request, reply_id):
+    r= ReplyToOffer.objects.get(pk=reply_id)
     if request.method == "POST":
-            r = request.POST.get('response','')
+            rr = request.POST.get('response','')
             a = request.POST.get('accept','')
-            oj=FeedbackAnswer.objects.create(idReplyToOffer=reply_id, Response=r, Accept=a)
+            oj=FeedbackAnswer.objects.create(idReplyToOffer=r, Response=rr, Accept=a)
             oj.save()
-            return redirect('jobservice/replyview', reply_id=reply_id)
+            return redirect('jobservice/answerview.html', pk=oj.pk)
     else:
         form = FeedbackAnswer_form()
-        return render (request, 'jobservice/answer.html',{'answer': form} )
+        return render (request, 'jobservice/answer.html',{'answer': form, 'reply': r } )
     
 def answerview(request, answer_id):
     ppppp=FeedbackAnswer.objects.filter(pk=answer_id)

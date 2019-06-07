@@ -1,0 +1,62 @@
+{% extends "jobservice/base.html"%}
+{% block content%}
+
+
+
+<br>
+<div class="profil ">
+    <div class = "photo form-row " style ="margin-left: 0px;">
+        <img src="https://image.flaticon.com/icons/svg/149/149995.svg" width="200" height="200" alt="..." class="rounded ">
+        <!-- https://image.flaticon.com/icons/svg/149/149995.svg -->
+        
+       
+        <div class="col-xs-12 col-sm-6">
+          <div class="profile-user-info">
+              <div class="profile-info-row">
+                  <div class="profile-info-name"> Name </div>
+                  <div class="profile-info-value">
+                      <span>{{ companies.companyName }}</span>
+                  </div>
+              </div>
+              <div class="profile-info-row">
+                  <div class="profile-info-name"> Mail </div>
+
+                  <div class="profile-info-value">
+                      <i class="fa fa-map-marker light-orange bigger-110"></i>
+                      <span> {{ companies.companyMail }}</span>
+                  </div>
+              </div>
+            </div>
+            
+              
+       
+          <br>
+          {% if user.is_authenticated and user.is_company  %}
+          <button href="#"type="button" class="btn btn-success ">delete</button>
+          <button href="#"type="button" class="btn btn-success">edit</button>
+          {% endif %}
+          
+      </div>
+    
+      <div class="col-xs-6 col-sm-3">
+          <div class="profile-info-row">
+           offer:
+          <br><br>
+              {% for oo in o %}
+              
+              <div class="pasek_napis"></li>
+                  <a class=" pasek_napis" href="{% url 'offer-details' oo.pk %}">{{oo.title}}</a>
+              </div>
+
+              {% endfor %}
+          
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+
+
+{%endblock content%}

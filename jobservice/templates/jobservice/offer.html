@@ -28,16 +28,16 @@
 
 <br>
 
-{% if object.companyName == user%}
+{% if user.is_authenticated and user.is_company  %}
 
 <br>
 przeslane odpowiedzi:
 <br>
 {% for r in rs %}
-<!--         
+        
         <div class="pasek_napis"></li>
             <a class=" pasek_napis" href="{% url 'cv' cv.pk %}">{{r.nameCv}}</a>
-        </div> -->
+        </div>
 
 {% endfor %}
 
