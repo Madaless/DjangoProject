@@ -18,6 +18,10 @@ from django.db.models import Q
 
 # Create your views here
 
+def mainsite(request):
+    return render(request,'jobservice/welcome.html',{'title':'About'})
+
+
 def home(request):
     queryset_list = JobOffer.objects.all()
     query = request.GET.get("q")
