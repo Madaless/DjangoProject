@@ -131,13 +131,13 @@ def replyview(request, reply_id):
     return render(request,'jobservice/replyview.html',{'replys':p })
     # return redirect('offer-details', pk=pk)
     
-def deleteCv(request, cv_id): #nie działa :c
-    c=Cv.objects.get(pk = cv_id)
-    if c.person==request.user:
-        Cv.objects.get(pk = cv_id).delete()
-        return redirect('normalusers/profileuser')
-    else:
-        return redirect('normalusers/cv.html', pk=cv_id)
+def deleteCv(request, cv_id): 
+    # c=Cv.objects.get(pk = cv_id)
+    # if c.person==request.user:
+    Cv.objects.get(pk = cv_id).delete()
+    return redirect('profileuser')
+    # else:
+    #     return redirect('cv', pk=cv_id)
 
 def answer(request, reply_id):
     r= ReplyToOffer.objects.get(pk=reply_id)
@@ -156,7 +156,7 @@ def answerview(request, answer_id):
     return render(request,'jobservice/answerview.html',{'answers':ppppp })
     
 
-
-def cvedit(request,cv_id): #poprawić
+def cvedit(request,cv_id):
     p = Cv.objects.get(pk = cv_id)
-    return render(request,'normalusers/profileuser.html', {'cvs': p})
+    Cv.objects.get(pk = cv_id).delete()
+    return render(request,'normalusers/create_cv.html', {'form': p})

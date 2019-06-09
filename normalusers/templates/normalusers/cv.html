@@ -26,8 +26,8 @@
    
         <p class="article-content" style="font-family: Nunito Sans;">skils: {{ cv.description }}</p>
         {% if user.is_authenticated and user.is_person %}
-        <a type="button" href="{% url 'jobs-home' %}" class="btn btn-dark">edytuj</a>
-        <a type="button" href="{% url 'jobs-home' %}" class="btn btn-dark">usuń</a>
+        <a type="button" href="{% url 'cvedit' cv.pk %}" class="btn btn-dark">edytuj</a>
+        <a type="button" href="{% url 'deletecv' cv.pk %}" class="btn btn-dark">usuń</a>
             {%endif%}
             {% endfor %}
     </div>
