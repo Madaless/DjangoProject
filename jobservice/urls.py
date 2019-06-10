@@ -4,6 +4,7 @@ from companyusers.views import (OfferListView, OfferCreateView, OfferDetailView,
 
 
 urlpatterns = [
+    path('deleteuser/', views.deleteuser, name='deleteuser'),
     path('answer/<int:answer_id>/', views.answerview, name='answerview'),
     path('reply/<int:reply_id>/answer/', views.answer, name='answer'),
     path('reply/<int:reply_id>/', views.replyview, name='replyview'),

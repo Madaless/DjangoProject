@@ -32,7 +32,7 @@
        
           <br>
           {% if user.is_authenticated and user.is_company  %}
-          <button href="#"type="button" class="btn btn-success ">delete</button>
+          <a href="{% url 'deleteuser' %}" class="btn btn-success ">delete</a>
           <button href="#"type="button" class="btn btn-success">edit</button>
           {% endif %}
           

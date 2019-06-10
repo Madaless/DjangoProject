@@ -15,8 +15,11 @@ from . import models
 from django.core.paginator import Paginator
 from django.db.models import Q
 
+from django.core.mail import send_mail
 
 # Create your views here
+
+
 
 def mainsite(request):
     return render(request,'jobservice/welcome.html',{'title':'About'})
@@ -144,9 +147,10 @@ def answer(request, reply_id):
     if request.method == "POST":
             rr = request.POST.get('response','')
             a = request.POST.get('accept','')
-            oj=FeedbackAnswer.objects.create(idReplyToOffer=r, Response=rr, Accept=a)
-            oj.save()
-            return redirect('jobservice/answerview.html', pk=oj.pk)
+            # oj=FeedbackAnswer.objects.create(idReplyToOffer=r, Response=rr, Accept=a)
+            # oj.save()
+            send_mail('JobOffers', rr, 'from@example.com', ['joan.mk7@gmail.com'], fail_silently=False)
+            return redirect('jobservice/answer.html', pk=reply_id)
     else:
         form = FeedbackAnswer_form()
         return render (request, 'jobservice/answer.html',{'answer': form, 'reply': r } )
@@ -160,3 +164,7 @@ def cvedit(request,cv_id):
     p = Cv.objects.get(pk = cv_id)
     Cv.objects.get(pk = cv_id).delete()
     return render(request,'normalusers/create_cv.html', {'form': p})
+
+def deleteuser(request):
+    u=request.user.delete()
+    return redirect('jobs-welcome')

@@ -10,7 +10,7 @@
 <form action="{% url 'create_cv' %}" method="post">
         {% csrf_token %}
     <div class="form-group col-md-2 mx-auto">
-        <input class="form-control szary_tlo" name="nameCv" value={{ form.nameCv }} type="text" id="nameCv" placeholder="name you cv" >
+        <input class="form-control szary_tlo" name="nameCv" value="{{ form.nameCv }}" type="text" id="nameCv" placeholder="name you cv" >
     </div>
     <div class="form-row">
         <div class="form-group col-md-6">
@@ -24,7 +24,7 @@
         <input class="form-control szary_tlo" type="text" name="dateOfBirth" value={{ form.dateOfBirth}} placeholder="date of birth" >
     </div>
     <div class="form-group">
-        <input class="form-control szary_tlo" type="text" name="placeOfResidence"value={{ form.placeOfResidence}} placeholder="place of residence" >
+        <input class="form-control szary_tlo" type="text" name="placeOfResidence" value= {{ form.placeOfResidence}} placeholder="place of residence" >
     </div>
     <div class="form-group">
         <input class="form-control szary_tlo" type="text" name="education"value={{ form.education}} placeholder="education" >
