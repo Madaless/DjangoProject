@@ -83,8 +83,8 @@ def create_cv(request):
             return redirect('cv', cv_id = test.pk)
         return  render(request,'normalusers/create_cv.html',{'form':form})
     else:
-        form = Cv_form()
-        return render(request,'normalusers/create_cv.html',{'form':form})
+        # form = Cv_form()
+        return render(request,'normalusers/create_cv.html',{})#{'form':form})
 
 def offer(request, offer_id):
     p = JobOffer.objects.all()
@@ -120,7 +120,7 @@ def reply(request, pk):
         oj=ReplyToOffer.objects.create(idOffer=j, idPerson=per, dateAdd=timezone.now(), cv=cccccc, messForCompany=m)
         oj.save()
         # return redirect('jobs-home')
-        return redirect('replyview', reply_id = pk)
+        return redirect('replyview', reply_id = oj.pk)
     else:
         form = ReplyToOffer_form()
         return render(request,'jobservice/replytooffer.html',{'form':form, 'offers': a, 'cvs':c })
@@ -163,8 +163,18 @@ def answerview(request, answer_id):
 def cvedit(request,cv_id):
     p = Cv.objects.get(pk = cv_id)
     Cv.objects.get(pk = cv_id).delete()
+    
     return render(request,'normalusers/create_cv.html', {'form': p})
 
 def deleteuser(request):
     u=request.user.delete()
     return redirect('jobs-welcome')
+
+
+def editperson(request): #początki początku xD
+    u=Person.objects.get(user=request.user)
+    return render(request,'normalusers/editperson.html', {'form': u})
+
+def editcompany(request):
+    c=Company.objects.get(user=request.user)
+    return render (request,'companyusers/editcompany.html', {'form':c})
