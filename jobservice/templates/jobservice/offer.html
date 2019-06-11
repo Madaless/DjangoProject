@@ -1,5 +1,11 @@
 {% extends "jobservice/base.html"%}
 {% block content%}
+{% load static %}
+<style>
+ p{
+     font-size: 1.5rem;
+ }   
+</style>
 <!-- 'title', 'industry', 'proffesion' ,'jobPosition', 'jobType', 'ExperienceLevel', 'postdate', 'companyName', 'location', 'jobDescription' -->
 <br></br>
 <article class="media content-section">
@@ -12,18 +18,33 @@
             <a class="btn btn-danger" href="{% url 'offer-delete' object.id %}">Delete</a>
             {% endif %}
         </div>
-        <h2 class="article-tilte">{{ object.title }}</h2>
-        <p class="article-content" style="font-family: Nunito Sans;">Position: {{ object.jobPosition }}</p>
-        <p class="article-content" style="font-family: Nunito Sans;">Industry: {{ object.industry }}</p>
-        <p class="article-content" style="font-family: Nunito Sans;">Profesion: {{ object.proffesion }}</p>
-        <p class="article-content" style="font-family: Nunito Sans;">Job type: {{ object.jobType }}</p>
-        <p class="article-content" style="font-family: Nunito Sans;">Experience Level: {{ object.ExperienceLevel }}</p>
-        <p class="article-content" style="font-family: Nunito Sans;">Location: {{ object.location }}</p>
-        <h4 class="article-content">About this job</h4>
-        <p class="article-content" style="font-family: Nunito Sans;">{{ object.jobDescription }}</p>
-        {% if user.is_authenticated and user.is_person %}
-        <a type="button" href="reply" class="btn btn-dark">odpowiedz na oferte</a>
-        {% endif %}
+        <h1 class="article-tilte">{{ object.title }}</h2>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <p class="article-content" style="font-family: Nunito Sans;">Position: <strong>{{ object.jobPosition }}</strong>
+                        </p>
+                        <p class="article-content" style="font-family: Nunito Sans;">Industry: <strong>{{ object.industry }}</strong></p>
+                        <p class="article-content" style="font-family: Nunito Sans;">Profesion: <strong>{{ object.proffesion }}</strong>
+                        </p>
+                    </div>
+                    <div class="col">
+                        <p class="article-content" style="font-family: Nunito Sans;">Job type: <strong>{{ object.jobType }}</strong></p>
+                        <p class="article-content" style="font-family: Nunito Sans;"> ExperienceLevel:<strong>{{ object.ExperienceLevel }}</strong></p>
+                        <p class="article-content" style="font-family: Nunito Sans;">Location: <strong>{{ object.location }}</strong></p>
+                    </div>
+                </div>
+            </div>
+            <h2 class="article-tilte">About this job</h2>
+            <div class="container">
+                
+                <p class="article-content" style="font-family: Nunito Sans;">{{ object.jobDescription }}</p>
+                {% if user.is_authenticated and user.is_person %}
+                <div class="d-flex justify-content-center">
+                    <p type="button" href="reply" class=" btn btn-success">Aplikuj teraz</p>
+                </div>
+                {% endif %}
+            </div>
 </article>
 
 <br>
@@ -34,10 +55,11 @@
 przeslane odpowiedzi:
 <br>
 {% for r in rs %}
-        
-        <div class="pasek_napis"></li>
-            <a class=" pasek_napis" href="{% url 'cv' cv.pk %}">{{r.nameCv}}</a>
-        </div>
+
+<div class="pasek_napis">
+    </li>
+    <a class=" pasek_napis" href="{% url 'cv' cv.pk %}">{{r.nameCv}}</a>
+</div>
 
 {% endfor %}
 
