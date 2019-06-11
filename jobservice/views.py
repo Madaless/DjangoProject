@@ -101,11 +101,14 @@ def companyview(request, company_id):
 # def personview(request, person_id):
 #     p=Person.objects.get(person_id=person_id)
 #     return render(request,'companyusers/createoffer.html',{'form':form})
-
+@login_required
+@person_required
 def cv(request, cv_id):
     p = Cv.objects.filter(pk=cv_id)
     return render(request,'normalusers/cv.html',{'p':p})
 
+@login_required
+@person_required
 def reply(request, pk): 
     a = JobOffer.objects.get(pk=pk)
     print(a)
@@ -124,7 +127,8 @@ def reply(request, pk):
     else:
         form = ReplyToOffer_form()
         return render(request,'jobservice/replytooffer.html',{'form':form, 'offers': a, 'cvs':c })
-
+@login_required
+@person_required
 def replyview(request, reply_id):
     # pp = JobOffer.objects.get(pk=reply_id)
     p = ReplyToOffer.objects.filter(pk=reply_id)
@@ -133,7 +137,8 @@ def replyview(request, reply_id):
         # p = ReplyToOffer.objects.filter(pk=reply_id)
     return render(request,'jobservice/replyview.html',{'replys':p })
     # return redirect('offer-details', pk=pk)
-    
+@login_required
+@person_required   
 def deleteCv(request, cv_id): 
     # c=Cv.objects.get(pk = cv_id)
     # if c.person==request.user:
@@ -154,7 +159,7 @@ def answer(request, reply_id):
     else:
         form = FeedbackAnswer_form()
         return render (request, 'jobservice/answer.html',{'answer': form, 'reply': r } )
-    
+  
 def answerview(request, answer_id):
     ppppp=FeedbackAnswer.objects.filter(pk=answer_id)
     return render(request,'jobservice/answerview.html',{'answers':ppppp })
@@ -166,15 +171,20 @@ def cvedit(request,cv_id):
     
     return render(request,'normalusers/create_cv.html', {'form': p})
 
+@login_required
+@person_required
 def deleteuser(request):
     u=request.user.delete()
     return redirect('jobs-welcome')
 
-
+@login_required
+@person_required
 def editperson(request): #początki początku xD
     u=Person.objects.get(user=request.user)
     return render(request,'normalusers/editperson.html', {'form': u})
 
+@login_required
+@company_required
 def editcompany(request):
     c=Company.objects.get(user=request.user)
     return render (request,'companyusers/editcompany.html', {'form':c})
