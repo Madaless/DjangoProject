@@ -13,7 +13,7 @@
         <div class="article-metadata">
             <a class="mr-2 pasek_napis">{{ object.companyName }}</a>
             <small class="text-muted">{{ object.postdate}}</small>
-            {% if object.companyName == user%}
+            {% if object.companyName == user.company%}
             <a class="btn btn-info" href="{% url 'offer-update' object.id %}">Update</a>
             <a class="btn btn-danger" href="{% url 'offer-delete' object.id %}">Delete</a>
             {% endif %}
@@ -41,7 +41,7 @@
                 <p class="article-content" style="font-family: Nunito Sans;">{{ object.jobDescription }}</p>
                 {% if user.is_authenticated and user.is_person %}
                 <div class="d-flex justify-content-center">
-                    <p type="button" href="reply" class=" btn btn-success">Aplikuj teraz</p>
+                    <a type="button" href="reply" class=" btn btn-success">Aplikuj teraz</a>
                 </div>
                 {% endif %}
             </div>

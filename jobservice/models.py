@@ -42,7 +42,7 @@ class JobOffer(models.Model):
     jobType = models.CharField(max_length= 50,default="")
     ExperienceLevel = models.CharField(max_length= 50,default="")
     postdate = models.DateTimeField(default=timezone.now)
-    companyName = models.ForeignKey(User, on_delete = models.CASCADE)
+    companyName = models.ForeignKey(Company, on_delete = models.CASCADE)
     location =  models.CharField(max_length=300,default="")
     jobDescription = models.TextField()
 

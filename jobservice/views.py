@@ -32,8 +32,8 @@ def home(request):
     
     if query:
         queryset_list = queryset_list.filter(
-            Q(title__icontains=query) #|
-           # Q(company__companyName__name=query)
+            Q(title__icontains=query) |
+            Q(companyName__companyName__icontains=query)
             ).distinct()
     
     paginator = Paginator(queryset_list, 10) # Show 10 per page
@@ -57,8 +57,8 @@ def mylogout(request):
 @company_required
 #@method_decorator([login_required, company_required], name='dispatch')
 def profilecompany(request):
-    c = Company.objects.get(user=request.user)
-    p = JobOffer.objects.filter(companyName = request.user)
+    c = Company.objects.get(user=request.user.company)
+    p = JobOffer.objects.filter(companyName = request.user.company)
     return render(request,'companyusers/profilecompany.html',{'company': c , 'off': p })
 
 @login_required
@@ -95,7 +95,7 @@ def offer(request, offer_id):
 
 def companyview(request, company_id):
     cc = Company.objects.get(pk=company_id)
-    p = JobOffer.objects.filter(companyName = cc.user)
+    p = JobOffer.objects.filter(companyName = cc.user.company)
     return render(request,'companyusers/companyview.html',{'companies':cc, 'o':p})
 
 # def personview(request, person_id):
@@ -186,5 +186,5 @@ def editperson(request): #początki początku xD
 @login_required
 @company_required
 def editcompany(request):
-    c=Company.objects.get(user=request.user)
+    c=Company.objects.get(user=request.user.company)
     return render (request,'companyusers/editcompany.html', {'form':c})
