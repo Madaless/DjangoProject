@@ -3,7 +3,7 @@
 {% load static %}
 <style>
  p{
-     font-size: 1.5rem;
+     font-size: 1.10rem;
  }   
 </style>
 <!-- 'title', 'industry', 'proffesion' ,'jobPosition', 'jobType', 'ExperienceLevel', 'postdate', 'companyName', 'location', 'jobDescription' -->
@@ -18,7 +18,7 @@
             <a class="btn btn-danger" href="{% url 'offer-delete' object.id %}">Delete</a>
             {% endif %}
         </div>
-        <h1 class="article-tilte">{{ object.title }}</h2>
+        <h1 class="article-tilte"><strong>{{ object.title }}</strong></h2>
             <div class="container">
                 <div class="row">
                     <div class="col">
@@ -35,7 +35,7 @@
                     </div>
                 </div>
             </div>
-            <h2 class="article-tilte">About this job</h2>
+            <h2 class="article-tilte"><strong>About this job</strong></h2>
             <div class="container">
                 
                 <p class="article-content" style="font-family: Nunito Sans;">{{ object.jobDescription }}</p>
