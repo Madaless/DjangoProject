@@ -233,7 +233,6 @@ def deleteCv(request, cv_id):
     # else:
     #     return redirect('cv', pk=cv_id)
 
-<<<<<<< HEAD
 # def answer(request, reply_id):
 #     r= ReplyToOffer.objects.get(pk=reply_id)
 #     if request.method == "POST":
@@ -250,24 +249,6 @@ def deleteCv(request, cv_id):
 # def answerview(request, answer_id):
 #     ppppp=FeedbackAnswer.objects.filter(pk=answer_id)
 #     return render(request,'jobservice/answerview.html',{'answers':ppppp })
-=======
-def answer(request, reply_id):
-    r= ReplyToOffer.objects.get(pk=reply_id)
-    if request.method == "POST":
-            rr = request.POST.get('response','')
-            a = request.POST.get('accept','')
-            # oj=FeedbackAnswer.objects.create(idReplyToOffer=r, Response=rr, Accept=a)
-            # oj.save()
-            send_mail('JobOffers', rr, 'from@example.com', ['joan.mk7@gmail.com'], fail_silently=False)
-            return redirect('jobservice/answer.html', pk=reply_id)
-    else:
-        form = FeedbackAnswer_form()
-        return render (request, 'jobservice/answer.html',{'answer': form, 'reply': r } )
-  
-def answerview(request, answer_id):
-    ppppp=FeedbackAnswer.objects.filter(pk=answer_id)
-    return render(request,'jobservice/answerview.html',{'answers':ppppp })
->>>>>>> 670020189c96da0f6d2c8773b642272062d61504
     
 
 def cvedit(request,cv_id):
