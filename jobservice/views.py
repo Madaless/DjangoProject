@@ -118,8 +118,8 @@ def home(request):
     
     if query:
         queryset_list = queryset_list.filter(
-            Q(title__icontains=query) #|
-           # Q(company__companyName__name=query)
+            Q(title__icontains=query) |
+            Q(companyName__companyName__icontains=query)
             ).distinct()
     
     paginator = Paginator(queryset_list, 10) # Show 10 per page
@@ -143,8 +143,8 @@ def mylogout(request):
 @company_required
 #@method_decorator([login_required, company_required], name='dispatch')
 def profilecompany(request):
-    c = Company.objects.get(user=request.user)
-    p = JobOffer.objects.filter(companyName = request.user)
+    c = Company.objects.get(user=request.user.company)
+    p = JobOffer.objects.filter(companyName = request.user.company)
     return render(request,'companyusers/profilecompany.html',{'company': c , 'off': p })
 
 @login_required
@@ -181,17 +181,20 @@ def offer(request, offer_id):
 
 def companyview(request, company_id):
     cc = Company.objects.get(pk=company_id)
-    p = JobOffer.objects.filter(companyName = cc.user)
+    p = JobOffer.objects.filter(companyName = cc.user.company)
     return render(request,'companyusers/companyview.html',{'companies':cc, 'o':p})
 
 # def personview(request, person_id):
 #     p=Person.objects.get(person_id=person_id)
 #     return render(request,'companyusers/createoffer.html',{'form':form})
-
+@login_required
+@person_required
 def cv(request, cv_id):
     p = Cv.objects.filter(pk=cv_id)
     return render(request,'normalusers/cv.html',{'p':p})
 
+@login_required
+@person_required
 def reply(request, pk): 
     a = JobOffer.objects.get(pk=pk)
     print(a)
@@ -210,7 +213,8 @@ def reply(request, pk):
     else:
         form = ReplyToOffer_form()
         return render(request,'jobservice/replytooffer.html',{'form':form, 'offers': a, 'cvs':c })
-
+@login_required
+@person_required
 def replyview(request, reply_id):
     # pp = JobOffer.objects.get(pk=reply_id)
     p = ReplyToOffer.objects.filter(pk=reply_id)
@@ -219,7 +223,8 @@ def replyview(request, reply_id):
         # p = ReplyToOffer.objects.filter(pk=reply_id)
     return render(request,'jobservice/replyview.html',{'replys':p })
     # return redirect('offer-details', pk=pk)
-    
+@login_required
+@person_required   
 def deleteCv(request, cv_id): 
     # c=Cv.objects.get(pk = cv_id)
     # if c.person==request.user:
@@ -228,6 +233,7 @@ def deleteCv(request, cv_id):
     # else:
     #     return redirect('cv', pk=cv_id)
 
+<<<<<<< HEAD
 # def answer(request, reply_id):
 #     r= ReplyToOffer.objects.get(pk=reply_id)
 #     if request.method == "POST":
@@ -244,6 +250,24 @@ def deleteCv(request, cv_id):
 # def answerview(request, answer_id):
 #     ppppp=FeedbackAnswer.objects.filter(pk=answer_id)
 #     return render(request,'jobservice/answerview.html',{'answers':ppppp })
+=======
+def answer(request, reply_id):
+    r= ReplyToOffer.objects.get(pk=reply_id)
+    if request.method == "POST":
+            rr = request.POST.get('response','')
+            a = request.POST.get('accept','')
+            # oj=FeedbackAnswer.objects.create(idReplyToOffer=r, Response=rr, Accept=a)
+            # oj.save()
+            send_mail('JobOffers', rr, 'from@example.com', ['joan.mk7@gmail.com'], fail_silently=False)
+            return redirect('jobservice/answer.html', pk=reply_id)
+    else:
+        form = FeedbackAnswer_form()
+        return render (request, 'jobservice/answer.html',{'answer': form, 'reply': r } )
+  
+def answerview(request, answer_id):
+    ppppp=FeedbackAnswer.objects.filter(pk=answer_id)
+    return render(request,'jobservice/answerview.html',{'answers':ppppp })
+>>>>>>> 670020189c96da0f6d2c8773b642272062d61504
     
 
 def cvedit(request,cv_id):
@@ -251,15 +275,20 @@ def cvedit(request,cv_id):
     Cv.objects.get(pk = cv_id).delete()
     return render(request,'normalusers/create_cv.html', {'form': p})
 
+@login_required
+@person_required
 def deleteuser(request):
     u=request.user.delete()
     return redirect('jobs-welcome')
 
-
+@login_required
+@person_required
 def editperson(request): #początki początku xD
     u=Person.objects.get(user=request.user)
     return render(request,'normalusers/editperson.html', {'form': u})
 
+@login_required
+@company_required
 def editcompany(request):
-    c=Company.objects.get(user=request.user)
+    c=Company.objects.get(user=request.user.company)
     return render (request,'companyusers/editcompany.html', {'form':c})

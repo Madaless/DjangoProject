@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'normalusers',
     'jobservice',
+    "xhtml2pdf"
 ]
 
 MIDDLEWARE = [

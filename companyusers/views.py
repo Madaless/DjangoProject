@@ -43,17 +43,17 @@ class OfferDetailView(DetailView):
 @method_decorator([login_required, company_required], name='dispatch')
 class OfferCreateView(LoginRequiredMixin, CreateView):
     model = JobOffer
-    fields = ['title', 'industry', 'proffesion' ,'jobPosition', 'jobType', 'ExperienceLevel', 'postdate', 'companyName', 'location', 'jobDescription' ]
+    fields = ['title', 'industry', 'proffesion' ,'jobPosition', 'jobType', 'ExperienceLevel', 'postdate', 'location', 'jobDescription' ]
     template_name = 'companyusers/createoffer_form.html'
     context_object_name = 'joboffers'
     def form_valid(self, form):
-        form.instance.companyName = self.request.user
+        form.instance.companyName = self.request.user.company
         return super().form_valid(form)
 
 @method_decorator([login_required, company_required], name='dispatch')
 class OfferUpdateView(UpdateView):
     model = JobOffer
-    fields = ['title', 'industry', 'proffesion' ,'jobPosition', 'jobType', 'ExperienceLevel', 'postdate', 'companyName', 'location', 'jobDescription' ]
+    fields = ['title', 'industry', 'proffesion' ,'jobPosition', 'jobType', 'ExperienceLevel', 'postdate', 'location', 'jobDescription' ]
     template_name = 'companyusers/createoffer_form.html'
     context_object_name = 'joboffers'
 
