@@ -1,0 +1,19 @@
+{% extends "jobservice/base.html"%}
+{% block content%}
+
+<br> <br>
+
+<form action="{% url 'email' reply_id=rr.pk%}" method="post">
+        {% csrf_token %}
+
+    <div class="form-group mx-auto">
+        <input class="form-control szary_tlo" name="response" type="text" id="response" placeholder="mess" >
+    </div>
+
+        <div class="col-md-1 mx-auto">
+            <input type="submit" volue = "Submit" class="btn btn-dark " >
+    </div>
+
+</form>
+
+{%endblock content%}

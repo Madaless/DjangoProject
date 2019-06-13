@@ -1,0 +1,4 @@
+django>=1.11.19
+pip >= 9.0.1 
+django-widget-tweaks>=1.4.5
+Pillow>=2.1.0

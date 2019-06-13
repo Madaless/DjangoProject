@@ -27,4 +27,4 @@ class FeedbackAnswer_form(forms.ModelForm):
 
     class Meta:
         model = FeedbackAnswer
-        fields = ('accept','response')
+        fields = ('response',)

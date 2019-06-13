@@ -56,14 +56,14 @@ class JobOffer(models.Model):
 class Cv(models.Model):
     
     person = models.ForeignKey(Person, on_delete = models.CASCADE,default="")
-    nameCv = models.CharField(max_length=50,default="")
-    lastName = models.CharField(max_length=50,default="")
-    firstName = models.CharField(max_length=50,default="")
-    dateOfBirth = models.CharField(max_length=50,default="")
-    education = models.CharField(max_length=300,default="")
-    placeOfResidence = models.CharField(max_length=300,default="")
-    experience = models.CharField(max_length=300,default="")
-    description = models.CharField(max_length=300,default="")
+    nameCv = models.CharField(max_length=50,blank=True)
+    lastName = models.CharField(max_length=50,blank=True)
+    firstName = models.CharField(max_length=50,blank=True)
+    dateOfBirth = models.CharField(max_length=50,blank=True)
+    education = models.CharField(max_length=300,blank=True)
+    placeOfResidence = models.CharField(max_length=300,blank=True)
+    experience = models.CharField(max_length=300,blank=True)
+    description = models.CharField(max_length=300,blank=True)
 
     def __str__(self):
         return self.nameCv
@@ -81,8 +81,8 @@ class ReplyToOffer(models.Model):
 
 class FeedbackAnswer(models.Model):
     idReplyToOffer = models.ForeignKey(ReplyToOffer, on_delete = models.CASCADE,default="")
-    accept = models.BooleanField(max_length=50, default="")
+    # accept = models.BooleanField(max_length=50, default="")
     response = models.CharField(max_length=50, default="")
 
     def __str__(self):
-        return str(self.idReplyToOffer)+' '+str(self.accept)
+        return str(self.idReplyToOffer)+' '+str(self.response)
