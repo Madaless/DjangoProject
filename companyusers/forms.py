@@ -15,7 +15,8 @@ class CompanyRegisterForm(UserCreationForm):
         user = super().save(commit=False)
         user.is_company = True
         user.save()
-        company = Company.objects.create(user=user,companyName = user)
+        email = user.email
+        company = Company.objects.create(user=user,companyName = user, companyMail = email)
         company.companyName = user.username
         company.companyName = user.email
         return user
