@@ -2,9 +2,9 @@
 {% block content%}
 {% load static %}
 <style>
- p{
-     font-size: 1.10rem;
- }   
+    p {
+        font-size: 1.1rem;
+    }
 </style>
 <!-- 'title', 'industry', 'proffesion' ,'jobPosition', 'jobType', 'ExperienceLevel', 'postdate', 'companyName', 'location', 'jobDescription' -->
 <br></br>
@@ -22,22 +22,22 @@
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <p class="article-content" style="font-family: Nunito Sans;">Position: <strong>{{ object.jobPosition }}</strong>
+                        <p class="article-content" style="font-family: Nunito Sans;">Position:<strong>{{ object.jobPosition }}</strong>
                         </p>
-                        <p class="article-content" style="font-family: Nunito Sans;">Industry: <strong>{{ object.industry }}</strong></p>
-                        <p class="article-content" style="font-family: Nunito Sans;">Profesion: <strong>{{ object.proffesion }}</strong>
+                        <p class="article-content" style="font-family: Nunito Sans;">Industry:<strong>{{ object.industry }}</strong></p>
+                        <p class="article-content" style="font-family: Nunito Sans;">Profesion:<strong>{{ object.proffesion }}</strong>
                         </p>
                     </div>
                     <div class="col">
-                        <p class="article-content" style="font-family: Nunito Sans;">Job type: <strong>{{ object.jobType }}</strong></p>
-                        <p class="article-content" style="font-family: Nunito Sans;"> ExperienceLevel:<strong>{{ object.ExperienceLevel }}</strong></p>
-                        <p class="article-content" style="font-family: Nunito Sans;">Location: <strong>{{ object.location }}</strong></p>
+                        <p class="article-content" style="font-family: Nunito Sans;">Job type:<strong>{{ object.jobType }}</strong></p>
+                        <p class="article-content" style="font-family: Nunito Sans;">ExperienceLevel:<strong>{{ object.ExperienceLevel }}</strong></p>
+                        <p class="article-content" style="font-family: Nunito Sans;">Location:<strong>{{ object.location }}</strong></p>
                     </div>
                 </div>
             </div>
             <h2 class="article-tilte"><strong>About this job</strong></h2>
             <div class="container">
-                
+
                 <p class="article-content" style="font-family: Nunito Sans;">{{ object.jobDescription }}</p>
                 {% if user.is_authenticated and user.is_person %}
                 <div class="d-flex justify-content-center">

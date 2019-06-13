@@ -15,11 +15,13 @@ class CompanyRegisterForm(UserCreationForm):
         user = super().save(commit=False)
         user.is_company = True
         user.save()
-        company = Company.objects.create(user=user)
+        company = Company.objects.create(user=user,companyName = user)
+        company.companyName = user.username
+        company.companyName = user.email
         return user
 
 class CompanyAddOfferForm(forms.Form):
     class Meta:
         model = JobOffer
-        fields = ['title', 'industry', 'proffesion' ,'jobPosition', 'jobType', 'ExperienceLevel', 'postdate', 'companyName', 'location', 'jobDescription' ]
+        fields = ['title', 'industry', 'proffesion' ,'jobPosition', 'jobType', 'ExperienceLevel', 'postdate', 'location', 'jobDescription' ]
 
