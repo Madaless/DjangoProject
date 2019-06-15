@@ -193,7 +193,6 @@ def editperson(request): #początki początku xD
     u=Person.objects.get(user=request.user)
     return render(request,'normalusers/editperson.html', {'form': u})
 
-<<<<<<< HEAD
 @login_required
 @company_required
 def editcompany(request):
@@ -207,10 +206,3 @@ def sendreply(request, pk):
     r=ReplyToOffer.objects.filter(idOffer=o)
     # c=Cv.objects.filter(person=r.idPerson)
     return render(request,'companyusers/sendreply.html',{'reply':r})
-=======
-# @login_required
-# @company_required
-# def editcompany(request):
-#     c=Company.objects.get(user=request.user.company)
-#     return render (request,'companyusers/editcompany.html', {'form':c})
->>>>>>> 94c07a6c12b37759a19c09a06191f8d6e0c129af
