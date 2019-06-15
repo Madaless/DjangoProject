@@ -1,19 +1,13 @@
 {% extends "jobservice/base.html"%}
 {% block content%}
 
-
-<form action="{% url 'editcompany' %}" method="post">
-    {% csrf_token %}
-    <div class="form-group col-md-2 mx-auto">
-        <input class="form-control szary_tlo" name="CompanyName" value="{{ c.CompanyName }}" type="text" id="CompanyName" placeholder="CompanyName" >
-    </div>
-    <div class="form-group col-md-2 mx-auto">
-        <input class="form-control szary_tlo" name="CompanyMail" value="{{ c.CompanyMail }}" type="text" id="CompanyMail" placeholder="CompanyMail" >
-    </div>
-    
-
+<div class="container">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
     <br>
-    <a href="{% url 'profilecompany' %}" class="btn btn-success ">zatwierdz</a>
-</form>
+</div>
 
 {%endblock content%}

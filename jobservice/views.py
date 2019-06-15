@@ -9,6 +9,7 @@ from companyusers.decorators import (company_required, person_required)
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 
+
 from .forms import Cv_form, ReplyToOffer_form, FeedbackAnswer_form
 from . models import JobOffer, Company, Person, Cv, ReplyToOffer, FeedbackAnswer, JobOffer
 from . import models
@@ -126,7 +127,7 @@ def offer(request, offer_id):
 def companyview(request, company_id):
     cc = Company.objects.get(pk=company_id)
     p = JobOffer.objects.filter(companyName = cc.user.company)
-    return render(request,'companyusers/companyview.html',{'companies':cc, 'o':p})
+    return render(request,'companyusers/companyview.html',{'company':cc, 'o':p})
 
 # def personview(request, person_id):
 #     p=Person.objects.get(person_id=person_id)
@@ -192,6 +193,7 @@ def editperson(request): #początki początku xD
     u=Person.objects.get(user=request.user)
     return render(request,'normalusers/editperson.html', {'form': u})
 
+<<<<<<< HEAD
 @login_required
 @company_required
 def editcompany(request):
@@ -205,3 +207,10 @@ def sendreply(request, pk):
     r=ReplyToOffer.objects.filter(idOffer=o)
     # c=Cv.objects.filter(person=r.idPerson)
     return render(request,'companyusers/sendreply.html',{'reply':r})
+=======
+# @login_required
+# @company_required
+# def editcompany(request):
+#     c=Company.objects.get(user=request.user.company)
+#     return render (request,'companyusers/editcompany.html', {'form':c})
+>>>>>>> 94c07a6c12b37759a19c09a06191f8d6e0c129af

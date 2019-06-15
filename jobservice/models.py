@@ -30,11 +30,15 @@ class Company(models.Model):
     companyName = models.CharField(max_length= 50,default="")
     companyMail = models.EmailField(default="")
     image = models.ImageField(default='default.jpg', upload_to='pics')
+    aboutUs = models.TextField()
+    site = models.CharField(max_length= 20,default="")
+    location = models.CharField(max_length= 20,default="")
     
     def __str__(self):
         return self.companyName
 
 class JobOffer(models.Model):
+    salary = models.CharField(max_length=10,default="",blank=True)
     title = models.CharField(max_length= 50,default="")
     industry = models.CharField(max_length= 50,default="")
     proffesion = models.CharField(max_length= 50,default="")
@@ -45,6 +49,7 @@ class JobOffer(models.Model):
     companyName = models.ForeignKey(Company, on_delete = models.CASCADE)
     location =  models.CharField(max_length=300,default="")
     jobDescription = models.TextField()
+
 
 
     def __str__(self):
@@ -85,3 +90,4 @@ class FeedbackAnswer(models.Model):
 
     def __str__(self):
         return str(self.idReplyToOffer)+' '+str(self.response)
+

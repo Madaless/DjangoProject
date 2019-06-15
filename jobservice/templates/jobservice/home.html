@@ -59,7 +59,9 @@
         </div>
         <h2><a class="article-title pasek_napis " style="font-size: 20px;"
                 href="{% url 'offer-details' joboffer.pk%}">{{ joboffer.title }}</a></h2>
-        <p class="article-content" style="font-family: Nunito Sans;">{{ joboffer.jobPosition }}</p>
+        <p class="article-content" style="font-family: Nunito Sans;">{{ joboffer.jobPosition }} {{ joboffer.salary }}
+        </p>
+
     </div>
 </article>
 

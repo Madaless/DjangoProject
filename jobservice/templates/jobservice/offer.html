@@ -27,6 +27,9 @@
                         <p class="article-content" style="font-family: Nunito Sans;">Industry:<strong>{{ object.industry }}</strong></p>
                         <p class="article-content" style="font-family: Nunito Sans;">Profesion:<strong>{{ object.proffesion }}</strong>
                         </p>
+                        {%if object.salary%}
+                        <p class="article-content" style="font-family: Nunito Sans;">Salary:<strong>{{ object.salary }}</strong></p>
+                        {%endif%}
                     </div>
                     <div class="col">
                         <p class="article-content" style="font-family: Nunito Sans;">Job type:<strong>{{ object.jobType }}</strong></p>

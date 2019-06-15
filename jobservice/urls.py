@@ -1,12 +1,17 @@
 from django.urls import path
 from . import views
-from companyusers.views import (OfferListView, OfferCreateView, OfferDetailView,OfferUpdateView, OfferDeleteView)
+from companyusers.views import (OfferListView, OfferCreateView, OfferDetailView,OfferUpdateView, OfferDeleteView, editcompany)
 
 
 urlpatterns = [
     path('deleteuser/', views.deleteuser, name='deleteuser'),
     path('editperson/', views.editperson, name='editperson'),
+<<<<<<< HEAD
     path('editcompany/', views.editcompany, name='editcompany'),
+=======
+    path('editcompany/', editcompany, name='editcompany'),
+    # path('answer/<int:answer_id>/', views.answerview, name='answerview'),
+>>>>>>> 94c07a6c12b37759a19c09a06191f8d6e0c129af
     path('reply/<int:reply_id>/email/', views.email, name='email'),
     path('email/<int:email_id>/emailS', views.emailS, name='emailS'),
     path('email/<int:email_id>/', views.emailview, name='emailview'),
