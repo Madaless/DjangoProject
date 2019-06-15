@@ -31,7 +31,7 @@ class Company(models.Model):
     companyMail = models.EmailField(default="")
     image = models.ImageField(default='default.jpg', upload_to='pics')
     aboutUs = models.TextField()
-    site = models.CharField(max_length= 20,default="")
+    site = models.CharField(max_length= 50,default="")
     location = models.CharField(max_length= 20,default="")
     
     def __str__(self):
@@ -40,15 +40,15 @@ class Company(models.Model):
 class JobOffer(models.Model):
     salary = models.CharField(max_length=10,default="",blank=True)
     title = models.CharField(max_length= 50,default="")
-    industry = models.CharField(max_length= 50,default="")
-    proffesion = models.CharField(max_length= 50,default="")
-    jobPosition = models.CharField(max_length= 50,default="")
-    jobType = models.CharField(max_length= 50,default="")
-    ExperienceLevel = models.CharField(max_length= 50,default="")
+    industry = models.CharField(max_length= 50,default="",blank=True)
+    proffesion = models.CharField(max_length= 50,default="",blank=True)
+    jobPosition = models.CharField(max_length= 50,default="",blank=True)
+    jobType = models.CharField(max_length= 50,default="",blank=True)
+    ExperienceLevel = models.CharField(max_length= 50,default="",blank=True)
     postdate = models.DateTimeField(default=timezone.now)
     companyName = models.ForeignKey(Company, on_delete = models.CASCADE)
     location =  models.CharField(max_length=300,default="")
-    jobDescription = models.TextField()
+    jobDescription = models.TextField(max_length=300,default="",blank=True)
 
 
 
@@ -79,7 +79,7 @@ class ReplyToOffer(models.Model):
     idOffer = models.ForeignKey(JobOffer, on_delete = models.CASCADE,default="")
     dateAdd = models.DateTimeField(auto_now_add=True)
     cv = models.ForeignKey(Cv, on_delete = models.CASCADE, default="")
-    messForCompany = models.CharField(max_length=150,default="")
+    messForCompany = models.CharField(max_length=150,default="",blank=True)
 
     def __str__(self):
         return str(self.idOffer)+' '+str(self.idPerson)

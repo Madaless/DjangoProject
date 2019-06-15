@@ -22,19 +22,19 @@
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <p class="article-content" style="font-family: Nunito Sans;">Position:<strong>{{ object.jobPosition }}</strong>
+                        <p class="article-content" style="font-family: Nunito Sans;">Position: <strong>{{ object.jobPosition }}</strong>
                         </p>
-                        <p class="article-content" style="font-family: Nunito Sans;">Industry:<strong>{{ object.industry }}</strong></p>
-                        <p class="article-content" style="font-family: Nunito Sans;">Profesion:<strong>{{ object.proffesion }}</strong>
+                        <p class="article-content" style="font-family: Nunito Sans;">Industry: <strong>{{ object.industry }}</strong></p>
+                        <p class="article-content" style="font-family: Nunito Sans;">Profesion: <strong>{{ object.proffesion }}</strong>
                         </p>
                         {%if object.salary%}
-                        <p class="article-content" style="font-family: Nunito Sans;">Salary:<strong>{{ object.salary }}</strong></p>
+                        <p class="article-content" style="font-family: Nunito Sans;">Salary: <strong>{{ object.salary }}</strong></p>
                         {%endif%}
                     </div>
                     <div class="col">
-                        <p class="article-content" style="font-family: Nunito Sans;">Job type:<strong>{{ object.jobType }}</strong></p>
-                        <p class="article-content" style="font-family: Nunito Sans;">ExperienceLevel:<strong>{{ object.ExperienceLevel }}</strong></p>
-                        <p class="article-content" style="font-family: Nunito Sans;">Location:<strong>{{ object.location }}</strong></p>
+                        <p class="article-content" style="font-family: Nunito Sans;">Job type: <strong>{{ object.jobType }}</strong></p>
+                        <p class="article-content" style="font-family: Nunito Sans;">ExperienceLevel: <strong>{{ object.ExperienceLevel }}</strong></p>
+                        <p class="article-content" style="font-family: Nunito Sans;">Location: <strong>{{ object.location }}</strong></p>
                     </div>
                 </div>
             </div>
@@ -57,7 +57,7 @@
 
 <div class="pasek_napis">
     </li>
-    <a class=" pasek_napis" href="{% url 'sendreply' object.pk %}">Odpowiedzi</a>
+    <a class=" pasek_napis" href="{% url 'sendreply' object.pk %}">Response to the offer</a>
 </div>
 
 

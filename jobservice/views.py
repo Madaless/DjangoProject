@@ -29,11 +29,12 @@ def emailS(request, email_id):
     em = FeedbackAnswer.objects.get(pk=email_id)
     r = ReplyToOffer.objects.get(pk=em.idReplyToOffer.pk)
     message = em.response
+    s=r.idOffer.pk
     email_from = settings.EMAIL_HOST_USER
-    recipient_list =['szprytny14@gmail.com'] #[person.personMail]
+    recipient_list =[r.idPerson.user.email]
     send_mail( subject, message, email_from, recipient_list )
-    # r.delete()
-    return redirect('replyview', reply_id = r.pk)
+    r.delete()
+    return redirect('sendreply', pk = s)
 
 @login_required
 @company_required
@@ -182,7 +183,7 @@ def cvedit(request,cv_id):
     return render(request,'normalusers/create_cv.html', {'form': p})
 
 @login_required
-@person_required
+# @person_required
 def deleteuser(request):
     u=request.user.delete()
     return redirect('jobs-welcome')
