@@ -38,6 +38,7 @@ class Company(models.Model):
         return self.companyName
 
 class JobOffer(models.Model):
+    salary = models.CharField(max_length=10,default="",blank=True)
     title = models.CharField(max_length= 50,default="")
     industry = models.CharField(max_length= 50,default="")
     proffesion = models.CharField(max_length= 50,default="")
@@ -48,6 +49,7 @@ class JobOffer(models.Model):
     companyName = models.ForeignKey(Company, on_delete = models.CASCADE)
     location =  models.CharField(max_length=300,default="")
     jobDescription = models.TextField()
+
 
 
     def __str__(self):

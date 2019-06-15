@@ -24,10 +24,9 @@ class CompanyRegisterForm(UserCreationForm):
 class CompanyAddOfferForm(forms.Form):
     class Meta:
         model = JobOffer
-        fields = ['title', 'industry', 'proffesion' ,'jobPosition', 'jobType', 'ExperienceLevel', 'postdate', 'location', 'jobDescription' ]
+        fields = ['title', 'industry', 'proffesion' ,'jobPosition', 'jobType', 'ExperienceLevel', 'postdate', 'location', 'jobDescription','salary']
 
 class CompanyUpdateForm(forms.ModelForm):
-
     class Meta:
         model = Company
-        fields = ['companyMail', 'aboutUs', 'site','location']
+        fields = ['companyMail','aboutUs', 'site','location']
