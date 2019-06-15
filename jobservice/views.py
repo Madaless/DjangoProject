@@ -17,36 +17,35 @@ from django.db.models import Q
 
 from django.core.mail import send_mail
 from django.conf import settings
-# from le_site.models import *
 import smtplib
 
 # Create your views here
 
+@login_required
+@company_required
 def emailS(request, email_id):
     subject = 'FindJob'
     em = FeedbackAnswer.objects.get(pk=email_id)
-    r=ReplyToOffer.objects.get(pk=r.idReplyToOffer)
+    r = ReplyToOffer.objects.get(pk=em.idReplyToOffer.pk)
     message = em.response
     email_from = settings.EMAIL_HOST_USER
     recipient_list =['szprytny14@gmail.com'] #[person.personMail]
     send_mail( subject, message, email_from, recipient_list )
     # r.delete()
-    return redirect('')
+    return redirect('replyview', reply_id = r.pk)
 
+@login_required
+@company_required
 def emailview(request, email_id):
     ppppp=FeedbackAnswer.objects.filter(pk=email_id)
     return render(request,'jobservice/emailview.html',{'email':ppppp })
 
-
+@login_required
+@company_required
 def email(request, reply_id):
     r= ReplyToOffer.objects.get(pk=reply_id)
     if request.method == "POST":
         message = request.POST.get('response','')
-        # r= ReplyToOffer.objects.get(pk=reply_id)
-        # offer = r.idOffer
-        # print(offer)
-        # person = r.idPerson
-        # print(person)
         ojj=FeedbackAnswer.objects.create(idReplyToOffer=r, response=message)
         ojj.save()
         return redirect('emailview', email_id=ojj.pk)
@@ -54,62 +53,8 @@ def email(request, reply_id):
         form = ReplyToOffer_form()
         return render(request,'jobservice/email.html',{'form':form, 'rr':r })
 
-# def answer(request, reply_id):
-#     r= ReplyToOffer.objects.get(pk=reply_id)
-#     if request.method == "POST":
-#         rr = request.POST.get('response','')
-#         a = request.POST.get('accept','')
-#         oj=FeedbackAnswer.objects.create(idReplyToOffer=r, Response=rr, Accept=a)
-#         oj.save()
-#         return redirect('jobservice/answerview.html', pk=oj.pk)
-#     else:
-#         form = FeedbackAnswer_form()
-#     return render (request, 'jobservice/answer.html',{'answer': form, 'reply': r } )
-
-# def answerview(request, answer_id):
-#     ppppp=FeedbackAnswer.objects.filter(pk=answer_id)
-#     return render(request,'jobservice/answerview.html',{'answers':ppppp })
-
-    # if request.method == "POST":
-    #     message = request.POST.get('response','')
-    #     print(message)
-    #     # message = 'Siemanko z projektu. Odpalaj blanta dziwko'
-    #     # subject = 'FindJob'
-    #     # email_from = settings.EMAIL_HOST_USER
-    #     r= ReplyToOffer.objects.get(pk=reply_id)
-    #     offer = r.idOffer
-    #     person = r.idPerson
-    #     ojj=FeedbackAnswer.objects.create(idReplyToOffer=r.pk, response=message)
-
-    #     print(ojj)
-
-    #     # recipient_list =['szprytny14@gmail.com'] #[person.personMail]
-    #     # send_mail( subject, message, email_from, recipient_list )
-    #     # r.delete()
-    #     return render(request,'jobservice/welcome.html',{'email':ojj })
-    # else:
-    #     form = FeedbackAnswer_form()
-    #     return render(request,'jobservice/email.html',{'form':form})
-
-    #     # return redirect('jobs-home')
-    #     # return redirect('offer-details', offer.pk)
-
-    # # if request.method == "POST":
-    # #     form = FeedbackAnswer_form(request.POST)
-    # #     if form.is_valid():
-    # #         test = form.save(commit=False)
-    # #         person = Person.objects.get(user=request.user)
-    # #         test.person = person
-    # #         test.save()
-    # #         return redirect('cv', cv_id = test.pk)
-    # #     return  render(request,'normalusers/create_cv.html',{'form':form})
-    # # else:
-    # #     form = F_form()
-    # #     return render(request,'normalusers/create_cv.html',{'form':form})
-
 def mainsite(request):
     return render(request,'jobservice/welcome.html',{'title':'About'})
-
 
 def home(request):
     queryset_list = JobOffer.objects.all()
@@ -129,7 +74,6 @@ def home(request):
     context = {
         'joboffers' : queryset_list
     }
-    
     return render(request,'jobservice/home.html', context)
 
 def about(request):
@@ -187,8 +131,9 @@ def companyview(request, company_id):
 # def personview(request, person_id):
 #     p=Person.objects.get(person_id=person_id)
 #     return render(request,'companyusers/createoffer.html',{'form':form})
+
 @login_required
-@person_required
+# @person_required
 def cv(request, cv_id):
     p = Cv.objects.filter(pk=cv_id)
     return render(request,'normalusers/cv.html',{'p':p})
@@ -208,21 +153,18 @@ def reply(request, pk):
         print(m)
         oj=ReplyToOffer.objects.create(idOffer=j, idPerson=per, dateAdd=timezone.now(), cv=cccccc, messForCompany=m)
         oj.save()
-        # return redirect('jobs-home')
         return redirect('replyview', reply_id = oj.pk)
     else:
         form = ReplyToOffer_form()
         return render(request,'jobservice/replytooffer.html',{'form':form, 'offers': a, 'cvs':c })
+        
 @login_required
-@person_required
+# @company_required
+# @person_required
 def replyview(request, reply_id):
-    # pp = JobOffer.objects.get(pk=reply_id)
     p = ReplyToOffer.objects.filter(pk=reply_id)
-    # c = Cv.objects.get(pk=p.cv.pk)
-    # if  ppp.idOffer.pk == pp.pk:
-        # p = ReplyToOffer.objects.filter(pk=reply_id)
     return render(request,'jobservice/replyview.html',{'replys':p })
-    # return redirect('offer-details', pk=pk)
+
 @login_required
 @person_required   
 def deleteCv(request, cv_id): 
@@ -230,27 +172,9 @@ def deleteCv(request, cv_id):
     # if c.person==request.user:
     Cv.objects.get(pk = cv_id).delete()
     return redirect('profileuser')
-    # else:
-    #     return redirect('cv', pk=cv_id)
 
-# def answer(request, reply_id):
-#     r= ReplyToOffer.objects.get(pk=reply_id)
-#     if request.method == "POST":
-#             rr = request.POST.get('response','')
-#             a = request.POST.get('accept','')
-#             # oj=FeedbackAnswer.objects.create(idReplyToOffer=r, Response=rr, Accept=a)
-#             # oj.save()
-#             send_mail('JobOffers', rr, 'from@example.com', ['joan.mk7@gmail.com'], fail_silently=False)
-#             return redirect('jobservice/answer.html', pk=reply_id)
-#     else:
-#         form = FeedbackAnswer_form()
-#         return render (request, 'jobservice/answer.html',{'answer': form, 'reply': r } )
-    
-# def answerview(request, answer_id):
-#     ppppp=FeedbackAnswer.objects.filter(pk=answer_id)
-#     return render(request,'jobservice/answerview.html',{'answers':ppppp })
-    
-
+@login_required
+@person_required
 def cvedit(request,cv_id):
     p = Cv.objects.get(pk = cv_id)
     Cv.objects.get(pk = cv_id).delete()
@@ -273,3 +197,11 @@ def editperson(request): #początki początku xD
 def editcompany(request):
     c=Company.objects.get(user=request.user.company)
     return render (request,'companyusers/editcompany.html', {'form':c})
+
+@login_required
+@company_required
+def sendreply(request, pk):
+    o=JobOffer.objects.get(pk=pk)
+    r=ReplyToOffer.objects.filter(idOffer=o)
+    # c=Cv.objects.filter(person=r.idPerson)
+    return render(request,'companyusers/sendreply.html',{'reply':r})

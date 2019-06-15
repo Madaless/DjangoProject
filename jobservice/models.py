@@ -81,7 +81,6 @@ class ReplyToOffer(models.Model):
 
 class FeedbackAnswer(models.Model):
     idReplyToOffer = models.ForeignKey(ReplyToOffer, on_delete = models.CASCADE,default="")
-    # accept = models.BooleanField(max_length=50, default="")
     response = models.CharField(max_length=50, default="")
 
     def __str__(self):

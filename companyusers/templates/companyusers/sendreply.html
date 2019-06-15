@@ -1,0 +1,59 @@
+{% extends "jobservice/base.html"%}
+{% block content%}
+
+<br>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-6">
+        <div class="widget-box transparent">
+            <div class="widget-header widget-header-small">
+                <h4 class="widget-title smaller">
+                    <i class="ace-icon fa fa-check-square-o bigger-110"></i>
+                    Reply:
+                </h4>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<br><br>
+{% for o in reply %}
+
+<article class="media content-section">
+    <div class="media-body">
+             <small class="text-muted">{{ o.dateAdd}}</small>
+        <div class="article-metadata">
+            <a class="mr-2 pasek_napis"></a> {{ o.idPerson.lastName }}</a> <small class="text-muted">{{ o.idPerson.firstName}}</small>
+        </div>
+        <h2><a class="article-title pasek_napis " style="font-size: 20px;"
+                href="{% url 'cv' o.cv.pk %}">{{ o.cv.nameCv }}</a></h2>
+        <p class="article-content" style="font-family: Nunito Sans;">{{ o.messForCompany }}</p>
+    </div>
+    {% if user.is_authenticated and user.is_company  %}
+
+
+    <div class="pasek_napis">
+        </li>
+        <a class=" pasek_napis" href="{% url 'replyview' o.pk %}">Szczegóły</a>
+    </div>
+    
+    
+    {%endif%}
+
+
+
+
+</article>
+
+{% endfor %}
+
+
+
+
+
+
+
+
+<br>
+<br>
+{%endblock content%}

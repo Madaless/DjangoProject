@@ -16,7 +16,7 @@
             
         </div>
         {% for r in replys %}
-        <h2 href="{% url 'cv' r.cv.pk %}" class="article-tilte">cv: {{ r.cv }}</h2>
+        <a href="{% url 'cv' r.cv.pk %}" class="article-tilte">cv: {{ r.cv }}</a>
         <p href="#" class="article-content" style="font-family: Nunito Sans;">offer: {{r.idOffer.jobPosition }}</p>
         <p class="article-content" style="font-family: Nunito Sans;">mess: {{ r.messForCompany }}</p>
         <small class="article-content" style="font-family: Nunito Sans;">date add: {{ r.dateAdd }}</small>
