@@ -122,16 +122,16 @@
 </div>
 </div>
 <br><br>
-{% for o in oo %}
+{% for oo in o %}
 
 <article class="media content-section">
     <div class="media-body">
         <div class="article-metadata">
-            <a class="mr-2 pasek_napis"></a> {{ o.companyName }}</a> <small class="text-muted">{{ o.postdate}}</small>
+            <a class="mr-2 pasek_napis"></a> {{ oo.companyName }}</a> <small class="text-muted">{{ oo.postdate}}</small>
         </div>
         <h2><a class="article-title pasek_napis " style="font-size: 20px;"
-                href="{% url 'offer-details' o.pk%}">{{ o.title }}</a></h2>
-        <p class="article-content" style="font-family: Nunito Sans;">{{ o.jobPosition }}</p>
+                href="{% url 'offer-details' oo.pk%}">{{ oo.title }}</a></h2>
+        <p class="article-content" style="font-family: Nunito Sans;">{{ oo.jobPosition }}</p>
     </div>
 </article>
 
