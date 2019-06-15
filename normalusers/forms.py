@@ -15,22 +15,11 @@ class PersonRegisterForm(UserCreationForm):
         user = super().save(commit=False)
         user.is_person = True
         user.save()
-        person = Person.objects.create(user=user)
+        email = user.email
+        person = Person.objects.create(user=user,userName = user,personMail = email)
         return user
-
-class UserUpdateForm(forms.ModelForm):
-    email = forms.EmailField()
-
-    class Meta:
-        model = User
-        fields = ['username', 'email']
 
 class PersonUpdateForm(forms.ModelForm):
     class Meta:
         model = Person
-        fields = ['image']
-
-class ProfileUpdateForm(forms.ModelForm):
-    class Meta:
-        model = Company
-        fields = ['image']
+        fields = ['userName','personMail', 'lastName','firstName', 'age']

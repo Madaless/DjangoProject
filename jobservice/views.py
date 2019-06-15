@@ -188,21 +188,11 @@ def deleteuser(request):
     return redirect('jobs-welcome')
 
 @login_required
-@person_required
-def editperson(request): #początki początku xD
-    u=Person.objects.get(user=request.user)
-    return render(request,'normalusers/editperson.html', {'form': u})
-
-@login_required
-@company_required
-def editcompany(request):
-    c=Company.objects.get(user=request.user.company)
-    return render (request,'companyusers/editcompany.html', {'form':c})
-
-@login_required
 @company_required
 def sendreply(request, pk):
     o=JobOffer.objects.get(pk=pk)
     r=ReplyToOffer.objects.filter(idOffer=o)
     # c=Cv.objects.filter(person=r.idPerson)
     return render(request,'companyusers/sendreply.html',{'reply':r})
+
+

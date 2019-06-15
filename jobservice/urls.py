@@ -1,11 +1,11 @@
 from django.urls import path
 from . import views
 from companyusers.views import (OfferListView, OfferCreateView, OfferDetailView,OfferUpdateView, OfferDeleteView, editcompany)
-
+from normalusers.views import editperson
 
 urlpatterns = [
     path('deleteuser/', views.deleteuser, name='deleteuser'),
-    path('editperson/', views.editperson, name='editperson'),
+    path('editperson/', editperson, name='editperson'),
     path('editcompany/', editcompany, name='editcompany'),
     # path('answer/<int:answer_id>/', views.answerview, name='answerview'),
     path('reply/<int:reply_id>/email/', views.email, name='email'),
