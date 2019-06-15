@@ -21,7 +21,7 @@
                 </span>
 
                 <div class="space space-4"></div>
-
+                {% if company.companyName == user.company.companyName%}
                 <a href="{% url 'deleteuser' %}" class="btn btn-sm btn-block btn-success">
                     <i class="ace-icon fa fa-plus-circle bigger-120"></i>
                     <span class="bigger-110">Delete</span>
@@ -31,6 +31,8 @@
                     <i class="ace-icon fa fa-envelope-o bigger-110"></i>
                     <span class="bigger-110">Edit</span>
                 </a>
+                {% endif %}
+
             </div><!-- /.col -->
 
             <div class="col-xs-12 col-sm-9">
@@ -58,6 +60,39 @@
                                 <span> {{ company.companyMail }}</span>
                             </div>
                         </div>
+                        {% if company.location %}
+                        <div class="profile-info-row">
+                            <div class="profile-info-name"> Location </div>
+
+                            <div class="profile-info-value">
+                                <i class="fa fa-map-marker light-orange bigger-110"></i>
+                                <span> {{ company.location }}</span>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if company.site %}
+                        <div class="profile-info-row">
+                            <div class="profile-info-name"> Site </div>
+
+                            <div class="profile-info-value">
+                                <i class="fa fa-map-marker light-orange bigger-110"></i>
+                                <span> {{ company.site }}</span>
+                            </div>
+                        </div>
+                        {%endif%}
+                        {% if company.aboutUs %}
+
+                        <div class="profile-info-row">
+                            <div class="profile-info-name"> About </div>
+
+                            <div class="profile-info-value">
+                                <i class="fa fa-map-marker light-orange bigger-110"></i>
+                                <span> {{ company.aboutUs }}</span>
+                            </div>
+                        </div>
+                        {%endif%}
+
+
 
 
                     </div>

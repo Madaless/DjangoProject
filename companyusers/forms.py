@@ -26,3 +26,8 @@ class CompanyAddOfferForm(forms.Form):
         model = JobOffer
         fields = ['title', 'industry', 'proffesion' ,'jobPosition', 'jobType', 'ExperienceLevel', 'postdate', 'location', 'jobDescription' ]
 
+class CompanyUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = Company
+        fields = ['companyMail', 'aboutUs', 'site','location']

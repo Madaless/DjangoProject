@@ -30,6 +30,9 @@ class Company(models.Model):
     companyName = models.CharField(max_length= 50,default="")
     companyMail = models.EmailField(default="")
     image = models.ImageField(default='default.jpg', upload_to='pics')
+    aboutUs = models.TextField()
+    site = models.CharField(max_length= 20,default="")
+    location = models.CharField(max_length= 20,default="")
     
     def __str__(self):
         return self.companyName
@@ -86,3 +89,4 @@ class FeedbackAnswer(models.Model):
 
     def __str__(self):
         return str(self.idReplyToOffer)+' '+str(self.response)
+
