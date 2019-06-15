@@ -40,35 +40,53 @@
             <div class="col-xs-12 col-sm-6">
 
                 <h4 class="blue">
-                    <span class="middle">{{ user.username }}</span>
+                    <span class="middle">{{ person.userName }}</span>
 
                 </h4>
                 <div class="profile-user-info">
                     <div class="profile-info-row">
                         <div class="profile-info-name"> Username </div>
                         <div class="profile-info-value">
-                            <span>{{ user.username }}</span>
+                            <span>{{ person.userName }}</span>
                         </div>
                     </div>
+                    {%if person.firstName%}
                     <div class="profile-info-row">
-                        <div class="profile-info-name"> Name </div>
+                        <div class="profile-info-name"> First Name </div>
                         <div class="profile-info-value">
-                            <span>{{ user.firstName }}</span>
-                        </div>
-
-                        <div class="profile-info-value">
-                            <i class="fa fa-map-marker light-orange bigger-110"></i>
-                            <span>{{ person.lastName }} {{ person.firstName }}</span>
+                            <span>{{ person.firstName }}</span>
                         </div>
                     </div>
+                    {%endif%}
+                    {%if person.lastName%}
 
+                    <div class="profile-info-row">
+                        <div class="profile-info-name"> Last Name </div>
+                        <div class="profile-info-value">
+                            <span>{{ person.lastName }}</span>
+                        </div>
+                    </div>
+                    {%endif%}
+
+                    {%if person.personMail%}
                     <div class="profile-info-row">
                         <div class="profile-info-name"> Mail </div>
                         <div class="profile-info-value">
                             <i class="fa fa-map-marker light-orange bigger-110"></i>
-                            <span>{{ user.email }}</span>
+                            <span>{{ person.personMail }}</span>
                         </div>
                     </div>
+                    {%endif%}
+
+                    {%if person.age%}
+                    <div class="profile-info-row">
+                        <div class="profile-info-name"> Age </div>
+                        <div class="profile-info-value">
+                            <i class="fa fa-map-marker light-orange bigger-110"></i>
+                            <span>{{ person.age }}</span>
+                        </div>
+                    </div>
+                    {%endif%}
 
                     <div class="profile-info-row">
                         <div class="profile-info-name"> Joined </div>

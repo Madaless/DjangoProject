@@ -1,91 +1,51 @@
 {% extends "jobservice/base.html"%}
 {% block content%}
+<h3 class="text-center default-text py-3"><i class="fa fa-lock"></i> Edit your profile:</h3>
 
-<!-- 
-<div class="alert alert-warning alert-dismissible fade show color: white" style = "background-color:#373a3c "  role="alert">
-    <strong>Hi  {{ user.username }} </strong> you edit your profile ;)
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button> 
-</div>
-<br>
-<div class="profil ">
-    <div class = "photo form-row " style ="margin-left: 0px;">
-        <img src="https://image.flaticon.com/icons/svg/149/149995.svg" width="200" height="200" alt="..." class="rounded "> -->
-        <!-- https://image.flaticon.com/icons/svg/149/149995.svg -->
-        
-        <!-- <div class = "col-xs-10 col-sm-9">
-            <div class="profile-info-name"> Username </div>
-            <div class="profile-info-value">
-                <span>{{ user.username }}</span>
-            </div>
-            <div class="profile-info-name"> Imię </div>
-            <div class="profile-info-value">
-                <span>{{ user.username }}</span>
-            </div>
-            <div class="profile-info-name"> Nazwisko </div>
-            <div class="profile-info-value">
-                <span>{{ user.username }}</span>
-            </div>
-        </div> -->
-        <!-- <div class="col-xs-12 col-sm-6">
-            <div class="profile-user-info">
-                <div class="profile-info-row">
-                    <div class="profile-info-name"> Username </div>
-                    <div class="profile-info-value">
-                        <span>{{ user.username }}</span>
-                    </div>
-                </div> -->
-                <!-- <div class="profile-info-row">
-                    <div class="profile-info-name"> Name </div>
 
-                    <div class="profile-info-value">
-                        <i class="fa fa-map-marker light-orange bigger-110"></i>
-                        <span>{{ person.lastName }} {{ person.firstName }}</span>
-                    </div>
-                </div>
 
-                <div class="profile-info-row">
-                    <div class="profile-info-name"> Mail </div>
-                    <div class="profile-info-value">
-                        <i class="fa fa-map-marker light-orange bigger-110"></i>
-                        <span>{{ person.personMail }}</span>
-                    </div>
-                </div>
+{% load widget_tweaks %}
 
-                <div class="profile-info-row">
-                    <div class="profile-info-name"> Joined </div>
-                    <div class="profile-info-value">
-                        <span>{{ person.creationdate}}</span>
-                    </div>
-                </div> -->
-            <!-- </div> -->
-           
+<form method="post" novalidate>
+    {% csrf_token %}
 
-            <form action="{% url 'editperson' %}" method="post">
-                {% csrf_token %}
-            <div class="form-group col-md-2 mx-auto">
-                <input class="form-control szary_tlo" name="UserName" value="{{ u.UserName }}" type="text" id="UserName" placeholder="UserName" >
-            </div>
-            <div class="form-group col-md-2 mx-auto">
-                <input class="form-control szary_tlo" name="PersonMail" value="{{ u.PersonMail }}" type="text" id="PersonMail" placeholder="PersonMail" >
-            </div>
-            <div class="form-group col-md-2 mx-auto">
-                <input class="form-control szary_tlo" name="LastName" value="{{ u.LastName }}" type="text" id="LastName" placeholder="LastName" >
-            </div>
-            <div class="form-group col-md-2 mx-auto">
-                <input class="form-control szary_tlo" name="firstName" value="{{ u.firstName }}" type="text" id="firstName" placeholder="your first Name" >
-            </div>
+    {% for hidden_field in form.hidden_fields %}
+    {{ hidden_field }}
+    {% endfor %}
 
-            <br>
-            <a href="{% url 'profileuser' %}" class="btn btn-success ">zatwierdz</a>
-            </form>
-            
-        <!-- </div>
-
+    {% if form.non_field_errors %}
+    <div class="alert alert-danger" role="alert">
+        {% for error in form.non_field_errors %}
+        {{ error }}
+        {% endfor %}
     </div>
+    {% endif %}
 
-</div> -->
+    {% for field in form.visible_fields %}
+    <div class="form-group">
+        {{ field.label_tag }}
 
+        {% if form.is_bound %}
+        {% if field.errors %}
+        {% render_field field class="form-control is-invalid" %}
+        {% for error in field.errors %}
+        <div class="invalid-feedback">
+            {{ error }}
+        </div>
+        {% endfor %}
+        {% else %}
+        {% render_field field class="form-control is-valid" %}
+        {% endif %}
+        {% else %}
+        {% render_field field class="form-control" %}
+        {% endif %}
 
+        {% if field.help_text %}
+        <small class="form-text text-muted">{{ field.help_text }}</small>
+        {% endif %}
+    </div>
+    {% endfor %}
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 {%endblock content%}
