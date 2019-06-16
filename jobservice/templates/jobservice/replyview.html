@@ -1,14 +1,7 @@
 {% extends "jobservice/base.html"%}
 {% block content%}
 
-{% if user.is_authenticated and user.is_person %}
-<div class="alert alert-warning alert-dismissible fade show color: white" style="background-color:#6c98b6 "
-    role="alert">
-    <strong></strong> your cv has been sent ;)
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>   {% endif %}
+
 <br>
 {% for r in replys %}
 <article class="media content-section">
