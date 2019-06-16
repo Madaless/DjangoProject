@@ -11,7 +11,7 @@ from django.contrib.auth import login
 from django.contrib import messages
 
 
-from .forms import Cv_form, ReplyToOffer_form, FeedbackAnswer_form
+from . forms import Cv_form, ReplyToOffer_form, FeedbackAnswer_form
 from . models import JobOffer, Company, Person, Cv, ReplyToOffer, FeedbackAnswer, JobOffer
 from . import models
 from django.core.paginator import Paginator
@@ -112,6 +112,7 @@ def create_cv(request):
             test = form.save(commit=False)
             person = Person.objects.get(user=request.user)
             test.person = person
+            test.nameCv ='CV'
             test.save()
             messages.success(request, f'Cv created for {person}!')
             return redirect('cv', cv_id = test.pk)

@@ -15,16 +15,16 @@
         </div>
         {% for cv in p %}
         <h2 class="article-tilte">{{ cvs.nameCv }}</h2>
-        <p class="article-content" style="font-family: Nunito Sans; color: black">Nazwisko: {{cv.lastName }}</p>
-        <p class="article-content" style="font-family: Nunito Sans;">Imię: {{ cv.firstName }}</p>
-        <small class="article-content" style="font-family: Nunito Sans;">dateOfBirth: {{ cv.dateOfBirth }}</small>
+        <p class="article-content" style="font-family: Nunito Sans; color: black">{{cv.lastName }}</p>
+        <p class="article-content" style="font-family: Nunito Sans;">{{ cv.firstName }}</p>
+        <small class="article-content" style="font-family: Nunito Sans;">date of birth: {{ cv.dateOfBirth }}</small>
         <br>
         <br>
-        <p class="article-content" style="font-family: Nunito Sans;">Educations: {{ cv.education }}</p>
-        <p class="article-content" style="font-family: Nunito Sans;">placeOfResidence: {{ cv.placeOfResidence }}</p>
-        <p class="article-content" style="font-family: Nunito Sans;">experience: {{ cv.experience }}</p>
+        <p class="article-content" style="font-family: Nunito Sans;">{{ cv.education }}</p>
+        <p class="article-content" style="font-family: Nunito Sans;">{{ cv.placeOfResidence }}</p>
+        <p class="article-content" style="font-family: Nunito Sans;">{{ cv.experience }}</p>
    
-        <p class="article-content" style="font-family: Nunito Sans;">skils: {{ cv.description }}</p>
+        <p class="article-content" style="font-family: Nunito Sans;">{{ cv.description }}</p>
         {% if user.is_authenticated and user.is_person %}
         <a type="button" href="{% url 'cvedit' cv.pk %}" class="btn btn-dark">edytuj</a>
         <a type="button" href="{% url 'deletecv' cv.pk %}" class="btn btn-dark">usuń</a>

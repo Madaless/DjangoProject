@@ -13,11 +13,10 @@
 {% for o in reply %}
 
 <article class="media content-section">
-    <div class="media-body">
-        <small class="text-muted">{{ o.dateAdd}}</small>
-        <div class="article-metadata">
-            <a class="mr-2 pasek_napis"></a> {{ o.idPerson.lastName }}</a> <small
-                class="text-muted">{{ o.idPerson.firstName}}</small>
+    <div class="media-body ">
+             <small class="text-muted">{{ o.dateAdd}}</small>
+        <div class="article-metadata ">
+            <a class="pasek_napis"></a>{{ o.idPerson.lastName }} {{ o.idPerson.firstName}}</a>
         </div>
         <h2><a class="article-title pasek_napis " style="font-size: 20px;"
                 href="{% url 'cv' o.cv.pk %}">{{ o.cv.nameCv }}</a></h2>
