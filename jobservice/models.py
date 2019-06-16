@@ -31,9 +31,9 @@ class Company(models.Model):
     companyName = models.CharField(max_length= 50,default="")
     companyMail = models.EmailField(default="")
     image = models.ImageField(default='default.jpg', upload_to='pics')
-    aboutUs = models.TextField()
-    site = models.CharField(max_length= 50,default="")
-    location = models.CharField(max_length= 20,default="")
+    aboutUs = models.TextField(blank=True)
+    site = models.CharField(max_length= 50,default="",blank=True)
+    location = models.CharField(max_length= 50,default="",blank=True)
     
     def __str__(self):
         return self.companyName
@@ -62,14 +62,14 @@ class JobOffer(models.Model):
 class Cv(models.Model):
     
     person = models.ForeignKey(Person, on_delete = models.CASCADE,default="")
-    nameCv = models.CharField(max_length=50,blank=True)
+    nameCv = models.CharField(max_length=50,blank=True,default="cv")
     lastName = models.CharField(max_length=50,blank=True)
     firstName = models.CharField(max_length=50,blank=True)
     dateOfBirth = models.CharField(max_length=50,blank=True)
-    education = models.CharField(max_length=300,blank=True)
-    placeOfResidence = models.CharField(max_length=300,blank=True)
-    experience = models.CharField(max_length=300,blank=True)
-    description = models.CharField(max_length=300,blank=True)
+    education = models.TextField(max_length=300,blank=True)
+    placeOfResidence = models.TextField(max_length=300,blank=True)
+    experience = models.TextField(max_length=300,blank=True)
+    description = models.TextField(max_length=300,blank=True)
 
     def __str__(self):
         return self.nameCv
@@ -80,14 +80,14 @@ class ReplyToOffer(models.Model):
     idOffer = models.ForeignKey(JobOffer, on_delete = models.CASCADE,default="")
     dateAdd = models.DateTimeField(auto_now_add=True)
     cv = models.ForeignKey(Cv, on_delete = models.CASCADE, default="")
-    messForCompany = models.CharField(max_length=150,default="",blank=True)
+    messForCompany = models.TextField(max_length=150,default="",blank=True)
 
     def __str__(self):
         return str(self.idOffer)+' '+str(self.idPerson)
 
 class FeedbackAnswer(models.Model):
     idReplyToOffer = models.ForeignKey(ReplyToOffer, on_delete = models.CASCADE,default="")
-    response = models.CharField(max_length=50, default="")
+    response = models.TextField(max_length=300, default="")
 
     def __str__(self):
         return str(self.idReplyToOffer)+' '+str(self.response)
