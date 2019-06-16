@@ -5,20 +5,26 @@
 <br> <br>
 
 <form action="{% url 'reply' pk=offers.pk%}" method="post">
-  {% csrf_token %}
+        {% csrf_token %}
 
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <label class="input-group-text" for="inputGroupSelect01">Chose your CV</label>
-    </div>
-    <select class="custom-select" name="cv" id="inputGroupSelect01">
-      <option selected>Choose...</option>
-      {% for cv in cvs %}
-      <option value={{cv.pk}}>{{cv.nameCv}}</option>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Chose your CV</label>
+          </div>
+          <select class="custom-select" name="cv" id="inputGroupSelect01">
+            <option selected>Choose...</option>
+                  {% for cv in cvs %}
+            <option value={{cv.pk}}  >{{cv.nameCv}}</option>
+          
+                  {% endfor %}
+                
+          </select>
+        </div>
+
 
         <div class="form-group purple-border">
        
-          <textarea class="form-control" name="messForCompany" type="text" id="messForCompany" placeholder="mess" rows="3"></textarea>
+          <textarea class="form-control" name="messForCompany" type="text" id="messForCompany" placeholder="Type the message you want to send" rows="3"></textarea>
         </div>
     <div class="form-group mx-auto">
    
@@ -56,17 +62,14 @@
             <option>Default select</option>
           </select>
           <form>
-
                   <div class="col">
                     <input type="text" class="form-control" placeholder="First name">
                   </div>
           </form>
-
-
           <button type="button" href=" " class="btn btn-dark">odpowiedz na oferte</butto> -->
 
 <!-- <article class="media content-section"> -->
-<!-- <div class="media-body">
+    <!-- <div class="media-body">
         <div class="article-metadata">
             <a class="mr-2 pasek_napis">{{ object.companyName }}</a>
             <small class="text-muted">{{ object.postdate}}</small>
@@ -84,22 +87,20 @@
         <p class="article-content" style="font-family: Nunito Sans;">location: {{ object.location }}</p>
         <h4 class="article-content">About this job</h4>
         <p class="article-content" style="font-family: Nunito Sans;">jobDescription: {{ object.jobDescription }}</p> -->
-<!-- <div class="input-group">
-
+        <!-- <div class="input-group">
                 <select class="custom-select" id="inputGroupSelect04">
                     {% for cv in cvs %}
                   <option selected>Choose...</option>
                   <option value="cv">{{cv.nameCv}}</option> -->
-<!-- <option value="2">Two</option>
+                  <!-- <option value="2">Two</option>
                   <option value="3">Three</option> -->
-<!-- {% endfor %}
+                  <!-- {% endfor %}
                 </select>
                 <div class="input-group-append">
                   <button class="btn btn-outline-secondary" type="button-dark">wyslij swoje cv</button>
                 </div>
               </div>
               or
-
         <div class="input-group">
         <div class="custom-file">
           <input type="file" class="custom-file-input" id="inputGroupFile04">
