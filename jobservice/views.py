@@ -8,6 +8,7 @@ from django.utils.decorators import method_decorator
 from companyusers.decorators import (company_required, person_required)
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
+from django.contrib import messages
 
 
 from .forms import Cv_form, ReplyToOffer_form, FeedbackAnswer_form
@@ -112,6 +113,7 @@ def create_cv(request):
             person = Person.objects.get(user=request.user)
             test.person = person
             test.save()
+            messages.success(request, f'Cv created for {person}!')
             return redirect('cv', cv_id = test.pk)
         return  render(request,'normalusers/create_cv.html',{'form':form})
     else:
@@ -155,6 +157,7 @@ def reply(request, pk):
         print(m)
         oj=ReplyToOffer.objects.create(idOffer=j, idPerson=per, dateAdd=timezone.now(), cv=cccccc, messForCompany=m)
         oj.save()
+        messages.success(request, f'You have sent your cv with the message!')
         return redirect('replyview', reply_id = oj.pk)
     else:
         form = ReplyToOffer_form()

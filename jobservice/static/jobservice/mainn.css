@@ -56,7 +56,7 @@ input::placeholder {
 }
 
 body {
-    background: #efedf8;
+    background: #af0098;
     color: #333333;
   }
   
@@ -73,6 +73,15 @@ body {
   }
   .content-section {
     background: #ffffff;
+    padding: 10px 20px;
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+    margin-bottom: 5px;
+    width: 100%;
+  }
+
+  .content-link {
+    background: #bb23a2;
     padding: 10px 20px;
     border: 1px solid #dddddd;
     border-radius: 3px;

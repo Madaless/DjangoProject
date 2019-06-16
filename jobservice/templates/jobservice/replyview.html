@@ -2,18 +2,14 @@
 {% block content%}
 
 <br>
-<br>
-<div class=" pasek_napis ">
-     reply: 
-    <br> <br>
-</div>
+
 
 
 <article class="media content-section">
     <div class="media-body">
         <div class="article-metadata">
             <a class="mr-2 pasek_napis">Reply</a>
-            
+
         </div>
         {% for r in replys %}
         <a href="{% url 'cv' r.cv.pk %}" class="article-tilte">cv: {{ r.cv }}</a>
@@ -21,12 +17,12 @@
         <p class="article-content" style="font-family: Nunito Sans;">mess: {{ r.messForCompany }}</p>
         <small class="article-content" style="font-family: Nunito Sans;">date add: {{ r.dateAdd }}</small>
         <br>
-    </article>
-    {% if user.is_authenticated and user.is_company  %}
-        <a href="email" class="btn btn-dark">odpowiedz</a>
-        {% endif %}
-        {% endfor %}
-        
+</article>
+{% if user.is_authenticated and user.is_company  %}
+<a href="email" class="btn btn-dark">odpowiedz</a>
+{% endif %}
+{% endfor %}
+
 
 
 <br>

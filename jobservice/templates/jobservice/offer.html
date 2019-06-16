@@ -5,6 +5,10 @@
     p {
         font-size: 1.1rem;
     }
+    .doda {
+  background-color: lightblue;
+}
+
 </style>
 <!-- 'title', 'industry', 'proffesion' ,'jobPosition', 'jobType', 'ExperienceLevel', 'postdate', 'companyName', 'location', 'jobDescription' -->
 <br></br>
@@ -55,10 +59,13 @@
 {% if user.is_authenticated and user.is_company  %}
 
 
-<div class="pasek_napis">
-    </li>
-    <a class=" pasek_napis" href="{% url 'sendreply' object.pk %}">Response to the offer</a>
-</div>
+<article class="media content-section doda" >
+    <div>
+        <h2><a class="article-title pasek_napis " style="font-size: 20px;"
+            href="{% url 'sendreply' object.pk %}">Responses to the offer</a>
+        </h2>
+    </div>
+</article>
 
 
 {%endif%}
