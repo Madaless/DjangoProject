@@ -5,51 +5,52 @@
 <br> <br>
 
 <form action="{% url 'reply' pk=offers.pk%}" method="post">
-        {% csrf_token %}
+  {% csrf_token %}
 
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <label class="input-group-text" for="inputGroupSelect01">Chose your CV</label>
-          </div>
-          <select class="custom-select" name="cv" id="inputGroupSelect01">
-            <option selected>Choose...</option>
-                  {% for cv in cvs %}
-            <option value={{cv.pk}}  >{{cv.nameCv}}</option>
-          
-                  {% endfor %}
-                
-          </select>
-        </div>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <label class="input-group-text" for="inputGroupSelect01">Chose your CV</label>
+    </div>
+    <select class="custom-select" name="cv" id="inputGroupSelect01">
+      <option selected>Choose...</option>
+      {% for cv in cvs %}
+      <option value={{cv.pk}}>{{cv.nameCv}}</option>
+
+      {% endfor %}
+
+    </select>
+  </div>
 
 
-        <div class="form-group purple-border">
-       
-          <textarea class="form-control" name="messForCompany" type="text" id="messForCompany" placeholder="Type the message you want to send" rows="3"></textarea>
-        </div>
-    <div class="form-group mx-auto">
-   
+  <div class="form-group purple-border">
+
+    <textarea class="form-control" name="messForCompany" type="text" id="messForCompany"
+      placeholder="Type the message you want to send" rows="3"></textarea>
+  </div>
+  <div class="form-group mx-auto">
+
     {% if form.errors %}
     {% for field in form %}
 
-        {% for error in field.errors %}
-        {{field}}
-            <div class="alert alert-danger">
-                <strong>{{ error|escape }}</strong>
-            </div>
-        {% endfor %}
+    {% for error in field.errors %}
+    {{field}}
+    <div class="alert alert-danger">
+      <strong>{{ error|escape }}</strong>
+    </div>
+    {% endfor %}
     {% endfor %}
     {% for error in form.non_field_errors %}
     {{field}}
-        <div class="alert alert-danger">
-            <strong>{{ error|escape }}</strong>
-        </div>
+    <div class="alert alert-danger">
+      <strong>{{ error|escape }}</strong>
+    </div>
     {% endfor %}
-{% endif %}
+    {% endif %}
     <br>
     <br>
     <div class="col-md-1 mx-auto">
-      <input type="submit" volue = "Submit" class="btn btn-dark " >
-  </div>
+      <input type="submit" volue="Submit" class="btn btn-dark ">
+    </div>
 </form>
 <!--  
 <form action="reply" method="post">
@@ -69,7 +70,7 @@
           <button type="button" href=" " class="btn btn-dark">odpowiedz na oferte</butto> -->
 
 <!-- <article class="media content-section"> -->
-    <!-- <div class="media-body">
+<!-- <div class="media-body">
         <div class="article-metadata">
             <a class="mr-2 pasek_napis">{{ object.companyName }}</a>
             <small class="text-muted">{{ object.postdate}}</small>
@@ -87,14 +88,14 @@
         <p class="article-content" style="font-family: Nunito Sans;">location: {{ object.location }}</p>
         <h4 class="article-content">About this job</h4>
         <p class="article-content" style="font-family: Nunito Sans;">jobDescription: {{ object.jobDescription }}</p> -->
-        <!-- <div class="input-group">
+<!-- <div class="input-group">
                 <select class="custom-select" id="inputGroupSelect04">
                     {% for cv in cvs %}
                   <option selected>Choose...</option>
                   <option value="cv">{{cv.nameCv}}</option> -->
-                  <!-- <option value="2">Two</option>
+<!-- <option value="2">Two</option>
                   <option value="3">Three</option> -->
-                  <!-- {% endfor %}
+<!-- {% endfor %}
                 </select>
                 <div class="input-group-append">
                   <button class="btn btn-outline-secondary" type="button-dark">wyslij swoje cv</button>

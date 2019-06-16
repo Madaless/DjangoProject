@@ -17,7 +17,7 @@ from . import models
 from django.core.paginator import Paginator
 from django.db.models import Q
 
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMessage
 from django.conf import settings
 import smtplib
 
@@ -154,12 +154,16 @@ def reply(request, pk):
     if request.method == "POST":
         m = request.POST.get('messForCompany','')
         o = request.POST.get('cv','')
-        cccccc = Cv.objects.get(pk=o)
-        print(m)
-        oj=ReplyToOffer.objects.create(idOffer=j, idPerson=per, dateAdd=timezone.now(), cv=cccccc, messForCompany=m)
-        oj.save()
-        messages.success(request, f'You have sent your cv with the message!')
-        return redirect('replyview', reply_id = oj.pk)
+        if o != "Choose...":
+            cccccc = Cv.objects.get(pk=o)
+            print(m)
+            oj=ReplyToOffer.objects.create(idOffer=j, idPerson=per, dateAdd=timezone.now(), cv=cccccc, messForCompany=m)
+            oj.save()
+            messages.success(request, f'You have sent your cv with the message!')
+            return redirect('replyview', reply_id = oj.pk)
+        else:
+            messages.error(request, 'Please chose your cv. If you do not have one, go back to profile and create your CV')
+            return redirect(request.path_info)
     else:
         form = ReplyToOffer_form()
         return render(request,'jobservice/replytooffer.html',{'form':form, 'offers': a, 'cvs':c })
