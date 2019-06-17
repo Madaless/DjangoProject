@@ -26,7 +26,7 @@ import smtplib
 @login_required
 @company_required
 def emailS(request, email_id):
-    subject = 'FindJob'
+    subject = 'FindJob '+str(request.user)+' ['+str(request.user.email)+']'
     em = FeedbackAnswer.objects.get(pk=email_id)
     r = ReplyToOffer.objects.get(pk=em.idReplyToOffer.pk)
     message = em.response

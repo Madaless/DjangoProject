@@ -3,20 +3,17 @@
 
 <br>
 <br>
-<div class=" pasek_napis ">
-     cv: 
-    <br> <br>
-</div> 
+
 <article class="media content-section">
     <div class="media-body">
         <div class="article-metadata">
-            <a class="mr-2 pasek_napis">CV</a>
+            <a class="mr-2 pasek_napis" style="color: green">CV</a>
             <!-- <small class="text-muted">{{ cvs.nameCv}}</small> -->
         </div>
         {% for cv in p %}
         <h2 class="article-tilte">{{ cvs.nameCv }}</h2>
-        <p class="article-content" style="font-family: Nunito Sans; color: black">{{cv.lastName }}</p>
-        <p class="article-content" style="font-family: Nunito Sans;">{{ cv.firstName }}</p>
+        <p class="article-content" style="font-family: Nunito Sans; color: black; font-size: 25px;">{{cv.lastName }} {{ cv.firstName }}</p>
+        <!-- <p class="article-content" style="font-family: Nunito Sans;"></p> -->
         <small class="article-content" style="font-family: Nunito Sans;">date of birth: {{ cv.dateOfBirth }}</small>
         <br>
         <br>
