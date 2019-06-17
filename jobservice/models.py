@@ -81,6 +81,7 @@ class ReplyToOffer(models.Model):
     dateAdd = models.DateTimeField(auto_now_add=True)
     cv = models.ForeignKey(Cv, on_delete = models.CASCADE, default="")
     messForCompany = models.TextField(max_length=150,default="",blank=True)
+    link = models.TextField(max_length=150,default="",blank=True)
 
     def __str__(self):
         return str(self.idOffer)+' '+str(self.idPerson)

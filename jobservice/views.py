@@ -20,6 +20,8 @@ from django.db.models import Q
 from django.core.mail import send_mail, EmailMessage
 from django.conf import settings
 import smtplib
+from django.core.files.storage import FileSystemStorage
+
 
 # Create your views here
 
@@ -30,6 +32,7 @@ def emailS(request, email_id):
     em = FeedbackAnswer.objects.get(pk=email_id)
     r = ReplyToOffer.objects.get(pk=em.idReplyToOffer.pk)
     message = em.response
+    cv_file = request.FILES['cv_file']
     s=r.idOffer.pk
     email_from = settings.EMAIL_HOST_USER
     recipient_list =[r.idPerson.user.email]
@@ -154,13 +157,28 @@ def reply(request, pk):
     if request.method == "POST":
         m = request.POST.get('messForCompany','')
         o = request.POST.get('cv','')
+        cv = request.POST.get('messForCompany','')
+        print(m)
         if o != "Choose...":
             cccccc = Cv.objects.get(pk=o)
-            print(m)
             oj=ReplyToOffer.objects.create(idOffer=j, idPerson=per, dateAdd=timezone.now(), cv=cccccc, messForCompany=m)
             oj.save()
-            messages.success(request, f'You have sent your cv with the message!')
-            return redirect('replyview', reply_id = oj.pk)
+            oj=ReplyToOffer.objects.create(idOffer=j, idPerson=per, dateAdd=timezone.now(), cv=cccccc, messForCompany=m)
+            oj.save()
+            p = ReplyToOffer.objects.filter(pk=oj.pk)
+            if request.FILES.get('myfile', False):
+                myfile = request.FILES['myfile']
+                fs = FileSystemStorage()
+                filename = fs.save(myfile.name, myfile)
+                uploaded_file_url = fs.url(filename)
+                messages.success(request, f'You have sent your cv with the message!')
+               # return render(request,'jobservice/replyview.html',{'replys':p,'uploaded_file_url': uploaded_file_url})
+                oj=ReplyToOffer.objects.create(idOffer=j, idPerson=per, dateAdd=timezone.now(), cv=cccccc, messForCompany=m, link = uploaded_file_url )
+                oj.save()
+                return redirect('replyview', reply_id = oj.pk)
+
+            else:
+                return redirect('replyview', reply_id = oj.pk)
         else:
             messages.error(request, 'Please chose your cv. If you do not have one, go back to profile and create your CV')
             return redirect(request.path_info)
@@ -173,7 +191,7 @@ def reply(request, pk):
 # @person_required
 def replyview(request, reply_id):
     p = ReplyToOffer.objects.filter(pk=reply_id)
-    return render(request,'jobservice/replyview.html',{'replys':p })
+    return render(request,'jobservice/replyview.html',{'replys':p} )
 
 @login_required
 @person_required   

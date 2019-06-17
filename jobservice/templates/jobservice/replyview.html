@@ -8,20 +8,25 @@
     <div class="media-body">
         <div class="article-metadata">
             <a href="{% url 'cv' r.cv.pk %}" class="mr-2 pasek_napis">{{ r.cv }}</a>
-            
+
         </div>
-      
-       
-       
-        <p href="#" class="article-content" style="font-family: Nunito Sans;">{{r.idOffer.jobPosition }}</p>
-        <p class="article-content" style="font-family: Nunito Sans;">{{ r.messForCompany }}</p>
-        <small class="article-content" style="font-family: Nunito Sans;">{{ r.dateAdd }}</small>
+
+
+
+        <p href="#" class="article-content">Job Position: {{r.idOffer.jobPosition }}</p>
+        <p class="article-content>Message">Message: {{ r.messForCompany }}</p>
+        <p class="article-content">Commit Date: {{ r.dateAdd }}</p>
+        {% if r.link %}
+        <p class="article-content">CV user upladed: <a href="{{ r.link }}">Uploaded file</a></p>
+        {% endif %}
         <br>
 </article>
 {% if user.is_authenticated and user.is_company  %}
 <a href="email" class="btn btn-dark">odpowiedz</a>
 {% endif %}
 {% endfor %}
+
+
 
 
 

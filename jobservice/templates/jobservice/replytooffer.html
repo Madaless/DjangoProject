@@ -4,7 +4,7 @@
 
 <br> <br>
 
-<form action="{% url 'reply' pk=offers.pk%}" method="post">
+<form action="{% url 'reply' pk=offers.pk%}" method="post" enctype="multipart/form-data">
   {% csrf_token %}
 
   <div class="input-group mb-3">
@@ -27,6 +27,7 @@
     <textarea class="form-control" name="messForCompany" type="text" id="messForCompany"
       placeholder="Type the message you want to send" rows="3"></textarea>
   </div>
+  <input type="file" name="myfile">
   <div class="form-group mx-auto">
 
     {% if form.errors %}
@@ -52,6 +53,8 @@
       <input type="submit" volue="Submit" class="btn btn-dark ">
     </div>
 </form>
+
+
 <!--  
 <form action="reply" method="post">
         <div class="form-group">

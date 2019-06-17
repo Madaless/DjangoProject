@@ -20,11 +20,11 @@ class ReplyToOffer_form(forms.ModelForm):
 
     class Meta:
         model = ReplyToOffer
-        fields = ('cv','messForCompany')
+        fields = ('cv','messForCompany','link')
 
 
 class FeedbackAnswer_form(forms.ModelForm):
-
+    cv_file = forms.Field(label='CV', widget = forms.FileInput,   required = False )
     class Meta:
         model = FeedbackAnswer
         fields = ('response',)

@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/2.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
+
 from django.core.mail import get_connection, send_mail
 from django.core.mail.message import EmailMessage
 from django.contrib.messages import constants as messages
@@ -44,6 +45,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'widget_tweaks',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -51,10 +53,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'companyusers',
-    'widget_tweaks',
     'normalusers',
     'jobservice',
-    "xhtml2pdf"
 ]
 
 MIDDLEWARE = [
@@ -138,6 +138,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Custom Django auth settings
+
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 AUTH_USER_MODEL = 'jobservice.User'
 LOGIN_REDIRECT_URL = 'jobs-home'
