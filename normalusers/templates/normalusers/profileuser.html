@@ -2,13 +2,13 @@
 {% block content%}
 
 
-<div class="alert alert-warning alert-dismissible fade show color: white" style="background-color:#6c98b6 "
+<!-- <div class="alert alert-warning alert-dismissible fade show color: white" style="background-color:#6c98b6 "
     role="alert">
     <strong>Hi {{ user.username }} </strong> you can edit your profile ;)
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
-</div>
+</div> -->
 <br>
 <!-- <div class="profil ">
     <div class="photo form-row " style="margin-left: 0px;">
@@ -113,13 +113,17 @@
     </div>
 </div>
 {% for cv in cvs %}
-<article class="media content-section">
-    <div class="media-body">
-        <h2><a class="article-title pasek_napis " style="font-size: 20px;"
-                href="{% url 'cv' cv.pk %}">{{ cv.nameCv }}</a>
+<a href="{% url 'cv' cv.pk %}"class="btn btn-sm btn-block" style="background-color:#6c98b6">
+        <i class="pasek_napis"></i>
+        <span class="pasek_napis">{{ cv.nameCv }}</span>
+    </a>
+<!-- <button  class="media content-section">
+    <div class="media-body" href="{% url 'cv' cv.pk %}">
+        <h2><a class="article-title pasek_napis " style="font-size: 20px;">
+                {{ cv.nameCv }}</a>
         </h2>
     </div>
-</article>
+</button> -->
 
 {% endfor %}
 
