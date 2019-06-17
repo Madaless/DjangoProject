@@ -161,11 +161,7 @@ def reply(request, pk):
         print(m)
         if o != "Choose...":
             cccccc = Cv.objects.get(pk=o)
-            oj=ReplyToOffer.objects.create(idOffer=j, idPerson=per, dateAdd=timezone.now(), cv=cccccc, messForCompany=m)
-            oj.save()
-            oj=ReplyToOffer.objects.create(idOffer=j, idPerson=per, dateAdd=timezone.now(), cv=cccccc, messForCompany=m)
-            oj.save()
-            p = ReplyToOffer.objects.filter(pk=oj.pk)
+            
             if request.FILES.get('myfile', False):
                 myfile = request.FILES['myfile']
                 fs = FileSystemStorage()
@@ -178,6 +174,8 @@ def reply(request, pk):
                 return redirect('replyview', reply_id = oj.pk)
 
             else:
+                oj=ReplyToOffer.objects.create(idOffer=j, idPerson=per, dateAdd=timezone.now(), cv=cccccc, messForCompany=m)
+                oj.save()
                 return redirect('replyview', reply_id = oj.pk)
         else:
             messages.error(request, 'Please chose your cv. If you do not have one, go back to profile and create your CV')
