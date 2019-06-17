@@ -28,7 +28,7 @@ from django.core.files.storage import FileSystemStorage
 @login_required
 @company_required
 def emailS(request, email_id):
-    subject = 'FindJob'
+    subject = 'FindJob '+str(request.user)+' ['+str(request.user.email)+']'
     em = FeedbackAnswer.objects.get(pk=email_id)
     r = ReplyToOffer.objects.get(pk=em.idReplyToOffer.pk)
     message = em.response
@@ -115,7 +115,7 @@ def create_cv(request):
             test = form.save(commit=False)
             person = Person.objects.get(user=request.user)
             test.person = person
-            test.nameCv ='CV'
+            # test.nameCv ='CV'
             test.save()
             messages.success(request, f'Cv created for {person}!')
             return redirect('cv', cv_id = test.pk)
