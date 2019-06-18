@@ -32,7 +32,7 @@ def emailS(request, email_id):
     em = FeedbackAnswer.objects.get(pk=email_id)
     r = ReplyToOffer.objects.get(pk=em.idReplyToOffer.pk)
     message = em.response
-    cv_file = request.FILES['cv_file']
+    # cv_file = request.FILES['cv_file']
     s=r.idOffer.pk
     email_from = settings.EMAIL_HOST_USER
     recipient_list =[r.idPerson.user.email]
@@ -73,7 +73,7 @@ def home(request):
             Q(companyName__companyName__icontains=query)
             ).distinct()
     
-    paginator = Paginator(queryset_list, 10) # Show 10 per page
+    paginator = Paginator(queryset_list, 5) # Show 10 per page
     page_request_var = "page"
     page = request.GET.get(page_request_var)
     queryset_list = paginator.get_page(page)

@@ -12,13 +12,17 @@
         </div>
         {% for cv in p %}
         <h2 class="article-tilte">{{ cvs.nameCv }}</h2>
+        
         <p class="article-content" style="font-family: Nunito Sans; color: black; font-size: 25px;">{{cv.lastName }} {{ cv.firstName }}</p>
         <!-- <p class="article-content" style="font-family: Nunito Sans;"></p> -->
         <small class="article-content" style="font-family: Nunito Sans;">date of birth: {{ cv.dateOfBirth }}</small>
         <br>
+        <small class="article-content" style="font-family: Nunito Sans;">{{ cv.placeOfResidence }}</small>
+        <br>
+    
         <br>
         <p class="article-content" style="font-family: Nunito Sans;">{{ cv.education }}</p>
-        <p class="article-content" style="font-family: Nunito Sans;">{{ cv.placeOfResidence }}</p>
+        
         <p class="article-content" style="font-family: Nunito Sans;">{{ cv.experience }}</p>
    
         <p class="article-content" style="font-family: Nunito Sans;">{{ cv.description }}</p>
